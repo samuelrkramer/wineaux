@@ -1,8 +1,11 @@
 #nav_bar {
+  width: 100%;
   display: flex;
   justify-content: space-around;
   background-color: #4F182E;
   height: 60px;
+  position: sticky;
+  top: 0;
 }
 
 #nav_bar_content {

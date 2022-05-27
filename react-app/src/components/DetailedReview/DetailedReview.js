@@ -20,17 +20,31 @@ function DetailedReview() {
         return <h1>Loading</h1>
     }
 
-    console.log(review);
-
     return (
-        <div id="detailed-review-hero">
-            <div id="detailed-review-content">
-                <div id="detailed-review-userinfo">
-                    {review.firstname} {review.lastname}
+        <div id="dr-hero">
+            <div id="dr-content">
+                <div id="dr-userinfo">
+                    <div id="dr-userinfo-img-container">
+                        <img id="dr-userinfo-img" src={review.user.profile_image_url} alt="" />
+                    </div>
+                    <div id="dr-userinfo-name">
+                        {review.user.first_name} {review.user.last_name}
+                    </div>
                 </div>
-                <div id="detailed-review-cont***">
-
+                <div id="dr-body">
+                    <div id="dr-wineinfo-container">
+                        <img id="dr-wine-img" src={review.wine.image_url} alt="" />
+                        <div id="dr-wineinfo">
+                            <div id="dr-wine-name">{review.wine.name}</div>
+                            <div id="dr-wine-year">{review.wine.year}</div>
+                        </div>
+                    </div>
+                    <div id="dr-wine-rating">{review.wine.rating}</div>
+                    <div id="dr-review-date">{review.updatedAt}</div>
                 </div>
+            </div>
+            <div id="dr-img-container">
+                <img id="dr-img" src={review.image_url} alt="" />
             </div>
 
         </div>
