@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
 
 
 class User(db.Model, UserMixin):
@@ -17,6 +18,8 @@ class User(db.Model, UserMixin):
     birthdate = db.Column(db.Date, nullable=False)
     location = db.Column(db.String(50))
     business = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
     user_wines = db.relationship('Wine', back_populates='user')
     review = db.relationship('Review', back_populates='user_review')
