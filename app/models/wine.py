@@ -1,4 +1,6 @@
 from .db import db
+import datetime
+
 
 class Wine(db.Model):
   __tablename__ = 'wines'
@@ -12,6 +14,8 @@ class Wine(db.Model):
   sweetness = db.Column(db.String(50), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   image_url = db.Column(db.String(1000))
+  created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+  updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
   variety = db.relationship('Variety', back_populates='wines')
   user = db.relationship('User', back_populates='user_wines')
