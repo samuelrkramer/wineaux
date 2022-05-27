@@ -21,8 +21,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
-    user_wines = db.relationship('Wine', back_populates='user')
-    review = db.relationship('Review', back_populates='user_review')
+    wines = db.relationship('Wine', back_populates='user')
+    reviews = db.relationship('Review', back_populates='user')
 
     @property
     def password(self):

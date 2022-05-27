@@ -18,5 +18,5 @@ class Wine(db.Model):
   updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
   variety = db.relationship('Variety', back_populates='wines')
-  user = db.relationship('User', back_populates='user_wines')
-  review = db.relationship('Review', back_populates='wine_review')
+  user = db.relationship('User', back_populates='wines')
+  reviews = db.relationship('Review', back_populates='wine')
