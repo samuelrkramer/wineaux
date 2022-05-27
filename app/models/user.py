@@ -10,6 +10,16 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    profile_image_url = db.Column(db.String(1000))
+    bio = db.Column(db.Text)
+    birthdate = db.Column(db.Date, nullable=False)
+    location = db.Column(db.String(50))
+    business = db.Column(db.Boolean, default=False, nullable=False)
+
+    user_wines = db.relationship('Wine', back_populates='user')
+    review = db.relationship('Review', back_populates='user_review')
 
     @property
     def password(self):
