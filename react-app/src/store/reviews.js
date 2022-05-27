@@ -11,7 +11,8 @@ export const getAllReviews = () => async (dispatch) => {
     const response = await fetch('/api/reviews')
 
     if (response.ok) {
-        const reviews = response.json();
+        const data = await response.json();
+        const reviews = data.reviews
         dispatch(allReviewsAction(reviews));
         return reviews
     }
@@ -29,7 +30,7 @@ export const getOneReview = (reviewId) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${reviewId}`);
 
     if (response.ok) {
-        const review = response.json();
+        const review = await response.json();
         dispatch(oneReviewAction(review));
         return review;
     }
@@ -73,7 +74,7 @@ export const editReview = (review) => async (dispatch) => {
     })
 
     if (response.ok) {
-        const editReview = response.json();
+        const editReview = await response.json();
         dispatch(editReviewAction(editReview));
         return editReview;
     }

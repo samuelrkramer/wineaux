@@ -9,7 +9,7 @@ export const getAllWines = () => async (dispatch) => {
     const response = await fetch('/api/wines')
 
     if (response.ok) {
-        const wines = response.json();
+        const wines = await response.json();
         dispatch(allWinesAction(wines));
         return wines
     }
@@ -27,7 +27,7 @@ export const getOneWine = (wineId) => async (dispatch) => {
     const response = await fetch(`/api/wines/${wineId}`);
 
     if (response.ok) {
-        const wine = response.json();
+        const wine = await response.json();
         dispatch(oneWineAction(wine));
         return wine;
     }
@@ -71,7 +71,7 @@ export const editWine = (wine) => async (dispatch) => {
     })
 
     if (response.ok) {
-        const editWine = response.json();
+        const editWine = await response.json();
         dispatch(editWineAction(editWine));
         return editWine;
     }
