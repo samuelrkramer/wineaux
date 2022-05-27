@@ -20,13 +20,11 @@ class Review(db.Model):
   def to_dict(self):
     return {
         'id': self.id,
-        'user_id': self.user_id,
-        'wine_id': self.wine_id,
         'text': self.text,
         'rating': self.rating,
         'image_url': self.image_url,
         'created_at': self.created_at,
         'updated_at': self.updated_at,
-        'user': self.user.to_dict()
-        # 'wine_review': self.wine_review,
+        'user': self.user.to_dict(),
+        'wine': self.wine.to_dict()
     }

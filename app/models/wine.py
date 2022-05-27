@@ -20,3 +20,13 @@ class Wine(db.Model):
   variety = db.relationship('Variety', back_populates='wines')
   user = db.relationship('User', back_populates='wines')
   reviews = db.relationship('Review', back_populates='wine')
+
+  def to_dict(self):
+    return {
+      'name': self.name,
+      'year': self.year,
+      'description': self.description,
+      'color': self.color,
+      'sweetness': self.sweetness,
+      'image_url': self.image_url,
+    }
