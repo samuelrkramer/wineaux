@@ -7,4 +7,4 @@ review_routes = Blueprint('reviews', __name__)
 @review_routes.route('/', methods=["GET"])
 def get_all_reviews():
     reviews = Review.query.all()
-    
+    return {'reviews': [review.to_dict() for review in reviews]}
