@@ -7,3 +7,17 @@
 body {
   margin: 0px;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(247, 244, 214)
+}
+
+#app-hero {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
