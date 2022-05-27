@@ -2,7 +2,7 @@ from app.models import db, Wine
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
+def seed_wines():
     demo = Wine(
     name="Alpha Estate", year=2004, variety_id=2, description="Phenomenal", color="White", sweetness="Sweer", user_id=1, image_url="https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-50.jpg")
 
@@ -53,6 +53,6 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
-def undo_users():
+def undo_wines():
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()
