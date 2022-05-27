@@ -8,7 +8,7 @@ const DELETE_REVIEW = 'review/DELETE'
 
 // GET ALL REVIEWS
 export const getAllReviews = () => async (dispatch) => {
-    const response = await fetch('/api/reviews')
+    const response = await fetch('/api/reviews/')
 
     if (response.ok) {
         const data = await response.json();
