@@ -70,7 +70,7 @@ export const login_demo = () => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ['An error occurred. Please try again. Perhaps no users exist?']
   }
 }
 
