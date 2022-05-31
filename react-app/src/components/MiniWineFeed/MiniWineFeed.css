@@ -31,16 +31,17 @@
   padding: 10px;
   background-color: rgba(255, 255, 255, .7);
   height: fit-content;
+  font-weight: bold;
 }
 
 
-::-webkit-scrollbar {
+#mini_wine_container::-webkit-scrollbar {
   background: rgba(62, 62, 62, 0.3);
   height: 10px !important;
   width: 10px !important;
 }
 
-::-webkit-scrollbar-thumb {
+#mini_wine_container::-webkit-scrollbar-thumb {
   background: #4F182E;
   /* -webkit-box-shadow: inset 0 0 5px rgb(93, 166, 255); */
 }

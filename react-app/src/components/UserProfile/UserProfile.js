@@ -36,7 +36,7 @@ const UserProfile = () => {
         return value.user.id === parseInt(userId)
       }))
     }
-    if (!specificUserReviews.length) {
+    if (!specificUserWines.length) {
       setSpecificUserWines(Object.entries(userWines).filter(([key, value]) => {
         return value.user.id === parseInt(userId)
       }))
@@ -94,11 +94,11 @@ const UserProfile = () => {
             {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Reviews:&nbsp;</p>
             <p className='user_info_content'> {specificUserReviews.length}</p> </div>
             : null}
+             {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Unique:&nbsp;</p>
+            <p className='user_info_content'> {specificUserReviews.length}</p> </div>
+            : null}
             {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Discovered:&nbsp;</p>
             <p className='user_info_content'> {specificUserWines.length}</p> </div>
-            : null}
-            {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Reviews:&nbsp;</p>
-            <p className='user_info_content'> {specificUserReviews.length}</p> </div>
             : null}
           </div>
         </div>
@@ -112,6 +112,7 @@ const UserProfile = () => {
     <div id='mini_wine_feed_container'>
       <MiniWineFeed wines={specificUserWines} />
     </div>
+    <div id='reviews_title'>Reviews</div>
   </>
   );
 }

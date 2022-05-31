@@ -14,7 +14,7 @@ const MiniWineFeed = (wines) => {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
             }}>
-            <div className='mini_wine_text'>Wine Text here</div>
+            <div className='mini_wine_text'>{wine[1].name}</div>
           </div>
         )
       })}

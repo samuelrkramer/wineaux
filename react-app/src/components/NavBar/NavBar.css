@@ -54,7 +54,9 @@
   padding: 10px 20px;
   text-align: center;
   transform: translate(-21%, 0);
-
+  background-color: white;
+  border-radius: 3px;
+  cursor: default;
 }
 
 .profile-dropdown > li {
@@ -66,11 +68,11 @@
 #top_tab {
   width: 0;
   height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #4F182E;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #4F182E;
   position: absolute;
   top: 90px;
   text-align: center;
-  /* transform: translate(-25%, 0); */
+  transform: translate(40px, 0px);
 }
