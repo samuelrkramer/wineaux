@@ -1,15 +1,10 @@
-import React, {useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getOneReview } from '../../store/reviews'
 import './FeedReview.css'
+import fullImg from './wine-rating-icon-full.png'
+import emptyImg from './wine-rating-icon-empty.png'
+import { NavLink } from 'react-router-dom';
 
-const FeedReview = () => {
-    const dispatch = useDispatch();
-    const review = useSelector(state => state.reviews.singleReview);
-
-    useEffect(() => {
-        dispatch(getOneReview(3));
-    }, [dispatch])
+const FeedReview = (props) => {
+    const review = props.review
 
     
     const getTime = () => {
@@ -29,6 +24,11 @@ const FeedReview = () => {
     }
     const time = getTime()
 
+    const getRating = (n) => {
+        if(n <= review.rating){return fullImg}
+        if(n > review.rating){return emptyImg}
+    }
+
     
     
     if (!review.id) {
@@ -40,20 +40,31 @@ const FeedReview = () => {
         <div className='feedReviewWrap'>
 
             <div className='first'>
-                <img className='rIcon' alt='icon' src={'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'}></img>
+                    <NavLink to={`/users/${review.user.id}`}><img className='rIcon' alt='icon' src={review.user.profile_image_url}></img></NavLink>
             </div>
 
             <div className='second'>
-                <div className='p2-1'> <a>{review.user.first_name}</a> is drinking {review.wine.name} - {review.wine.year}</div>
-                <div className='p2-2'>"{review.text}" User Rating - {review.rating}/5 </div>
+                <div className='p2-1'> 
+                        <p><NavLink to={`/users/${review.user.id}`} className='navLinkk'>{review.user.first_name}</NavLink> is drinking <NavLink to={`/wines/${review.wine.id}`} className='navLinkk'>{review.wine.name} ({review.wine.year})</NavLink> - </p>
+                        <img src={getRating(1)} alt=''></img>
+                        <img src={getRating(2)} alt=''></img>
+                        <img src={getRating(3)} alt=''></img>
+                        <img src={getRating(4)} alt=''></img>
+                        <img src={getRating(5)} alt=''></img>
+                </div>
+
+                <div className='p2-2'>
+                    "{review.text}"
+                    <img className='rPic' src={review.image_url} alt='review'></img>
+                </div>
+
 {/* google crop image css (without losing quality) - peep component example img */}
-                <img className='rPic' src={review.image_url} alt='review image'></img>
-                <div className='p2-4'>{time} <a>View Detailed Check-in</a></div>
+                    <div className='p2-4'><p>{time}</p> <NavLink to={`/reviews/${review.id}`} className='navLinkk'> Detailed View</NavLink></div>
             </div>
 
 
             <div className='third'>
-                    <img className='rIcon' src={'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'}></img>
+                    <NavLink to={`/wines/${review.wine.id}`} className='navLinkk'><img className='rIcon' src={review.wine.image_url} alt=''></img></NavLink>
             </div>
 
 
