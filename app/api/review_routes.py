@@ -31,5 +31,9 @@ def new_review():
         db.session.commit()
         return review.to_dict()
 
+# @review_routes.route('/user/<int:id>', methods=["GET"])
+# def user_reviews(id):
+#     reviews = Review.query.filter_by(user_id = id).all()
+#     return reviews.to_dict()
 
     return {'errors': 'invalid review'}
