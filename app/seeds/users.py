@@ -18,6 +18,8 @@ def seed_users():
 
 
     db.session.add(tom)
+    db.session.commit()
+
     db.session.add(tina)
     db.session.add(greg)
     db.session.add(shannon)
