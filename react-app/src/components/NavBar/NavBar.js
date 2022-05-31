@@ -1,11 +1,15 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import Logo from './Logo';
 
 const NavBar = () => {
+
+  const sessionUser = useSelector(state => state.session.user);
+
   return (
     <nav id='nav_bar'>
       <div id='nav_bar_content'>
