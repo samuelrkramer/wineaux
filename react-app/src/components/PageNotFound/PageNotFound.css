@@ -1,0 +1,17 @@
+.errorWrap{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 60px);
+    min-height: 400px;
+}
+
+.oopsL{
+    background-color: #4F182E;
+    padding: 10px;
+    color: white;
+    border-radius: 7px;
+    z-index: 15;
+}
