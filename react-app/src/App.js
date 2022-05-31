@@ -11,6 +11,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import DetailedReview from './components/DetailedReview';
 import FeedReview from './components/FeedReview';
+import UserProfile from './components/UserProfile';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,11 +44,10 @@ function App() {
             <UsersList />
           </ProtectedRoute>
           <ProtectedRoute path='/users/:userId' exact={true} >
-            <User />
+            <UserProfile />
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <h1>My Home Page</h1>
-            <FeedReview />
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
