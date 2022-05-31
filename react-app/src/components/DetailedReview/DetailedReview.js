@@ -82,12 +82,14 @@ function DetailedReview() {
 
             {inImgEdit ?
                 <EditReviewImg /> :
-                <>
+
+                // only show next component if an image exists
+                review.image_url && (
                     <div id="dr-img-banner">
                         <img id={`dr-img-${canEdit}`} src={review.image_url} alt="" />
                         <button id="dr-img-edit-button">Edit</button>
                     </div>
-                </>
+                )
             }
         </div>
     )
