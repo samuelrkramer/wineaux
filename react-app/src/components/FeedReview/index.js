@@ -53,7 +53,7 @@ const FeedReview = () => {
 
 
             <div className='third'>
-                    <img className={'j'} src={'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'}></img>
+                    <img className='rIcon' src={'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'}></img>
             </div>
 
 
