@@ -24,6 +24,7 @@ def new_wine():
         wine = Wine(
             # wine_id = form.data['wine_id'],
             name = form.data['name'],
+            year = form.data['year'],
             variety_id = form.data['variety_id'],
             description = form.data['description'],
             color = form.data['color'],
