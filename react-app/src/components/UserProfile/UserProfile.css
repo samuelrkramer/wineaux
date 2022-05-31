@@ -1,23 +1,88 @@
 #profile_name_text {
   font-size: 2.5em;
   margin-top: 20px;
-
+  text-align: center;
+  border: 1px solid #4F182E;
+  outline: 6px double #4F182E;
+  border-radius: 2px;
+  background-color: #4F182E;
+  color: white;
+  padding: 0px 20px;
 }
 
 #main_profile_div {
   width: 100%;
-  border: 1px solid black;
+  min-width: min-content;
+  max-width: 700px !important;
+  border: 1px solid #4F182E;
+  outline: 6px double #4F182E;
+  border-radius: 2px;
   margin-top: 20px;
   padding: 20px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #pic_detail_div {
   display: flex;
+  width: 50%;
+  min-width: fit-content;
+  justify-content: flex-start;
 }
 
 #profile_page_pic {
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+#user_details {
+  margin-top: 40px;
+  margin-left: 40px;
+  font-size: 2em;
+}
+
+#user_bio {
+  margin-top: 20px;
+  width: 50%;
+  min-width: fit-content;
+  font-size: 1.2em;
+}
+
+.user_info_text {
+  display: flex;
+  height: min-content;
+}
+
+.user_info_title {
+  font-size: 1em;
+  margin: 5px;
+  color: #4F182E;
+
+}
+.user_info_content {
+  font-size: 1em;
+  margin: 5px;
+  color: black;
+}
+
+#bio_title {
+  font-size: 1.5em;
+  color: #4F182E;
+  margin-bottom: 10px;
+}
+
+#discoveries_title {
+  font-size: 2.5em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.line_break {
+  height: 20px;
+  margin-top: 20px;
 }
