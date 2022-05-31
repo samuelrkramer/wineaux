@@ -80,17 +80,25 @@ function DetailedReview() {
                 </div>
             </div>
 
-            {inImgEdit ?
-                <EditReviewImg /> :
+            <div id="dr-img-banner" >
+                <img id="dr-img" src={review.image_url} alt="" />
 
-                // only show next component if an image exists
-                review.image_url && (
-                    <div id="dr-img-banner">
-                        <img id={`dr-img-${canEdit}`} src={review.image_url} alt="" />
-                        <button id="dr-img-edit-button">Edit</button>
-                    </div>
-                )
-            }
+                {inImgEdit ?
+                    <EditReviewImg review={review} setInImgEdit={setInImgEdit} /> :
+
+                    // only show edit button if an image exists
+                    canEdit && (
+                        <div id="dr-img-edit-button-container" >
+                            <button
+                                id="dr-img-edit-button"
+                                onClick={() => setInImgEdit(true)}
+                            >
+                                Edit
+                            </button>
+                        </div>
+                    )
+                }
+            </div>
         </div>
     )
 }

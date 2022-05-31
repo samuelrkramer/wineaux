@@ -36,7 +36,9 @@ def new_review():
 def edit_review(id):
     review = Review.query.get(id)
     newText = request.json["text"]
+    newUrl = request.json["image_url"]
     review.text = newText
+    review.image_url = newUrl
     db.session.commit()
 
 
