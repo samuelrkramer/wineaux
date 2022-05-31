@@ -21,7 +21,7 @@ const LoginForm = () => {
   const demoHandler = async (e) => {
     e.preventDefault();
     // alert("demo handler fired")
-    const data = await dispatch(login_demo);
+    const data = await dispatch(login_demo());
     if (data) {
       setErrors(data);
     }
