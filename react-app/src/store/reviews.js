@@ -67,6 +67,7 @@ const newReviewAction = (review) => ({
 
 // EDIT A REVIEW
 export const editReview = (review) => async (dispatch) => {
+    console.log("are we here", review)
     const response = await fetch(`/api/reviews/${review.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS

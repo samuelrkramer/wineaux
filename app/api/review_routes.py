@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import Review, db
 from app.forms import ReviewForm
@@ -31,9 +32,13 @@ def new_review():
         db.session.commit()
         return review.to_dict()
 
-# @review_routes.route('/user/<int:id>', methods=["GET"])
-# def user_reviews(id):
-#     reviews = Review.query.filter_by(user_id = id).all()
-#     return reviews.to_dict()
+@review_routes.route('/<int:id>', methods=["PUT"])
+def edit_review(id):
+    review = Review.query.get(id)
+    newText = request.json["text"]
+    review.text = newText
+    db.session.commit()
+
+
 
     return {'errors': 'invalid review'}
