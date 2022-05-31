@@ -16,8 +16,13 @@ const UserProfile = () => {
   const [displayName, setDisplayName] = useState('')
   const { userId }  = useParams();
   const userReviews = useSelector(state => state.reviews.allReviews)
-  // const userWines = useSelector(state => state.wines)
-  const wines = [1, 2, 3]
+  const userWines = useSelector(state => state.wines.allWines)
+
+  const [specificUserWines, setSpecificUserWines] = useState(Object.entries(userWines).filter(([key, value]) => {
+    return value.user.id === parseInt(userId)
+  }))
+
+
 
   // this state variable loads only the reviews left by the specific user for this profile page into an array
   const [specificUserReviews, setSpecificUserReviews] = useState(Object.entries(userReviews).filter(([key, value]) => {
@@ -28,6 +33,11 @@ const UserProfile = () => {
   useEffect(() => {
     if (!specificUserReviews.length) {
       setSpecificUserReviews(Object.entries(userReviews).filter(([key, value]) => {
+        return value.user.id === parseInt(userId)
+      }))
+    }
+    if (!specificUserReviews.length) {
+      setSpecificUserWines(Object.entries(userWines).filter(([key, value]) => {
         return value.user.id === parseInt(userId)
       }))
     }
@@ -49,7 +59,7 @@ const UserProfile = () => {
   // loads all reviews into store on profile page load
   useEffect(() => {
     dispatch(getAllReviews())
-    // dispatch(getAllWines())
+    dispatch(getAllWines())
     if (!specificUserReviews.length) {
       setSpecificUserReviews(Object.entries(userReviews).filter(([key, value]) => {
         return value.user.id === parseInt(userId)
@@ -84,8 +94,8 @@ const UserProfile = () => {
             {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Reviews:&nbsp;</p>
             <p className='user_info_content'> {specificUserReviews.length}</p> </div>
             : null}
-            {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Reviews:&nbsp;</p>
-            <p className='user_info_content'> {specificUserReviews.length}</p> </div>
+            {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Discovered:&nbsp;</p>
+            <p className='user_info_content'> {specificUserWines.length}</p> </div>
             : null}
             {specificUserReviews.length ? <div className='user_info_text'><p className='user_info_title'>Reviews:&nbsp;</p>
             <p className='user_info_content'> {specificUserReviews.length}</p> </div>
@@ -100,7 +110,7 @@ const UserProfile = () => {
     </div>
     <div id='discoveries_title'>Discoveries</div>
     <div id='mini_wine_feed_container'>
-      <MiniWineFeed wines={wines} />
+      <MiniWineFeed wines={specificUserWines} />
     </div>
   </>
   );

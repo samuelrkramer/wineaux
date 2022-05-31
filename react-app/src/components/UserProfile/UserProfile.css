@@ -86,3 +86,11 @@
   height: 20px;
   margin-top: 20px;
 }
+
+#mini_wine_feed_container {
+  height: fit-content;
+  width: fit-content;
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
