@@ -13,6 +13,7 @@ import DetailedReview from './components/DetailedReview';
 import FeedReview from './components/FeedReview';
 import UserProfile from './components/UserProfile';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -47,7 +48,6 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <h1>My Home Page</h1>
-            <FeedReview />
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
