@@ -1,0 +1,23 @@
+#profile_name_text {
+  font-size: 2.5em;
+  margin-top: 20px;
+
+}
+
+#main_profile_div {
+  width: 100%;
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+}
+
+#pic_detail_div {
+  display: flex;
+}
+
+#profile_page_pic {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
