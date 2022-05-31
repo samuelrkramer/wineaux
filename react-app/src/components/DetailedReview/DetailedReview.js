@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
 import EditReviewText from './EditReviewText';
+import EditReviewImg from './EditReviewImg';
 import ratingEmpty from '../../images/ratingEmpty.png';
 import ratingFull from '../../images/ratingFull.png';
 
@@ -30,7 +31,8 @@ function DetailedReview() {
     const review = useSelector(state => state.reviews.singleReview);
     const user = useSelector(state => state.session.user)
 
-    const [inEdit, setInEdit] = useState(false);
+    const [inTextEdit, setInTextEdit] = useState(false);
+    const [inImgEdit, setInImgEdit] = useState(false);
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
@@ -41,11 +43,11 @@ function DetailedReview() {
         return <h1>Loading</h1>
     }
 
-    const edit = review.user.id === user.id ? true : false;
+    const canEdit = review.user.id === user.id ? true : false;
 
     const textEdit = (e) => {
-        if (!edit) return
-        setInEdit(true);
+        if (!canEdit) return
+        setInTextEdit(true);
     }
 
     return (
@@ -71,15 +73,22 @@ function DetailedReview() {
                         {displayRating(review.rating)}
                     </div>
                     <div id="dr-review-date">{review.updatedAt}</div>
-                    {inEdit ?
-                        <EditReviewText review={review} setInEdit={setInEdit} /> :
-                        <div id={`dr-review-text-${edit}`} onClick={textEdit}>{review.text}</div>
+                    {inTextEdit ?
+                        <EditReviewText review={review} setInEdit={setInTextEdit} /> :
+                        <div id={`dr-review-text-${canEdit}`} onClick={textEdit}>{review.text}</div>
                     }
                 </div>
             </div>
 
-            <img id="dr-img" src={review.image_url} alt="" />
-
+            {inImgEdit ?
+                <EditReviewImg /> :
+                <>
+                    <div id="dr-img-banner">
+                        <img id={`dr-img-${canEdit}`} src={review.image_url} alt="" />
+                        <button id="dr-img-edit-button">Edit</button>
+                    </div>
+                </>
+            }
         </div>
     )
 }

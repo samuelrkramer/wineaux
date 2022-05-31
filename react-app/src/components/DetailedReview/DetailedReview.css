@@ -69,9 +69,34 @@
     margin-right: .35rem;
 }
 
-#dr-img {
-    padding: 2rem;
+#dr-img-true,
+#dr-img-false {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+#dr-img-banner:hover {
+    opacity: .7;
+}
+
+#dr-img-true:hover ~ #dr-img-edit-button {
+    z-index: 10;
+}
+
+#dr-img-banner {
+    position: relative;
     max-width: 50%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+#dr-img-edit-button {
+    position: absolute;
+    z-index: -1;
 }
 
 #dr-review-text-true {
