@@ -24,6 +24,7 @@ const UserProfile = () => {
       return;
     }
     (async () => {
+      console.log('userId', userId)
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
