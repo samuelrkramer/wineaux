@@ -6,7 +6,6 @@ import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
 import EditReviewText from './EditReviewText';
 import EditReviewImg from './EditReviewImg';
-// import DetailedReviewRating from './DetailedReviewRating';
 import ToggleReview from '../ToggleReview';
 
 function DetailedReview() {
@@ -58,7 +57,6 @@ function DetailedReview() {
                                 </div>
                             </div>
                             <div id="dr-rating-container">
-                                {/* <DetailedReviewRating review={review} canEdit={canEdit} /> */}
                                 <ToggleReview rating={review.rating} canEdit={canEdit} containerId="dr-rating-container" action="edit" />
                             </div >
                         </div>

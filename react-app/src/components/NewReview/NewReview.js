@@ -1,27 +1,32 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import './NewReview.css';
-import '../DetailedReview/DetailedReviewRating.css';
-
 import addPhoto from '../../images/addPhoto.png'
 import ToggleReview from "../ToggleReview/ToggleReview";
 
-function NewReview() {
+function NewReview({ wineId }) {
+    const history = useHistory();
 
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
     const [rating, setRating] = useState("");
 
     const handleSubmit = () => {
-        console.log(text, url, rating)
+        console.log(wineId);
+        console.log(text, url, rating);
+    }
+
+    const handleCancel = () => {
+        history.push(`/wines/${wineId}`)
     }
 
     return (
         <div id="nr-hero">
             <div id="nr-form">
-                <div id="nr-banner">
-                    <div id="nr-banner-text">Create your new review</div>
-                    <button id="nr-banner-cancel">Cancel</button>
+                <div className="nr-banner">
+                    <div className="nr-banner-text">New review</div>
+                    <button id="nr-banner-cancel" onClick={handleCancel}>Cancel</button>
                 </div>
                 <div id="nr-content-wrapper">
                     <textarea
@@ -50,14 +55,15 @@ function NewReview() {
                         Submit Review
                     </button>
                 </div>
-            </div>
-            <div id="nr-img-container">
-                {url && (
-                    <img id="nr-img" src={url} alt="" />
-                )}
+                <div id="nr-img-container">
+                    {url && (
+                        <img id="nr-img" src={url} alt="" />
+                    )}
+                </div>
             </div>
         </div>
     )
+
 }
 
 export default NewReview
