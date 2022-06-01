@@ -1,0 +1,43 @@
+#dr-rating-container {
+    display: flex;
+    height: fit-content;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.review-glass {
+    width: 25px;
+    height: 35px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.review-glass:not(:last-child) {
+    margin-right: .3rem;
+}
+
+.glass-opacity {
+    opacity: .3;
+}
+
+.rating-full {
+    background-image: url("../../images/ratingFull.png");
+}
+
+.dr-rating-true.rating-full {
+    cursor: pointer;
+}
+
+.rating-empty {
+    background-image: url("../../images/ratingEmpty.png");
+}
+
+#update-rating-alert {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    padding: 1rem;
+    background-color: white;
+    display: none;
+    transition: .5s;
+}

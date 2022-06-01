@@ -6,21 +6,7 @@ import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
 import EditReviewText from './EditReviewText';
 import EditReviewImg from './EditReviewImg';
-import ratingEmpty from '../../images/ratingEmpty.png';
-import ratingFull from '../../images/ratingFull.png';
-
-const displayRating = rating => {
-    let reviews = [];
-
-    for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
-            reviews.push((<img src={ratingFull} alt="" key={i} />))
-        } else {
-            reviews.push((<img src={ratingEmpty} alt="" key={i} />))
-        }
-    }
-    return reviews;
-}
+import DetailedReviewRating from './DetailedReviewRating';
 
 function DetailedReview() {
 
@@ -36,8 +22,7 @@ function DetailedReview() {
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
-    }, [dispatch, reviewId])
-
+    }, [dispatch])
 
     if (!review.id) {
         return <h1>Loading</h1>
@@ -45,7 +30,7 @@ function DetailedReview() {
 
     const canEdit = review.user.id === user.id ? true : false;
 
-    const textEdit = (e) => {
+    const textEdit = () => {
         if (!canEdit) return
         setInTextEdit(true);
     }
@@ -63,15 +48,18 @@ function DetailedReview() {
                 </div>
                 <div id="dr-body">
                     <div id="dr-wineinfo-container">
-                        <img id="dr-wine-img" src={review.wine.image_url} alt="" />
-                        <div id="dr-wineinfo">
-                            <div id="dr-wine-name">{review.wine.name}</div>
-                            <div id="dr-wine-year">{review.wine.year}</div>
+                        <div id="dr-wineinfo-left">
+                            <img id="dr-wine-img" src={review.wine.image_url} alt="" />
+                            <div id="dr-wineinfo">
+                                <div id="dr-wine-name">{review.wine.name}</div>
+                                <div id="dr-wine-year">{review.wine.year}</div>
+                            </div>
                         </div>
+                        <div id="dr-rating-container">
+                            <DetailedReviewRating review={review} canEdit={canEdit} />
+                        </div >
                     </div>
-                    <div id="dr-rating-container">
-                        {displayRating(review.rating)}
-                    </div>
+
                     <div id="dr-review-date">{review.updatedAt}</div>
                     {inTextEdit ?
                         <EditReviewText review={review} setInEdit={setInTextEdit} /> :
@@ -80,15 +68,27 @@ function DetailedReview() {
                 </div>
             </div>
 
-            {inImgEdit ?
-                <EditReviewImg /> :
-                <>
-                    <div id="dr-img-banner">
-                        <img id={`dr-img-${canEdit}`} src={review.image_url} alt="" />
-                        <button id="dr-img-edit-button">Edit</button>
-                    </div>
-                </>
-            }
+            {review.image_url && (
+                <div id="dr-img-banner" >
+                    <img id="dr-img" src={review.image_url} alt="" />
+
+                    {inImgEdit ?
+                        <EditReviewImg review={review} setInImgEdit={setInImgEdit} /> :
+
+                        // only show edit button if an image exists
+                        canEdit && (
+                            <div id="dr-img-edit-button-container" >
+                                <button
+                                    id="dr-img-edit-button"
+                                    onClick={() => setInImgEdit(true)}
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
+            )}
         </div>
     )
 }

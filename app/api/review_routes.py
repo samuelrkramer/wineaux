@@ -35,10 +35,12 @@ def new_review():
 @review_routes.route('/<int:id>', methods=["PUT"])
 def edit_review(id):
     review = Review.query.get(id)
-    newText = request.json["text"]
-    review.text = newText
+    new_text = request.json["text"]
+    new_url = request.json["image_url"]
+    new_rating = request.json["rating"]
+    review.text = new_text
+    review.image_url = new_url
+    review.rating = new_rating
     db.session.commit()
 
-
-
-    return {'errors': 'invalid review'}
+    return review.to_dict()

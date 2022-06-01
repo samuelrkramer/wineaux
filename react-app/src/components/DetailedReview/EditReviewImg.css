@@ -1,0 +1,7 @@
+#dr-edit-img-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: .7;
+}
