@@ -30,5 +30,7 @@ class Wine(db.Model):
       'color': self.color,
       'sweetness': self.sweetness,
       'image_url': self.image_url,
-      'user': self.user.to_dict()
+      'user': self.user.to_dict(),
+      'created_at': self.created_at,
+      'variety_id': self.variety.to_dict()
     }
