@@ -6,21 +6,7 @@ import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
 import EditReviewText from './EditReviewText';
 import EditReviewImg from './EditReviewImg';
-import ratingEmpty from '../../images/ratingEmpty.png';
-import ratingFull from '../../images/ratingFull.png';
-
-const displayRating = rating => {
-    let reviews = [];
-
-    for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
-            reviews.push((<img src={ratingFull} alt="" key={i} />))
-        } else {
-            reviews.push((<img src={ratingEmpty} alt="" key={i} />))
-        }
-    }
-    return reviews;
-}
+import DetailedReviewRating from './DetailedReviewRating';
 
 function DetailedReview() {
 
@@ -36,8 +22,7 @@ function DetailedReview() {
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
-    }, [dispatch, reviewId])
-
+    }, [dispatch])
 
     if (!review.id) {
         return <h1>Loading</h1>
@@ -45,7 +30,7 @@ function DetailedReview() {
 
     const canEdit = review.user.id === user.id ? true : false;
 
-    const textEdit = (e) => {
+    const textEdit = () => {
         if (!canEdit) return
         setInTextEdit(true);
     }
@@ -70,8 +55,9 @@ function DetailedReview() {
                         </div>
                     </div>
                     <div id="dr-rating-container">
-                        {displayRating(review.rating)}
-                    </div>
+                        <DetailedReviewRating review={review} canEdit={canEdit} />
+                    </div >
+
                     <div id="dr-review-date">{review.updatedAt}</div>
                     {inTextEdit ?
                         <EditReviewText review={review} setInEdit={setInTextEdit} /> :

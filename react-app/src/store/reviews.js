@@ -67,16 +67,18 @@ const newReviewAction = (review) => ({
 
 // EDIT A REVIEW
 export const editReview = (review) => async (dispatch) => {
-    console.log("are we here", review)
     const response = await fetch(`/api/reviews/${review.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS
         body: JSON.stringify(review)
     })
 
+
     if (response.ok) {
+        console.log("********* response", response)
         const editReview = await response.json();
-        dispatch(editReviewAction(editReview));
+        console.log("********* response", editReview)
+        await dispatch(editReviewAction(editReview));
         return editReview;
     }
 
@@ -129,7 +131,10 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case EDIT_REVIEW:
             newState = Object.assign({}, state);
+            console.log("############## before ", state)
             newState.allReviews[action.review.id] = action.review;
+            newState.singleReview = action.review;
+            console.log("$$$$$$$$$$$$$$$ after ", newState)
             return newState;
         case DELETE_REVIEW:
             newState = Object.assign({}, state);
