@@ -10,9 +10,11 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import DetailedReview from './components/DetailedReview';
+import NewReview from './components/NewReview';
 import FeedReview from './components/FeedReview';
 import UserProfile from './components/UserProfile';
 import PageNotFound from './components/PageNotFound';
+import WinePage from './components/WinePage';
 
 
 function App() {
@@ -52,6 +54,12 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
+          </ProtectedRoute>
+          <ProtectedRoute path='/reviews/new' exact={true} >
+            <NewReview />
+          </ProtectedRoute>
+          <ProtectedRoute path='/wines/:wineId(\d+)' exact={true} >
+            <WinePage />
           </ProtectedRoute>
           <ProtectedRoute path="*" exact={true} >
             <PageNotFound />

@@ -98,3 +98,8 @@
     text-decoration: none;
     color: #4F182E;
 }
+
+.dButton{
+    color: #4F182E;
+    cursor: pointer;
+}

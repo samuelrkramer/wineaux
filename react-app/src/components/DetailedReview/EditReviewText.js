@@ -15,11 +15,6 @@ function EditReviewText({ review, setInEdit }) {
         newReview.text = newText;
         dispatch(editReview(newReview));
         setInEdit(false);
-        const alert = document.getElementById("update-rating-alert")
-        alert.style.display = "block"
-        setTimeout(() => {
-            alert.style.display = "none"
-        }, 2000)
     }
 
     const cancelEdit = () => {

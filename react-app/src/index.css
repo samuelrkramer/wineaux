@@ -25,10 +25,11 @@ body {
 
 button {
   border: none;
-  padding: .5rem;
+  padding: .25rem;
   background-color: transparent;
   font-size: 15px;
   cursor: pointer;
+  border-radius: 2px;
 }
 
 textarea {
