@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { uploadNewWine } from '../../store/wines';
 
 const WineForm = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
   const [variety_id, setVariety_id] = useState(null);
@@ -11,8 +16,17 @@ const WineForm = () => {
   const [sweetness, setSweetness] = useState("");
   const [image_url, setImage_url] = useState("");
 
-  const submitHandler = e => {
+  const submitHandler = async e => {
     e.preventDefault()
+
+    const newWine = {
+      name, year, variety_id, description,
+      color, sweetness, image_url
+    }
+    const result = await dispatch(uploadNewWine(newWine));
+    console.log(result);
+    // const wine = await result.json();
+    // history.push(`/wines/${result.id}`);
   }
 
   return (
