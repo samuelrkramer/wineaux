@@ -36,6 +36,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        wines = [
+            {'name': wine.name, 'year': wine.year, 'id': wine.id, 'color': wine.color, 'image_url': wine.image_url, 'sweetness': wine.sweetness } for wine in self.wines
+        ]
+        reviews = [
+            {'id': review.id, 'user_id': review.user_id, 'wine_id': review.wine_id, 'text': review.text, 'rating': review.rating, 'image_url': review.image_url, 'created_at': review.created_at, 'updated_at': review.updated_at} for review in self.reviews
+        ]
+
         return {
             'id': self.id,
             'username': self.username,
@@ -45,4 +52,6 @@ class User(db.Model, UserMixin):
             'profile_image_url': self.profile_image_url,
             'bio': self.bio,
             'location': self.location,
+            'wines': wines,
+            'reviews': reviews
         }
