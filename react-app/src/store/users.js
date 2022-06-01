@@ -13,6 +13,18 @@ export const getOneUser = (userId) => async (dispatch) => {
 return response.code;
 }
 
+// EDIT USER BIO
+export const editBio = (userId, bio) => async (dispatch) => {
+  const user = await fetch(`/api/users/profile/${userId}`)
+  console.log(user)
+  // const response = await fetch(`/api/users/profile/${userId}`, {
+  //   method: "PUT",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(review)
+  // })
+
+}
+
 const oneUserAction = (user) => ({
   type: GET_ONE_USER,
   user
