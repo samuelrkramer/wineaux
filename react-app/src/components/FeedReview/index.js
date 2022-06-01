@@ -12,7 +12,6 @@ const FeedReview = (props) => {
     const user = useSelector(state => state.session.user)
     const [isUser, setIsUser] = useState(false)
 
-    
     const getTime = () => {
         let date = new Date(review.updated_at)
         date = Math.floor((Date.now() - date)/1000)
@@ -44,8 +43,7 @@ const FeedReview = (props) => {
     const deleteRevieww = () => {
         dispatch(deleteReview(review.id))
     }
-    
-    
+
     if (!review.id) {
         return <h1>Loading</h1>
     }
@@ -59,7 +57,7 @@ const FeedReview = (props) => {
             </div>
 
             <div className='second'>
-                <div className='p2-1'> 
+                <div className='p2-1'>
                         <p><NavLink to={`/users/${review.user.id}`} className='navLinkk'>{review.user.first_name}</NavLink> is drinking <NavLink to={`/wines/${review.wine.id}`} className='navLinkk'>{review.wine.name} ({review.wine.year})</NavLink> - </p>
                         <img src={getRating(1)} alt=''></img>
                         <img src={getRating(2)} alt=''></img>
