@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import './DetailedReviewRating.css';
@@ -53,7 +53,7 @@ function DetailedReviewRating({ canEdit }) {
                 }
             })
         }
-    }, [rating])
+    }, [rating, canEdit])
 
     const toggleVisibility = (position, glasses) => {
         for (let i = 0; i < 5; i++) {
