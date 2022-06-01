@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import './DetailedReviewRating.css';
+import './ToggleReview.css';
 import { editReview } from '../../store/reviews'
 
-function DetailedReviewRating({ canEdit, containerId, action }) {
+function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
     const dispatch = useDispatch();
 
+    // not working with a state variable for some reason
+    // const [rating, setRating] = useState(0);
+
     const review = useSelector(state => state.reviews.singleReview);
-    const rating = review.rating ? review.rating : 0;
-    console.log(rating)
+
+    // if (review?.rating) setRating(review.rating);
+    // let rating = review.rating ? review.rating : 0;
+    // console.log(rating)
 
     const displayRating = rating => {
         let reviews = [];
@@ -25,20 +30,25 @@ function DetailedReviewRating({ canEdit, containerId, action }) {
     }
 
     const handleEdit = async (e) => {
-        const newReview = review;
-        newReview.rating = e.target.id;
-        await dispatch(editReview(newReview));
-        const alert = document.getElementById("update-rating-alert")
-        alert.style.display = "block"
-        setTimeout(() => {
-            alert.style.display = "none"
-        }, 2000)
+        if (!canEdit) return;
+
+        if (action === "edit") {
+            const newReview = review;
+            newReview.rating = e.target.id;
+            await dispatch(editReview(newReview));
+            const alert = document.getElementById("update-rating-alert")
+            alert.style.display = "block"
+            setTimeout(() => {
+                alert.style.display = "none"
+            }, 2000)
+        } else if (action === "new") {
+            setRating(e.target.id)
+        }
     }
 
     useEffect(() => {
-        const reviewContainer = document.getElementById("dr-rating-container");
+        const reviewContainer = document.getElementById(containerId);
         if (reviewContainer && canEdit) {
-            console.log("are we here?")
             const glasses = document.getElementsByClassName("review-glass");
             for (let glass of glasses) {
                 glass.addEventListener("mousemove", (e) => {
@@ -66,7 +76,6 @@ function DetailedReviewRating({ canEdit, containerId, action }) {
     const toggleVisibility = (position, glasses) => {
         for (let i = 0; i < 5; i++) {
             const middle = (glasses[i].getBoundingClientRect().left + glasses[i].getBoundingClientRect().right) / 2 - 10;
-            console.log(position, middle)
             if (position < middle) {
                 glasses[i].classList.add("glass-opacity")
                 glasses[i].classList.remove("rating-full")
@@ -90,4 +99,4 @@ function DetailedReviewRating({ canEdit, containerId, action }) {
 
 }
 
-export default DetailedReviewRating;
+export default ToggleReview;
