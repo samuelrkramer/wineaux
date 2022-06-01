@@ -35,7 +35,8 @@ function DetailedReviewRating({ canEdit }) {
             const glasses = document.getElementsByClassName("review-glass");
             for (let glass of glasses) {
                 glass.addEventListener("mousemove", (e) => {
-                    toggleVisibility(e.screenX, glasses)
+                    const mousePosition = e.pageX
+                    toggleVisibility(mousePosition, glasses)
                 })
             }
             reviewContainer.addEventListener("mouseleave", () => {
