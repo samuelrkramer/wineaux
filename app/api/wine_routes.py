@@ -1,7 +1,8 @@
 from crypt import methods
 from flask import Blueprint, jsonify, session, request
+from flask_login import current_user
 from app.models import Wine, db
-# from app.forms import WineForm
+from app.forms.wine_form import WineForm
 
 wine_routes = Blueprint('wines', __name__)
 
@@ -29,11 +30,14 @@ def new_wine():
             description = form.data['description'],
             color = form.data['color'],
             sweetness = form.data['sweetness'],
-            user_id = form.data['user_id'],
+            # user_id = form.data['user_id'],
+            user_id = current_user.id,
             image_url = form.data['image_url']
         )
         db.session.add(wine)
         db.session.commit()
+        print("###################")
+        print("wine to dict", wine.to_dict())
         return wine.to_dict()
 
 @wine_routes.route('/<int:id>', methods=["PUT"])

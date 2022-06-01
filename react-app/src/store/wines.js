@@ -41,7 +41,7 @@ const oneWineAction = (wine) => ({
 
 // POST NEW WINE
 export const uploadNewWine = (wine) => async (dispatch) => {
-    const response = fetch('/api/wines', {
+    const response = await fetch('/api/wines', {
         method: "POST",
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS
         body: JSON.stringify(wine)
@@ -50,6 +50,8 @@ export const uploadNewWine = (wine) => async (dispatch) => {
     if (response.ok) {
         const newWine = await response.json();
         dispatch(newWineAction(newWine));
+        console.log("###############")
+        console.log(newWine)
         return newWine;
     }
 
