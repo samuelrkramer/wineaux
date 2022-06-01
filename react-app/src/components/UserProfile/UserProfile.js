@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllReviews } from "../../store/reviews";
-import { getAllWines } from "../../store/wines"
 import { getOneUser } from "../../store/users";
+import { getAllReviews } from "../../store/reviews";
 import line_break from '../../images/line_break.png';
 import MiniWineFeed from "../MiniWineFeed";
+import ReviewFeedContainer from '../ReviewFeedContainer'
 
 
 
@@ -16,68 +16,24 @@ const UserProfile = () => {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const userProfile = useSelector(state => state.users)
+  const reviews = useSelector(state => state.reviews.allReviews)
   const [userWines, setUserWines] = useState([])
-  // const userReviews = useSelector(state => state.reviews.allReviews)
-  // const userWines = useSelector(state => state.wines.allWines)
-
-  // const [specificUserWines, setSpecificUserWines] = useState(Object.entries(userWines).filter(([key, value]) => {
-  //   return value.user.id === parseInt(userId)
-  // }))
-
-  // console.log(userProfile.wines)
-
-
-  // this state variable loads only the reviews left by the specific user for this profile page into an array
-  // const [specificUserReviews, setSpecificUserReviews] = useState(Object.entries(userReviews).filter(([key, value]) => {
-  //   return value.user.id === parseInt(userId)
-  // }))
+  const [userReviews, setUserReviews] = useState([])
 
   useEffect(() => {
     dispatch(getOneUser(userId));
+    dispatch(getAllReviews());
   }, [dispatch])
+
 
   useEffect(() => {
     setUser(userProfile.currentUserProfile);
     setUserWines(userProfile.currentUserProfile.wines)
+    // setUserReviews(userProfile.currentUserProfile.reviews)
+    setUserReviews(Object.entries(reviews).filter(([key, value]) => {
+      return value.user.id === parseInt(userId)
+    }))
   },[userProfile.currentUserProfile, user])
-
-  // runs a dispatch until the reviews are returned
-  // useEffect(() => {
-  //   if (!specificUserReviews.length) {
-  //     setSpecificUserReviews(Object.entries(userReviews).filter(([key, value]) => {
-  //       return value.user.id === parseInt(userId)
-  //     }))
-  //   }
-  //   if (!specificUserWines.length) {
-  //     setSpecificUserWines(Object.entries(userWines).filter(([key, value]) => {
-  //       return value.user.id === parseInt(userId)
-  //     }))
-  //   }
-  // }, [dispatch(getAllReviews), userId, userReviews, specificUserReviews.length])
-
-
-  // useEffect(() => {
-  //   if (!userId) {
-  //     return;
-  //   }
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${userId}`);
-  //     const user = await response.json();
-  //     setUser(user);
-  //     setDisplayName(`${user.first_name} ${user.last_name[0]}`)
-  //   })();
-  // }, [userId]);
-
-  // loads all reviews into store on profile page load
-  // useEffect(() => {
-  //   dispatch(getAllReviews())
-  //   dispatch(getAllWines())
-  //   if (!specificUserReviews.length) {
-  //     setSpecificUserReviews(Object.entries(userReviews).filter(([key, value]) => {
-  //       return value.user.id === parseInt(userId)
-  //     }))
-  //   }
-  // }, [dispatch, userId, userReviews, specificUserReviews.length])
 
   const profilePic = user.profile_image_url
 
@@ -131,6 +87,7 @@ const UserProfile = () => {
       {userWines ? <MiniWineFeed wines={userWines} /> : null}
     </div>
     <div id='reviews_title'>Reviews</div>
+    {user.reviews ? <ReviewFeedContainer reviews={userReviews}/> : null}
   </>
   );
 }
