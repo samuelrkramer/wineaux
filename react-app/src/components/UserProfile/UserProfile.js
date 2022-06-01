@@ -6,6 +6,8 @@ import { getAllWines } from "../../store/wines"
 import line_break from '../../images/line_break.png';
 import MiniWineFeed from "../MiniWineFeed";
 
+import LoadingIcon from "../LoadingIcon";
+
 
 
 import './UserProfile.css'
@@ -76,6 +78,7 @@ const UserProfile = () => {
 
   return (
   <>
+    <LoadingIcon />
     <div id='profile_name_text'>Profile For {displayName}.</div>
       <div id='main_profile_div'>
         <div id='pic_detail_div'>

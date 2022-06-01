@@ -1,0 +1,25 @@
+.loading_icon > g > path {
+  stroke-dashoffset: -1150;
+  stroke-dasharray: 70 2500;
+  transition: .5s ease-in-out;
+  pointer-events: none;
+  stroke-width: .1;
+}
+
+.loading_line {
+  animation: strokeanim 2s ease-in-out forwards
+}
+
+@keyframes strokeanim {
+  0% {
+    stroke-dashoffset: -1150;
+  stroke-dasharray: 70 2500;
+
+    stroke-width: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 505 70;
+    stroke-width: 50;
+  }
+}
