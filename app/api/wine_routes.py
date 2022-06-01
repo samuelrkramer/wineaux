@@ -36,6 +36,8 @@ def new_wine():
         )
         db.session.add(wine)
         db.session.commit()
+        print("###################")
+        print("wine to dict", wine.to_dict())
         return wine.to_dict()
 
 @wine_routes.route('/<int:id>', methods=["PUT"])

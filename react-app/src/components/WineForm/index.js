@@ -24,9 +24,7 @@ const WineForm = () => {
       color, sweetness, image_url
     }
     const result = await dispatch(uploadNewWine(newWine));
-    console.log(result);
-    // const wine = await result.json();
-    // history.push(`/wines/${result.id}`);
+    history.push(`/wines/${result.id}`);
   }
 
   return (
