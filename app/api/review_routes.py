@@ -44,3 +44,10 @@ def edit_review(id):
     db.session.commit()
 
     return review.to_dict()
+
+@review_routes.route('/<int:id>', methods=["DELETE"])
+def delete_one_review(id):
+    review = Review.query.get(id)
+    db.session.delete(review)
+    db.session.commit()
+    return review.to_dict()
