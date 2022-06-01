@@ -29,11 +29,20 @@ const UserProfile = () => {
   useEffect(() => {
     setUser(userProfile.currentUserProfile);
     setUserWines(userProfile.currentUserProfile.wines)
-    // setUserReviews(userProfile.currentUserProfile.reviews)
     setUserReviews(Object.entries(reviews).filter(([key, value]) => {
       return value.user.id === parseInt(userId)
     }))
   },[userProfile.currentUserProfile, user])
+
+  useEffect(() => {
+    if (!userReviews.length) {
+    setUserReviews(Object.entries(reviews).filter(([key, value]) => {
+      return value.user.id === parseInt(userId)
+    }))
+  }
+  },[userReviews])
+
+
 
   const profilePic = user.profile_image_url
 
@@ -82,12 +91,20 @@ const UserProfile = () => {
         </div>
         <div><img src={line_break} className='line_break'></img></div>
     </div>
-    <div id='discoveries_title'>Discoveries</div>
-    <div id='mini_wine_feed_container'>
-      {userWines ? <MiniWineFeed wines={userWines} /> : null}
-    </div>
-    <div id='reviews_title'>Reviews</div>
-    {user.reviews ? <ReviewFeedContainer reviews={userReviews}/> : null}
+    {userWines && userWines.length ?
+    <>
+      <div id='discoveries_title'>Discoveries</div>
+      <div id='mini_wine_feed_container'>
+        <MiniWineFeed wines={userWines} />
+      </div>
+    </>
+    : null}
+    {user.reviews && user.reviews.length ?
+      <>
+        <div id='reviews_title'>Reviews</div>
+        <ReviewFeedContainer reviews={userReviews}/>
+      </>
+    : null}
   </>
   );
 }

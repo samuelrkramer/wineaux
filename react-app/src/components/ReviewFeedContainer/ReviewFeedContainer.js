@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FeedReview from "../FeedReview";
 
 const ReviewFeedContainer = (reviews) => {
@@ -6,7 +6,7 @@ const ReviewFeedContainer = (reviews) => {
     <div id='main_review_feed'>
       {reviews.reviews.map((review) => {
         return (
-          <FeedReview props={review}/>
+          <FeedReview review={review[1]} key={review[1].id}/>
         )
       })}
     </div>

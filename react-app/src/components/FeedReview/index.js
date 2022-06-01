@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 const FeedReview = (props) => {
     const review = props.review
-    console.log(review)
 
     const getTime = () => {
         let date = new Date(review.updated_at)
