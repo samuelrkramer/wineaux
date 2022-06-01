@@ -13,6 +13,7 @@ import DetailedReview from './components/DetailedReview';
 import FeedReview from './components/FeedReview';
 import UserProfile from './components/UserProfile';
 import PageNotFound from './components/PageNotFound';
+import WinePage from './components/WinePage';
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
+          </ProtectedRoute>
+          <ProtectedRoute path='/wines/:wineId(\d+)' exact={true} >
+            <WinePage />
           </ProtectedRoute>
           <ProtectedRoute path="*" exact={true} >
             <PageNotFound />
