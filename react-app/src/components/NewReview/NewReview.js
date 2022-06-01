@@ -1,20 +1,34 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import './NewReview.css';
-import addPhoto from '../../images/addPhoto.png'
+import "./NewReview.css";
+import addPhoto from "../../images/addPhoto.png"
 import ToggleReview from "../ToggleReview/ToggleReview";
+import { uploadNewReview } from "../../store/reviews"
 
-function NewReview({ wineId }) {
+function NewReview() {
     const history = useHistory();
+    const dispatch = useDispatch();
+    const { wineId } = useParams();
+
+    const user = useSelector(state => state.session.user);
 
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState(0);
 
     const handleSubmit = () => {
-        console.log(wineId);
-        console.log(text, url, rating);
+        const newReview = {
+            user_id: user.id,
+            wine_id: parseInt(wineId),
+            text,
+            rating,
+            image_url: url
+        }
+
+        dispatch(uploadNewReview(newReview))
+        history.push(`/wines/${wineId}`)
     }
 
     const handleCancel = () => {
@@ -36,7 +50,7 @@ function NewReview({ wineId }) {
                         placeholder="What do you think?"
                     />
                     <div id="nr-image-input">
-                        <div id="nr-icon-container" onClick="updatePhoto">
+                        <div id="nr-icon-container">
                             <img src={addPhoto} alt="" id="nr-icon" />
                         </div>
                         <input

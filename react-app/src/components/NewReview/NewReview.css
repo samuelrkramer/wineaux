@@ -3,7 +3,6 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -46,6 +45,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 #nr-text {
