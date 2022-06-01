@@ -48,15 +48,17 @@ function DetailedReview() {
                 </div>
                 <div id="dr-body">
                     <div id="dr-wineinfo-container">
-                        <img id="dr-wine-img" src={review.wine.image_url} alt="" />
-                        <div id="dr-wineinfo">
-                            <div id="dr-wine-name">{review.wine.name}</div>
-                            <div id="dr-wine-year">{review.wine.year}</div>
+                        <div id="dr-wineinfo-left">
+                            <img id="dr-wine-img" src={review.wine.image_url} alt="" />
+                            <div id="dr-wineinfo">
+                                <div id="dr-wine-name">{review.wine.name}</div>
+                                <div id="dr-wine-year">{review.wine.year}</div>
+                            </div>
                         </div>
+                        <div id="dr-rating-container">
+                            <DetailedReviewRating review={review} canEdit={canEdit} />
+                        </div >
                     </div>
-                    <div id="dr-rating-container">
-                        <DetailedReviewRating review={review} canEdit={canEdit} />
-                    </div >
 
                     <div id="dr-review-date">{review.updatedAt}</div>
                     {inTextEdit ?
@@ -66,25 +68,27 @@ function DetailedReview() {
                 </div>
             </div>
 
-            <div id="dr-img-banner" >
-                <img id="dr-img" src={review.image_url} alt="" />
+            {review.image_url && (
+                <div id="dr-img-banner" >
+                    <img id="dr-img" src={review.image_url} alt="" />
 
-                {inImgEdit ?
-                    <EditReviewImg review={review} setInImgEdit={setInImgEdit} /> :
+                    {inImgEdit ?
+                        <EditReviewImg review={review} setInImgEdit={setInImgEdit} /> :
 
-                    // only show edit button if an image exists
-                    canEdit && (
-                        <div id="dr-img-edit-button-container" >
-                            <button
-                                id="dr-img-edit-button"
-                                onClick={() => setInImgEdit(true)}
-                            >
-                                Edit
-                            </button>
-                        </div>
-                    )
-                }
-            </div>
+                        // only show edit button if an image exists
+                        canEdit && (
+                            <div id="dr-img-edit-button-container" >
+                                <button
+                                    id="dr-img-edit-button"
+                                    onClick={() => setInImgEdit(true)}
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
+            )}
         </div>
     )
 }

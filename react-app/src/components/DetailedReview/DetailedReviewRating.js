@@ -71,7 +71,12 @@ function DetailedReviewRating({ canEdit }) {
     }
 
     return (
-        displayRating(rating)
+        <>
+            <div id="update-rating-alert">
+                Rating updated!
+            </div>
+            {displayRating(rating)}
+        </>
     )
 
 }
