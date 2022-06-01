@@ -11,11 +11,15 @@ function EditReviewText({ review, setInEdit }) {
     const [newText, setNewText] = useState(review.text);
 
     const saveEdit = () => {
-        // console.log('are we here?')
         const newReview = review;
         newReview.text = newText;
         dispatch(editReview(newReview));
         setInEdit(false);
+        const alert = document.getElementById("update-rating-alert")
+        alert.style.display = "block"
+        setTimeout(() => {
+            alert.style.display = "none"
+        }, 2000)
     }
 
     const cancelEdit = () => {
@@ -27,9 +31,12 @@ function EditReviewText({ review, setInEdit }) {
             <textarea
                 onChange={e => setNewText(e.target.value)}
                 value={newText}
+                autoFocus={true}
             />
-            <div id="dr-review-text-save" onClick={saveEdit}>Save</div>
-            <div id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</div>
+            <div id="dr-review-text-button-container">
+                <button id="dr-review-text-save" onClick={saveEdit}>Save</button>
+                <button id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</button>
+            </div>
         </div>
     )
 }

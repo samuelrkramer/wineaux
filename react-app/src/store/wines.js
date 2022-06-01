@@ -7,7 +7,6 @@ const DELETE_WINE = 'wine/DELETE'
 // GET ALL WINES
 export const getAllWines = () => async (dispatch) => {
     const response = await fetch('/api/wines')
-
     if (response.ok) {
         const wines = await response.json();
         dispatch(allWinesAction(wines));
@@ -111,7 +110,7 @@ const wineReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_WINES:
             newState = Object.assign({}, state);
-            action.wines.forEach(wine => {
+            action.wines.wines.forEach(wine => {
                 newState.allWines[wine.id] = wine
             });
             return newState;

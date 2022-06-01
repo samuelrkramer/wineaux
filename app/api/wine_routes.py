@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import Wine, db
-from app.forms import WineForm
+# from app.forms import WineForm
 
 wine_routes = Blueprint('wines', __name__)
 

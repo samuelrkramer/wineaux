@@ -6,6 +6,7 @@
 
 body {
   margin: 0px;
+  
 }
 
 #root {
@@ -20,4 +21,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+button {
+  border: none;
+  padding: .5rem;
+  background-color: transparent;
+  font-size: 15px;
+}
+
+textarea {
+  border: none;
+  resize: none;
 }

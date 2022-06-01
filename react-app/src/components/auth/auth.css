@@ -1,0 +1,71 @@
+form{
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+form > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+form > div {
+    padding: 10px;
+    background-color: #4F182E;
+    border-radius: 10px;
+    text-align: center;
+    width: 40vw;
+}
+
+form > div > div > *{
+    margin: 10px;
+    text-align: center;
+}
+
+.bHold{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.bHold > button {
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: white;
+    border: solid transparent 1px;
+    padding: 7px;
+    color: black;
+    box-sizing: border-box;
+    border-radius: 7px;
+    transition: all 0.5s;
+
+}
+
+.bHold >button:hover{
+    background-color: transparent;
+    border: solid white 1px;
+    color: white;
+    cursor: pointer;
+}
+
+input{
+    font-size: 1.4em;
+    border: none;
+    padding: 0 10px;
+    margin: 0;
+    width: 80%;
+    background: none;
+    border-radius: 7px;
+    background-color: white;
+}
+
+input:focus{
+    border: solid whitesmoke 1px;
+}
