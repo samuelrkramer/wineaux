@@ -2,11 +2,16 @@ import './FeedReview.css'
 import fullImg from './wine-rating-icon-full.png'
 import emptyImg from './wine-rating-icon-empty.png'
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { deleteReview } from '../../store/reviews';
 
 const FeedReview = (props) => {
     const review = props.review
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user)
+    const [isUser, setIsUser] = useState(false)
 
-    
     const getTime = () => {
         let date = new Date(review.updated_at)
         date = Math.floor((Date.now() - date)/1000)
@@ -29,8 +34,16 @@ const FeedReview = (props) => {
         if(n > review.rating){return emptyImg}
     }
 
-    
-    
+    useEffect(() => {
+        if(review.user.id === user.id){
+            setIsUser(true)
+        }
+    }, [])
+
+    const deleteRevieww = () => {
+        dispatch(deleteReview(review.id))
+    }
+
     if (!review.id) {
         return <h1>Loading</h1>
     }
@@ -44,7 +57,7 @@ const FeedReview = (props) => {
             </div>
 
             <div className='second'>
-                <div className='p2-1'> 
+                <div className='p2-1'>
                         <p><NavLink to={`/users/${review.user.id}`} className='navLinkk'>{review.user.first_name}</NavLink> is drinking <NavLink to={`/wines/${review.wine.id}`} className='navLinkk'>{review.wine.name} ({review.wine.year})</NavLink> - </p>
                         <img src={getRating(1)} alt=''></img>
                         <img src={getRating(2)} alt=''></img>
@@ -55,13 +68,27 @@ const FeedReview = (props) => {
 
                 <div className='p2-2'>
                     "{review.text}"
-                    <img className='rPic' src={review.image_url} alt='review'></img>
+                    {review.image_url !== null && (
+                        <img className='rPic' src={review.image_url} alt='review'></img>
+                    )}
                 </div>
 
 {/* google crop image css (without losing quality) - peep component example img */}
-                    <div className='p2-4'><p>{time}</p> <NavLink to={`/reviews/${review.id}`} className='navLinkk'> Detailed View</NavLink></div>
+                    <div className='p2-4'>
+                        <p>{time}</p>
+                        {!isUser && (
+                            <NavLink to={`/reviews/${review.id}`} className='navLinkk'> Detailed View</NavLink>
+                        )}
+                        {isUser && (
+                            <>
+                            <div>
+                                <NavLink to={`/reviews/${review.id}`} className='navLinkk'>Edit</NavLink>
+                                <button onClick={deleteRevieww} className='dButton'>Delete</button>
+                            </div>
+                            </>
+                        )}
+                    </div>
             </div>
-
 
             <div className='third'>
                     <NavLink to={`/wines/${review.wine.id}`} className='navLinkk'><img className='rIcon' src={review.wine.image_url} alt=''></img></NavLink>
@@ -69,7 +96,6 @@ const FeedReview = (props) => {
 
 
         </div>
-        <hr className='hrrr'/>
         </>
     );
 };

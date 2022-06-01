@@ -11,3 +11,9 @@ class Variety(db.Model):
   updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
   wines = db.relationship('Wine', back_populates='variety')
+
+  def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }

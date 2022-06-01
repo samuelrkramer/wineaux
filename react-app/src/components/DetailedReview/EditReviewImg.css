@@ -2,6 +2,56 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editImg-opacity {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-color: white;
     opacity: .7;
 }
+
+#editImg-form {
+    width: 70%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 1;
+}
+
+#editImg-form-input {
+    width: 80%;
+    font-size: 15px;
+    padding: .25em;
+    margin-bottom: 1rem;
+}
+
+#editImg-button-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem
+}
+
+#editImg-save,
+#editImg-cancel {
+    font-size: 12px;
+}
+
+#editImg-save {
+    background-color: rgb(79,24,46);
+    color: white;
+}
+
+#editImg-cancel {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+

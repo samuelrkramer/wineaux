@@ -8,6 +8,7 @@ import configureStore from './store';
 import * as sessionActions from './store/session';
 import * as reviewActions from './store/reviews';
 import * as wineActions from './store/wines';
+import * as userActions from './store/users';
 
 const store = configureStore();
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.reviewActions = reviewActions;
   window.wineActions = wineActions;
+  window.userActions = userActions;
 }
 
 ReactDOM.render(
