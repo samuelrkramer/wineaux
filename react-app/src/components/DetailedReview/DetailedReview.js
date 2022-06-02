@@ -110,16 +110,18 @@ function DetailedReview() {
                             {addPhoto ?
                                 <EditReviewImg review={review} toggle={setAddPhoto} />
                                 :
-                                <button
-                                    id="dr-add-image-button"
-                                    onClick={addPhotoPrompt}
-                                >
-                                    Add Photo
-                                </button>
+                                canEdit && (
+                                    <button
+                                        id="dr-add-image-button"
+                                        onClick={addPhotoPrompt}
+                                    >
+                                        Add Photo
+                                    </button>
+                                )
                             }
                         </div>
                     }
-                    {!addPhoto && (
+                    {(canEdit && !addPhoto) && (
                         <div id="dr-delete-button-container">
                             <button
                                 id="dr-delete-review-button"

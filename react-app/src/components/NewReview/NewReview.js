@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,6 +6,7 @@ import "./NewReview.css";
 import addPhoto from "../../images/addPhoto.png"
 import ToggleReview from "../ToggleReview/ToggleReview";
 import { uploadNewReview } from "../../store/reviews"
+import { getOneWine } from "../../store/wines";
 
 function NewReview() {
     const history = useHistory();
@@ -13,30 +14,73 @@ function NewReview() {
     const { wineId } = useParams();
 
     const user = useSelector(state => state.session.user);
+    const wine = useSelector(state => state.wines.singleWine);
 
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
     const [rating, setRating] = useState(0);
+    const [textError, setTextError] = useState("");
+    const [urlError, setUrlError] = useState("");
+    const [ratingError, setRatingError] = useState("");
+
+    useEffect(() => {
+        dispatch(getOneWine(wineId))
+    }, [dispatch, wineId])
+
+    useEffect(() => {
+        if (rating === 0) {
+            setRatingError("Review must have a rating. At least give it a 1...")
+        } else {
+            setRatingError("");
+        }
+    }, [rating])
 
     const handleSubmit = () => {
-        const newReview = {
-            user_id: user.id,
-            wine_id: parseInt(wineId),
-            text,
-            rating,
-            image_url: url
+        if (!textError && !urlError && !ratingError) {
+            const newReview = {
+                user_id: user.id,
+                wine_id: parseInt(wineId),
+                text,
+                rating,
+                image_url: url
+            }
+            dispatch(uploadNewReview(newReview));
+            history.push(`/wines/${wineId}`);
+        }
+    }
+
+    const textChange = (e) => {
+        setText(e.target.value);
+        if (text.length > 180) {
+            setTextError("Review text must be 180 characters or less")
+        }
+    }
+
+    const urlChange = (e) => {
+        setUrl(e.target.value);
+        if (url.length > 1000) {
+            setUrlError("Photo URL must be 1000 characters or less");
         }
 
-        dispatch(uploadNewReview(newReview))
-        history.push(`/wines/${wineId}`)
     }
 
     const handleCancel = () => {
-        history.push(`/wines/${wineId}`)
+        history.push(`/wines/${wineId}`);
+    }
+
+    if (!wine.id) {
+        return <h1>Loading</h1>
     }
 
     return (
         <div id="nr-hero">
+            <div id="nr-wineinfo-container">
+                <img id="nr-wine-img" src={wine.image_url} alt="" />
+                <div id="nr-wineinfo">
+                    <div id="nr-wine-name">{wine.name}</div>
+                    <div id="nr-wine-year">{wine.year}</div>
+                </div>
+            </div>
             <div id="nr-form">
                 <div className="nr-banner">
                     <div className="nr-banner-text">New review</div>
@@ -46,7 +90,7 @@ function NewReview() {
                     <textarea
                         id="nr-text"
                         value={text}
-                        onChange={((e) => setText(e.target.value))}
+                        onChange={textChange}
                         placeholder="What do you think?"
                     />
                     <div id="nr-image-input">
@@ -56,7 +100,7 @@ function NewReview() {
                         <input
                             placeholder="Image url"
                             value={url}
-                            onChange={(e) => setUrl(e.target.value)}
+                            onChange={urlChange}
                         />
                     </div>
                     <div id="nr-rating-container">
@@ -74,6 +118,11 @@ function NewReview() {
                         <img id="nr-img" src={url} alt="" />
                     )}
                 </div>
+            </div>
+            <div id="nr-errors-container">
+                {textError && <div className="nr-error" >{textError}</div>}
+                {urlError && <div className="nr-error" >{urlError}</div>}
+                {ratingError && <div className="nr-error" >{ratingError}</div>}
             </div>
         </div>
     )
