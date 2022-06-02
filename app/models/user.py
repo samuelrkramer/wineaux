@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    profile_image_url = db.Column(db.String(1000))
+    profile_image_url = db.Column(db.String(1000), default='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/209290118-348545419959856-6760331049776615301-n-1635532292.jpeg?crop=1xw:1xh;center,top&resize=480:*')
     bio = db.Column(db.Text)
     birthdate = db.Column(db.Date, nullable=False)
     location = db.Column(db.String(50))

@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required
-from app.models import User, Wine
+from app.models import User, Wine, db
 
 
 
@@ -24,4 +24,13 @@ def user(id):
 @user_routes.route('/profile/<int:id>')
 def userProfile(id):
     user = User.query.get(id)
+    return user.to_dict()
+
+@user_routes.route('/profile/<int:id>', methods=['PUT'])
+def edit_bio(id):
+    user = User.query.get(id)
+    new_bio = request.json['bio']
+    user.bio = new_bio
+    db.session.commit()
+
     return user.to_dict()

@@ -11,6 +11,7 @@ const SignUpForm = () => {
   const [lastname, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [birthdate, setBirthdate] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -19,7 +20,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, firstname, lastname));
+      const data = await dispatch(signUp(username, email, password, firstname, lastname, birthdate));
       if (data) {
         setErrors(data)
       }
@@ -40,6 +41,10 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateBirthdate = (e) => {
+    setBirthdate(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -98,6 +103,15 @@ const SignUpForm = () => {
             name='email'
             onChange={updateEmail}
             value={email}
+          ></input>
+        </div>
+        <div>
+          <label>Birthdate</label>
+          <input
+            type='date'
+            name='birthdate'
+            onChange={updateBirthdate}
+            value={birthdate}
           ></input>
         </div>
         <div>

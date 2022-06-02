@@ -19,9 +19,14 @@ const UserProfile = () => {
   const sessionUser = useSelector(state => state.session.user)
   const userProfile = useSelector(state => state.users)
   const reviews = useSelector(state => state.reviews.allReviews)
-  const [userWines, setUserWines] = useState([])
-  const [userReviews, setUserReviews] = useState([])
+  const [userWines, setUserWines] = useState(userProfile.currentUserProfile.wines)
+  const [userReviews, setUserReviews] = useState(Object.entries(reviews).filter(([key, value]) => {
+    return value.user.id === parseInt(userId)
+  }))
   const [inTextEdit, setInTextEdit] = useState(false);
+  const [emptyUser, setEmptyUser] = useState(false);
+
+
 
 
   useEffect(() => {
@@ -39,23 +44,24 @@ const UserProfile = () => {
   },[userProfile.currentUserProfile, user, userId, reviews])
 
   useEffect(() => {
-    if (!userReviews.length) {
-    setUserReviews(Object.entries(reviews).filter(([key, value]) => {
+    const setReviews = setTimeout(() => {
+      setUserReviews(Object.entries(reviews).filter(([key, value]) => {
       return value.user.id === parseInt(userId)
-    }))
-  }
-  },[userReviews, userId, reviews])
-
+    }))}, 1000)
+  },[])
 
 
   const profilePic = user.profile_image_url
 
   const canEdit = sessionUser.id === user.id ? true : false;
-  console.log('can edit', canEdit)
 
   const textEdit = () => {
     if (!canEdit) return
     setInTextEdit(true);
+  }
+
+  const addProfilePic = () => {
+    if (!canEdit) return
   }
 
   if (!userId) {
@@ -67,13 +73,17 @@ const UserProfile = () => {
     <div id='profile_name_text'>Profile For {user.first_name} {user.last_name}</div>
       <div id='main_profile_div'>
         <div id='pic_detail_div'>
-          <div id='profile_page_pic' style={{
+          {!canEdit ? <div id='profile_page_pic' style={{
                 backgroundImage: `url(${profilePic})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'
               }}>
+          </div> :
+          <div id='no_profile_pic'>
+            <button onClick={addProfilePic}>Update Profile Pic</button>
           </div>
+          }
           <div id='user_details'>
             {user.reviews ?
             <>
@@ -99,7 +109,7 @@ const UserProfile = () => {
         </div>
         <div id='user_bio'>
           <div id='bio_title'>About Me:</div>
-          {!user.bio ? <button onClick={textEdit}>Add Bio</button> : null }
+          {!user.bio && canEdit ? <button onClick={textEdit}>Add Bio</button> : null }
           {inTextEdit ?
             <BioEditField user={user} setInEdit={setInTextEdit} /> :
             <div id={`bio_text_${canEdit}`} onClick={textEdit}>{user.bio}</div>
