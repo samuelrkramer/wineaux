@@ -10,7 +10,7 @@ const ProfileIcon = () => {
     if (sessionUser) {
       setProfileImage(sessionUser.profile_image_url)
     }
-  }, [sessionUser])
+  }, [sessionUser, profileImage])
 
   return (
     <div>
@@ -23,7 +23,7 @@ const ProfileIcon = () => {
             <circle fill="#281320" cx="43.498" cy="43.498" r="38.265"/>
           </clipPath>
         </defs>
-        <image x="-22" y="-22" href={profileImage} id='user_profile_pic_nav' height="130" width="130" clip-path="url(#myCircle)"></image>
+        <image x="-22" y="-22" href={profileImage} id='user_profile_pic_nav' height="130" width="130" clipPath="url(#myCircle)"></image>
       </svg>
          :
          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

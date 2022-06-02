@@ -13,7 +13,7 @@ const PicEditField = ({ user, setInEdit}) => {
   const saveEdit = () => {
     const userId = user.id
     dispatch(editPic(userId, newUrl));
-    dispatch(editPicSession(userId, newUrl))
+    dispatch(editPicSession(newUrl))
     setInEdit(false);
   }
 
