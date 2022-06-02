@@ -33,14 +33,14 @@
     font-size: 20px;
 }
 
-
 #nr-form {
     position: relative;
     width: 50%;
     height: 315px;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    border: 1.5px solid rgb(79,24,46);
+    border: 3px solid #4F182E;
+    border-radius: 2px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;

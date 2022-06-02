@@ -52,7 +52,9 @@ function NewReview() {
     const textChange = (e) => {
         setText(e.target.value);
         if (text.length > 180) {
-            setTextError("Review text must be 180 characters or less")
+            setTextError("Review text must be 180 characters or less");
+        } else {
+            setTextError("");
         }
     }
 
@@ -60,6 +62,8 @@ function NewReview() {
         setUrl(e.target.value);
         if (url.length > 1000) {
             setUrlError("Photo URL must be 1000 characters or less");
+        } else {
+            setUrlError("");
         }
 
     }
