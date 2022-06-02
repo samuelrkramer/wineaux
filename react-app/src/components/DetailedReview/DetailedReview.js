@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
 import EditReviewText from './EditReviewText';
 import EditReviewImg from './EditReviewImg';
 import ToggleReview from '../ToggleReview';
+import { deleteReview } from '../../store/reviews';
 
 function DetailedReview() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const { reviewId } = useParams();
@@ -38,6 +39,11 @@ function DetailedReview() {
 
     const addPhotoPrompt = () => {
         setAddPhoto(true);
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteReview(reviewId))
+        history.push(`/wines/${review.wine.id}`)
     }
 
     return (
@@ -77,49 +83,53 @@ function DetailedReview() {
                     )}
                 </div>
 
-                {review.image_url ? (
-                    <div id="dr-img-banner" >
-                        <img id="dr-img" src={review.image_url} alt="" />
+                <div id="dr-content-right">
+                    {review.image_url ? (
+                        <div id="dr-img-banner" >
+                            <img id="dr-img" src={review.image_url} alt="" />
 
-                        {inImgEdit ?
-                            <EditReviewImg review={review} toggle={setInImgEdit} /> :
+                            {inImgEdit ?
+                                <EditReviewImg review={review} toggle={setInImgEdit} /> :
 
-                            // only show edit button if an image exists
-                            canEdit && (
-                                <div id="dr-img-edit-button-container" >
-                                    <div id="dr-img-opacity" />
-                                    <button
-                                        id="dr-img-edit-button"
-                                        onClick={() => setInImgEdit(true)}
-                                    >
-                                        Edit
-                                    </button>
-                                </div>
-                            )
-                        }
-                        <div>
+                                // only show edit button if an image exists
+                                canEdit && (
+                                    <div id="dr-img-edit-button-container" >
+                                        <div id="dr-img-opacity" />
+                                        <button
+                                            id="dr-img-edit-button"
+                                            onClick={() => setInImgEdit(true)}
+                                        >
+                                            Edit
+                                        </button>
+                                    </div>
+                                )
+                            }
+                        </div>
+                    ) :
+                        <div id="dr-add-image-button-container">
+                            {addPhoto ?
+                                <EditReviewImg review={review} toggle={setAddPhoto} />
+                                :
+                                <button
+                                    id="dr-add-image-button"
+                                    onClick={addPhotoPrompt}
+                                >
+                                    Add Photo
+                                </button>
+                            }
+                        </div>
+                    }
+                    {!addPhoto && (
+                        <div id="dr-delete-button-container">
                             <button
                                 id="dr-delete-review-button"
+                                onClick={handleDelete}
                             >
                                 Delete Review
                             </button>
                         </div>
-
-                    </div>
-                ) :
-                    <div id="dr-add-image-button-container">
-                        {addPhoto ?
-                            <EditReviewImg review={review} toggle={setAddPhoto} />
-                            :
-                            <button
-                                id="dr-add-image-button"
-                                onClick={addPhotoPrompt}
-                            >
-                                Add Photo
-                            </button>
-                        }
-                    </div>
-                }
+                    )}
+                </div>
             </div>
 
         </div>
