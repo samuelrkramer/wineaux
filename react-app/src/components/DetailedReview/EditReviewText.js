@@ -9,12 +9,17 @@ function EditReviewText({ review, setInEdit }) {
     const dispatch = useDispatch();
 
     const [newText, setNewText] = useState(review.text);
+    const [error, setError] = useState("");
 
     const saveEdit = () => {
-        const newReview = Object.assign({}, review);
-        newReview.text = newText;
-        dispatch(editReview(newReview));
-        setInEdit(false);
+        if (newText.length > 180) {
+            setError("Review must be 180 characters or less")
+        } else {
+            const newReview = Object.assign({}, review);
+            newReview.text = newText;
+            dispatch(editReview(newReview));
+            setInEdit(false);
+        }
     }
 
     const cancelEdit = () => {
@@ -22,13 +27,18 @@ function EditReviewText({ review, setInEdit }) {
     }
 
     return (
-        <div id="dr-review-text-edit">
-            <textarea
-                onChange={e => setNewText(e.target.value)}
-                value={newText}
-                autoFocus={true}
-            />
-            <div id="dr-review-text-button-container">
+        <div id="dr-text-edit-hero">
+            <div id="dr-textarea-container">
+                <textarea
+                    id="dr-edit-textarea"
+                    onChange={e => setNewText(e.target.value)}
+                    value={newText}
+                    autoFocus={true}
+                />
+                <div id="remaining-chars">{180 - newText.length}</div>
+            </div>
+            <div id="dr-text-edit-button-container">
+                {error && <div id="dr-text-edit-error">{error}</div>}
                 <button id="dr-review-text-save" onClick={saveEdit}>Save</button>
                 <button id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</button>
             </div>

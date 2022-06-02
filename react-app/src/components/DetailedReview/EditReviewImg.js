@@ -8,12 +8,17 @@ function EditReviewImg({ review, toggle }) {
     const dispatch = useDispatch();
 
     const [url, setUrl] = useState("");
+    const [error, setError] = useState("");
 
     const saveEdit = () => {
-        const newReview = Object.assign({}, review);
-        newReview.image_url = url;
-        dispatch(editReview(newReview));
-        toggle(false);
+        if (url.length > 1000) {
+            setError("Url must be 1000 characters or less")
+        } else {
+            const newReview = Object.assign({}, review);
+            newReview.image_url = url;
+            dispatch(editReview(newReview));
+            toggle(false);
+        }
     }
 
     const cancelEdit = () => {
@@ -22,6 +27,7 @@ function EditReviewImg({ review, toggle }) {
 
     return (
         <div id="dr-edit-img-modal">
+            {error && <div id="dr-edit-img-error">{error}</div>}
             <div id="editImg-opacity" />
             <div id="editImg-form">
                 <input

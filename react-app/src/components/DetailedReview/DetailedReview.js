@@ -97,6 +97,14 @@ function DetailedReview() {
                                 </div>
                             )
                         }
+                        <div>
+                            <button
+                                id="dr-delete-review-button"
+                            >
+                                Delete Review
+                            </button>
+                        </div>
+
                     </div>
                 ) :
                     <div id="dr-add-image-button-container">
