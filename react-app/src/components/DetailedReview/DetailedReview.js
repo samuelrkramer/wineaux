@@ -19,6 +19,7 @@ function DetailedReview() {
 
     const [inTextEdit, setInTextEdit] = useState(false);
     const [inImgEdit, setInImgEdit] = useState(false);
+    const [addPhoto, setAddPhoto] = useState(false);
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
@@ -33,6 +34,10 @@ function DetailedReview() {
     const textEdit = () => {
         if (!canEdit) return
         setInTextEdit(true);
+    }
+
+    const addPhotoPrompt = () => {
+        setAddPhoto(true);
     }
 
     return (
@@ -72,12 +77,12 @@ function DetailedReview() {
                     )}
                 </div>
 
-                {review.image_url && (
+                {review.image_url ? (
                     <div id="dr-img-banner" >
                         <img id="dr-img" src={review.image_url} alt="" />
 
                         {inImgEdit ?
-                            <EditReviewImg review={review} setInImgEdit={setInImgEdit} /> :
+                            <EditReviewImg review={review} toggle={setInImgEdit} /> :
 
                             // only show edit button if an image exists
                             canEdit && (
@@ -93,7 +98,20 @@ function DetailedReview() {
                             )
                         }
                     </div>
-                )}
+                ) :
+                    <div id="dr-add-image-button-container">
+                        {addPhoto ?
+                            <EditReviewImg review={review} toggle={setAddPhoto} />
+                            :
+                            <button
+                                id="dr-add-image-button"
+                                onClick={addPhotoPrompt}
+                            >
+                                Add Photo
+                            </button>
+                        }
+                    </div>
+                }
             </div>
 
         </div>

@@ -1,9 +1,6 @@
 #dr-hero {
     width: 100%;
     min-height: 100vh;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 #dr-content {
@@ -154,4 +151,28 @@
     font-size: 15px;
     left: 0;
     bottom: -30px;
+}
+
+#dr-add-image-button-container {
+    max-width: 50%;
+    min-width: 20%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dr-add-image-button {
+    border: 1.5px solid rgb(79,24,46);
+    color: rgb(79, 24,46);
+}
+
+#dr-add-image-button:hover {
+    background-color:rgb(79,24,46);
+    color: white;
+}
+
+#dr-add-image-button-container #editImg-opacity {
+    background-color: transparent;
 }

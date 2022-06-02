@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import './EditReviewImg.css'
 import { editReview } from '../../store/reviews'
 
-function EditReviewImg({ review, setInImgEdit }) {
+function EditReviewImg({ review, toggle }) {
     const dispatch = useDispatch();
 
     const [url, setUrl] = useState("");
@@ -13,11 +13,11 @@ function EditReviewImg({ review, setInImgEdit }) {
         const newReview = Object.assign({}, review);
         newReview.image_url = url;
         dispatch(editReview(newReview));
-        setInImgEdit(false);
+        toggle(false);
     }
 
     const cancelEdit = () => {
-        setInImgEdit(false);
+        toggle(false);
     }
 
     return (
