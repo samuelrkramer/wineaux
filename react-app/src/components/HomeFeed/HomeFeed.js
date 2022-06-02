@@ -18,36 +18,36 @@ const HomeFeed = () => {
   const [newReviews, setNewReviews] = useState(Object.entries(reviews).reverse())
 
 
-  useEffect(() => {
-    dispatch(getAllWines())
+  useEffect(async () => {
+    await dispatch(getAllWines())
       .then(() => setAllWines(Object.values(wines)))
-    dispatch(getAllReviews())
-      .then(()=> setNewReviews(Object.entries(reviews).reverse()))
-      .then(()=> setLoaded(true))
+      .then(() => dispatch(getAllReviews()))
+      .then(() => setNewReviews(Object.entries(reviews).reverse()))
+      .then(() => setLoaded(true))
   }, [dispatch])
 
 
   if (!loaded) {
     return (
-    <div className='loaderr'>
+      <div className='loaderr'>
         <h1>Loading...</h1>
-    </div>
+      </div>
     )
-}
+  }
 
   return (
     <div id='home_main_div'>
       <div id='home_wines_container'>
         <div id='wines_title_text'>Explore Wines</div>
         {allWines ?
-        <MainWineFeed wines={allWines}/> :
-        null
+          <MainWineFeed wines={allWines} /> :
+          null
         }
       </div>
       <div id='home_reviews_container'>
         <div id='reviews_title_text'>Latest Reviews</div>
         {newReviews ?
-        <ReviewFeedContainer reviews={newReviews}/> :
+          <ReviewFeedContainer reviews={newReviews} /> :
           null
         }
       </div>
