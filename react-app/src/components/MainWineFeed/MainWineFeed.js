@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-import { getOneWine } from '../../store/wines';
+// import { getOneWine } from '../../store/wines';
 
 
 import './MainWineFeed.css'
 
-const MainWineFeed = ({ wines }) => {
+const MainWineFeed = ({ wines, setWine }) => {
 
   const setCurrentWine = (e) => {
-    
-    getOneWine(e.target.id)
+    // getOneWine(e.target.id)
+    setWine(e.target.id)
   }
 
   return (
@@ -17,8 +17,7 @@ const MainWineFeed = ({ wines }) => {
       <div id='mini_wine_container'>
         {wines.map((wine) => {
           return (
-            <button onClick={setCurrentWine}>
-            <div className='mini_one_wine' key={wine.id} style={{
+            <div onClick={setCurrentWine} className='mini_one_wine' key={wine.id} id={wine.id} style={{
               backgroundImage: `url(${wine.image_url})`,
               backgroundPosition: 'center',
               backgroundSize: 'cover',
@@ -27,7 +26,6 @@ const MainWineFeed = ({ wines }) => {
               <div className='mini_wine_text'>{wine.name}</div>
               <div className='mini_wine_text'>{wine.color}</div>
             </div>
-            </button>
           )
         })}
       </div>

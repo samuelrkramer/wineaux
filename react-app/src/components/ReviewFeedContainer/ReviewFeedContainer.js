@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FeedReview from "../FeedReview";
 
 const ReviewFeedContainer = (reviews) => {
-  console.log(reviews)
   const [newReviews, setNewReviews] = useState(reviews.reviews)
+  console.log('reviews', newReviews)
+
+  useEffect(() => {
+    console.log('reviews inner', newReviews)
+  },[reviews])
 
   const update = async (id) => {
     setNewReviews(newReviews.filter((r) => {
