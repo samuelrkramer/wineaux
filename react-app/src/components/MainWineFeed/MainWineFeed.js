@@ -8,7 +8,6 @@ import './MainWineFeed.css'
 const MainWineFeed = ({ wines }) => {
 
   const setCurrentWine = (e) => {
-    
     getOneWine(e.target.id)
   }
 

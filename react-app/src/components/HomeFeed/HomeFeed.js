@@ -19,11 +19,11 @@ const HomeFeed = () => {
 
 
   useEffect(() => {
-    dispatch(getAllWines())
-      .then(() => setAllWines(Object.values(wines)))
     dispatch(getAllReviews())
       .then(()=> setNewReviews(Object.entries(reviews).reverse()))
       .then(()=> setLoaded(true))
+    dispatch(getAllWines())
+      .then(() => setAllWines(Object.values(wines)))
   }, [dispatch])
 
 
