@@ -115,3 +115,30 @@
   height: 5rem;
   font-size: 1em;
 }
+
+#edit_profile_pic {
+  width: 250px;
+  height: 250px;
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#edit_profile_pic > button {
+  color: white;
+  filter: drop-shadow(0px 0px 2px black);
+}
+
+.edit_icon {
+  height: 40px
+}
+
+#profile_pic_edit_container {
+  width: 100%;
+}
+
+#profile_pic_edit_input {
+  width: 550px;
+}

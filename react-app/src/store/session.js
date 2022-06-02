@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_PIC = 'session/UPDATE_PIC';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+const updatePic = (pic) => ({
+  type: UPDATE_PIC,
+  pic
 })
 
 const initialState = { user: null };
@@ -87,7 +93,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password, firstname, lastname) => async (dispatch) => {
+export const signUp = (username, email, password, firstname, lastname, birthdate) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -97,6 +103,7 @@ export const signUp = (username, email, password, firstname, lastname) => async 
       username,
       email,
       password,
+      birthdate,
       first_name: firstname,
       last_name: lastname
     }),
@@ -116,12 +123,23 @@ export const signUp = (username, email, password, firstname, lastname) => async 
   }
 }
 
+
+
+export const editPicSession = (pic) => async (dispatch) => {
+  // console.log(pic)
+  dispatch(updatePic(pic));
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case UPDATE_PIC:
+      const newState = Object.assign({}, state);
+      newState.user.profile_image_url = action.pic
+      return newState
     default:
       return state;
   }

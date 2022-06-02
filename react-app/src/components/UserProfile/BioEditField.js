@@ -10,15 +10,9 @@ const BioEditField = ({ user, setInEdit}) => {
   const [newText, setNewText] = useState(user.bio);
 
   const saveEdit = () => {
-      const newUser = user;
-      newUser.bio = newText;
-      dispatch(editBio(newUser));
+      const userId = user.id
+      dispatch(editBio(userId, newText));
       setInEdit(false);
-      const alert = document.getElementById("update-rating-alert")
-      alert.style.display = "block"
-      setTimeout(() => {
-          alert.style.display = "none"
-      }, 2000)
   }
 
   const cancelEdit = () => {
@@ -29,9 +23,9 @@ const BioEditField = ({ user, setInEdit}) => {
     <div id="bio_text_edit_container">
             <textarea
                 onChange={e => setNewText(e.target.value)}
-                value={newText}
+                value={newText || ''}
                 autoFocus={true}
-            />
+            ></textarea>
             <div id="dr-review-text-button-container">
                 <button id="dr-review-text-save" onClick={saveEdit}>Save</button>
                 <button id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</button>
