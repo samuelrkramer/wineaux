@@ -2,6 +2,7 @@ import React from "react";
 import FeedReview from "../FeedReview";
 
 const ReviewFeedContainer = (reviews) => {
+  console.log('reviews', reviews)
   return (
     <div id='main_review_feed'>
       {reviews.reviews.map((review) => {

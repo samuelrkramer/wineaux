@@ -15,10 +15,8 @@ const HomeFeed = () => {
   const [allWines, setAllWines] = useState(Object.values(wines))
   const [allReviews, setAllReviews] = useState(reviews)
 
-  console.log(allWines)
-  const winesArr = () => {
+  console.log('outer reviews', allReviews)
 
-  }
 
   useEffect(() => {
     dispatch(getAllWines());
@@ -46,7 +44,10 @@ const HomeFeed = () => {
       </div>
       <div id='home_reviews_container'>
         <div id='reviews_title_text'>Latest Reviews</div>
-        {/* <ReviewFeedContainer reviews={allReviews}/> */}
+        {/* {allReviews ?
+        <ReviewFeedContainer reviews={allReviews}/> :
+          null
+        } */}
       </div>
     </div>
   )

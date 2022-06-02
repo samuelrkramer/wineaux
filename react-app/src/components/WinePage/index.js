@@ -16,7 +16,8 @@ const WinePage = () => {
 
     const wine = useSelector(state => state.wines.singleWine);
     const user = useSelector(state => state.session.user)
-    const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
+    const reviews = useSelector(state => state.reviews.allReviews)
+    const [allReviews, setAllReviews] = useState(reviews)
 
 
 
@@ -25,7 +26,7 @@ const WinePage = () => {
     useEffect(() => {
         dispatch(getOneWine(wineId))
         .then(()=> dispatch(getAllReviews()))
-        .then(()=> setReviews(Object.values(reviews).filter((r)=> {
+        .then(()=> setAllReviews(Object.values(reviews).filter((r)=> {
             return String(r.wine.id) === wineId
         })))
         .then(()=> setLoaded(true))
@@ -52,10 +53,10 @@ const WinePage = () => {
     const getAvg = () => {
         let total = 0
         console.log(reviews)
-        for(let i = 0; i < reviews.length; i++){
-            total += reviews[i].rating
+        for(let i = 0; i < allReviews.length; i++){
+            total += allReviews[i].rating
         }
-        return Math.floor(total / reviews.length)
+        return Math.floor(total / allReviews.length)
     }
 
     const avg = getAvg()
@@ -93,7 +94,7 @@ const WinePage = () => {
                                 <img src={getRating(3)} alt=''></img>
                                 <img src={getRating(4)} alt=''></img>
                                 <img src={getRating(5)} alt=''></img>
-                                <p>({reviews.length} total reviews)</p>
+                                <p>({allReviews.length} total allReviews)</p>
                             </div>
                             <hr/>
                             <div className='stat'>
@@ -108,7 +109,7 @@ const WinePage = () => {
                                 <p>Variety: {wine.variety_id.name}</p>
                                 <p>Color: {wine.color}</p>
                             </div>
-                            
+
                         </div>
                         <div className='s2'>
                             <img  src={wine.image_url} alt=''></img>
@@ -118,7 +119,7 @@ const WinePage = () => {
                 </div>
                 <div className='specificRev'>
                     <h1>Recent Reviews:</h1>
-                    {loaded && reviews.map(r => {
+                    {loaded && allReviews.map(r => {
                         // console.log(r)
                         return <FeedReview review={r} />
                     })}
