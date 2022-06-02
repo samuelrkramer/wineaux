@@ -60,7 +60,7 @@ function App() {
           <ProtectedRoute path="/wines/new">
             <WineForm />
           </ProtectedRoute>
-          <ProtectedRoute path='/reviews/new' exact={true} >
+          <ProtectedRoute path='/reviews/new/:wineId' exact={true} >
             <NewReview />
           </ProtectedRoute>
           <ProtectedRoute path='/wines/:wineId(\d+)' exact={true} >
