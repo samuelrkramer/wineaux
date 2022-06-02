@@ -20,7 +20,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, firstname, lastname, birthdate));
+      const data = await dispatch(signUp(username, email, password, repeatPassword, firstname, lastname, birthdate));
       if (data) {
         setErrors(data)
       }
@@ -62,8 +62,8 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-      <Logo />
-      <h1>Welcome to Wineaux!</h1>
+        <Logo />
+        <h1>Welcome to Wineaux!</h1>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
