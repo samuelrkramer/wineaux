@@ -4,24 +4,30 @@ import { useDispatch } from "react-redux";
 import './EditReviewImg.css'
 import { editReview } from '../../store/reviews'
 
-function EditReviewImg({ review, setInImgEdit }) {
+function EditReviewImg({ review, toggle }) {
     const dispatch = useDispatch();
 
     const [url, setUrl] = useState("");
+    const [error, setError] = useState("");
 
     const saveEdit = () => {
-        const newReview = review;
-        newReview.image_url = url;
-        dispatch(editReview(newReview));
-        setInImgEdit(false);
+        if (url.length > 1000) {
+            setError("Url must be 1000 characters or less")
+        } else {
+            const newReview = Object.assign({}, review);
+            newReview.image_url = url;
+            dispatch(editReview(newReview));
+            toggle(false);
+        }
     }
 
     const cancelEdit = () => {
-        setInImgEdit(false);
+        toggle(false);
     }
 
     return (
         <div id="dr-edit-img-modal">
+            {error && <div id="dr-edit-img-error">{error}</div>}
             <div id="editImg-opacity" />
             <div id="editImg-form">
                 <input

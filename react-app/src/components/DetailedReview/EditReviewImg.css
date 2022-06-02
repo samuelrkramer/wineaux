@@ -7,6 +7,13 @@
     align-items: center;
 }
 
+#dr-edit-img-error {
+    position: absolute;
+    top: -40px;
+    color: rgb(79,24,46);
+    font-weight: bolder;
+}
+
 #editImg-opacity {
     position: absolute;
     width: 100%;

@@ -7,14 +7,7 @@ import { editReview } from '../../store/reviews'
 function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
     const dispatch = useDispatch();
 
-    // not working with a state variable for some reason
-    // const [rating, setRating] = useState(0);
-
     const review = useSelector(state => state.reviews.singleReview);
-
-    // if (review?.rating) setRating(review.rating);
-    // let rating = review.rating ? review.rating : 0;
-    // console.log(rating)
 
     const displayRating = rating => {
         let reviews = [];
@@ -33,7 +26,7 @@ function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
         if (!canEdit) return;
 
         if (action === "edit") {
-            const newReview = review;
+            const newReview = Object.assign({}, review);
             newReview.rating = e.target.id;
             await dispatch(editReview(newReview));
             const alert = document.getElementById("update-rating-alert")

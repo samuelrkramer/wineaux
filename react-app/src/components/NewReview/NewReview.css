@@ -6,13 +6,41 @@
     align-items: center;
 }
 
+#nr-wineinfo-container {
+    display: flex;
+    margin-top: 5rem;
+    width: 50%;
+}
+
+#nr-wine-img {
+    width: 5rem;
+    height: 100%;
+    margin-right: .5rem;
+}
+
+#nr-wineinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#nr-wine-name {
+    font-size: 25px;
+    margin-bottom: 1rem;
+}
+
+#nr-wine-year {
+    font-size: 20px;
+}
+
 #nr-form {
     position: relative;
     width: 50%;
     height: 315px;
-    margin-top: 6rem;
-    margin-bottom: 2rem;
-    border: 1.5px solid rgb(79,24,46);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border: 3px solid #4F182E;
+    border-radius: 2px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -48,10 +76,23 @@
     margin-bottom: 1rem;
 }
 
+#nr-textarea-container {
+    position: relative;
+}
+
 #nr-text {
     width: 100%;
     height: 100px;
     margin-bottom: 1rem;
+}
+
+#nr-remaining-chars {
+    position: absolute;
+    width: 26px;
+    background-color: #ccc;
+    right: 5px;
+    bottom: 25px;
+    font-size: 15px;
 }
 
 #nr-image-input {
@@ -98,4 +139,18 @@
 #nr-img {
     width: 100%;
     height: 100%;
+}
+
+#nr-errors-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-items: flex-start;
+    gap: .25rem;
+    margin-bottom: 1rem;
+}
+
+.nr-error {
+    color:rgb(79, 24, 46);
+    font-size: 15px;
 }
