@@ -109,6 +109,30 @@
     width: 500px;
 }
 
+.recentR {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.recentR > * > img {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    box-sizing: border-box;
+    border: solid transparent 1px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.recentR > * > img:hover{
+    background-color: white;
+    border: solid black 1px;
+}
+
 .specificRev > h1 {
     background-color: #4F182E;
     color: white;

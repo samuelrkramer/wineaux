@@ -8,12 +8,18 @@ import Logo from './Logo';
 
 const NavBar = () => {
 
-  // const sessionUser = useSelector(state => state.session.user);
-  // const [user, setUser] = useState(sessionUser)
+  const sessionUser = useSelector(state => state.session.user);
+  const [user, setUser] = useState(false)
 
-  // useEffect(() => {
-  //     setUser(sessionUser)
-  // },[])
+  useEffect(() => {
+      setUser(sessionUser)
+  },[])
+
+  useEffect(() => {
+    setUser(sessionUser)
+  }, [user, sessionUser])
+
+  console.log(sessionUser)
 
   return (
     <nav id='nav_bar'>
@@ -30,28 +36,46 @@ const NavBar = () => {
               Home
             </NavLink>
           </div>
-          <div className='nav_link_div'>
-            <NavLink to='/login' exact={true} activeClassName='active' className='nav_link'>
-              Login
-            </NavLink>
-          </div>
-          <div className='nav_link_div'>
-            <NavLink to='/sign-up' exact={true} activeClassName='active' className='nav_link'>
-              Sign Up
-            </NavLink>
-          </div>
+          {
+            !user && (
+              <>
+              <div className='nav_link_div'>
+                <NavLink to='/login' exact={true} activeClassName='active' className='nav_link'>
+                  Login
+                </NavLink>
+              </div>
+              <div className='nav_link_div'>
+                <NavLink to='/sign-up' exact={true} activeClassName='active' className='nav_link'>
+                  Sign Up
+                </NavLink>
+              </div>
+              </>
+            )
+          }
+          {
+            user && (
+              <div className='nav_link_div'>
+                <NavLink to='/users' exact={true} activeClassName='active' className='nav_link'>
+                  Users
+                </NavLink>
+              </div>
+            )
+          }
           <div className='nav_link_div'>
             <NavLink to='/users' exact={true} activeClassName='active' className='nav_link'>
-              Users
+              About
             </NavLink>
           </div>
-          <div className='nav_link_div'>
-            <LogoutButton />
           </div>
-        </div>
-          <div id='profile_button'>
-            <ProfileButton />
-          </div>
+        {
+          user && (
+            <>
+            <div id='profile_button'>
+              <ProfileButton />
+            </div>
+            </>
+          )
+        }
       </div>
     </nav>
   );

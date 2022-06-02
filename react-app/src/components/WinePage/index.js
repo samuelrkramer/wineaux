@@ -7,6 +7,7 @@ import { getAllReviews } from '../../store/reviews';
 import fullImg from '../FeedReview/wine-rating-icon-full.png'
 import emptyImg from '../FeedReview/wine-rating-icon-empty.png'
 import ReviewFeedContainer from '../ReviewFeedContainer';
+import reviewIcon from './review-icon.png'
 
 const WinePage = () => {
     const [loaded, setLoaded] = useState(false);
@@ -116,7 +117,10 @@ const WinePage = () => {
 
                 </div>
                 <div className='specificRev'>
-                    <h1>Recent Reviews:</h1>
+                    <div className='recentR'>
+                        <h1>Recent Reviews:</h1>
+                        <NavLink to={`/reviews/new/${wine.id}`}><img src={reviewIcon} alt=''></img></NavLink>
+                    </div>
                     {loaded && <ReviewFeedContainer reviews={reviews} />}
                 </div>
 
