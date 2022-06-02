@@ -4,7 +4,7 @@ import emptyImg from './wine-rating-icon-empty.png'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { deleteReview } from '../../store/reviews';
+import { deleteReview, getAllReviews } from '../../store/reviews';
 
 const FeedReview = (props) => {
     const review = props.review
@@ -40,8 +40,9 @@ const FeedReview = (props) => {
         }
     }, [])
 
-    const deleteRevieww = () => {
-        dispatch(deleteReview(review.id))
+    const deleteRevieww = async () => {
+        await dispatch(deleteReview(review.id))
+        .then(()=> props.update(review.id))
     }
 
     if (!review.id) {
@@ -68,7 +69,7 @@ const FeedReview = (props) => {
 
                 <div className='p2-2'>
                     "{review.text}"
-                    {review.image_url !== null && (
+                    {review.image_url !== null && review.image_url !== '' && (
                         <img className='rPic' src={review.image_url} alt='review'></img>
                     )}
                 </div>

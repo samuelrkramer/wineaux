@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import FeedReview from "../FeedReview";
 
 const ReviewFeedContainer = (reviews) => {
   console.log('reviews', reviews)
+  const [newReviews, setNewReviews] = useState(reviews.reviews)
+
+
+  const update = async (id) => {
+    setNewReviews(newReviews.filter((r) => {
+      return parseInt(r[0]) !== id
+    }))
+  }
+
   return (
     <div id='main_review_feed'>
-      {reviews.reviews.map((review) => {
+      {newReviews.map((review) => {
         return (
-          <FeedReview review={review[1]} key={review[1].id}/>
+          <FeedReview review={review[1]} key={review[1].id} update={update}/>
         )
       })}
     </div>

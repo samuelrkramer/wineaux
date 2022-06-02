@@ -40,7 +40,7 @@ const UserProfile = () => {
     setUserWines(userProfile.currentUserProfile.wines)
     setUserReviews(Object.entries(reviews).filter(([key, value]) => {
       return value.user.id === parseInt(userId)
-    }))
+    }).reverse())
   },[userProfile.currentUserProfile, user, userId, reviews])
 
   useEffect(() => {
