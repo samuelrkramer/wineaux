@@ -4,6 +4,8 @@ const NEW_WINE = 'wine/NEW';
 const EDIT_WINE = 'wine/EDIT'
 const DELETE_WINE = 'wine/DELETE'
 
+const GET_VARIETIES = 'wine/GET_VARIETIES';
+
 // GET ALL WINES
 export const getAllWines = () => async (dispatch) => {
     const response = await fetch('/api/wines')
@@ -101,10 +103,28 @@ const deleteWineAction = (wineId) => ({
     wineId
 })
 
+// GET ALL VARIETIES
+export const getAllVarieties = () => async (dispatch) => {
+    const response = await fetch('/api/wines/varieties')
+    if (response.ok) {
+        const varieties = await response.json();
+        dispatch(allVarietiesAction(varieties));
+        return varieties
+    }
+
+    return response.code; // ERROR HANDLING?
+}
+
+const allVarietiesAction = (varieties) => ({
+    type: GET_VARIETIES,
+    varieties
+})
+
 
 const initialState = {
     allWines: {},
     singleWine: {},
+    varieties: {},
 };
 
 const wineReducer = (state = initialState, action) => {
@@ -131,6 +151,12 @@ const wineReducer = (state = initialState, action) => {
         case DELETE_WINE:
             newState = Object.assign({}, state);
             delete newState.allWines[action.wineId];
+            return newState;
+        case GET_VARIETIES:
+            newState = Object.assign({}, state);
+            action.varieties.varieties.forEach(variety => {
+                newState.allVarieties[variety.id] = variety
+            });
             return newState;
         default:
             return state;
