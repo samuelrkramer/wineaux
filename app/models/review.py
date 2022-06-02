@@ -14,8 +14,8 @@ class Review(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.datetime.now())
   updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), onupdate=datetime.datetime.now())
 
-  user = db.relationship('User', back_populates='reviews')
-  wine = db.relationship('Wine', back_populates='reviews')
+  user = db.relationship('User', back_populates='reviews', lazy='subquery')
+  wine = db.relationship('Wine', back_populates='reviews', lazy='subquery')
 
   def to_dict(self):
     return {

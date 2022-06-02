@@ -15,11 +15,8 @@ const WinePage = () => {
     const dispatch = useDispatch();
 
     const wine = useSelector(state => state.wines.singleWine);
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
-
-
-
 
 
     useEffect(() => {
@@ -64,6 +61,13 @@ const WinePage = () => {
         if (!avg) {return emptyImg}
         if (n <= avg) { return fullImg }
         if (n > avg) { return emptyImg }
+    }
+
+    const update = async(id) => {
+        setReviews(reviews.filter((r) => {
+            return r.id !== id
+        }))
+        console.log(reviews)
     }
 
 
@@ -120,7 +124,7 @@ const WinePage = () => {
                     <h1>Recent Reviews:</h1>
                     {loaded && reviews.map(r => {
                         // console.log(r)
-                        return <FeedReview review={r} />
+                        return <FeedReview review={r} update={update}/>
                     })}
                 </div>
 
