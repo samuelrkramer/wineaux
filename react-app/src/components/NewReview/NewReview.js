@@ -91,12 +91,15 @@ function NewReview() {
                     <button id="nr-banner-cancel" onClick={handleCancel}>Cancel</button>
                 </div>
                 <div id="nr-content-wrapper">
-                    <textarea
-                        id="nr-text"
-                        value={text}
-                        onChange={textChange}
-                        placeholder="What do you think?"
-                    />
+                    <div id="nr-textarea-container">
+                        <textarea
+                            id="nr-text"
+                            value={text}
+                            onChange={textChange}
+                            placeholder="What do you think?"
+                        />
+                        <div id="nr-remaining-chars">{180 - text.length}</div>
+                    </div>
                     <div id="nr-image-input">
                         <div id="nr-icon-container">
                             <img src={addPhoto} alt="" id="nr-icon" />
