@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import './MiniWineFeed.css'
 
 const MiniWineFeed = ({ wines }) => {
-  // console.log(wines)
 
   return (
     <div id='mini_wine_container'>

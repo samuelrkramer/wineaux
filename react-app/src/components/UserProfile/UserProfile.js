@@ -15,6 +15,8 @@ import PicEditField from "./PicEditField";
 import './UserProfile.css'
 
 const UserProfile = () => {
+  const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const { userId }  = useParams();
@@ -30,8 +32,14 @@ const UserProfile = () => {
 
 
   useEffect(() => {
-    dispatch(getOneUser(userId));
-    dispatch(getAllReviews());
+    dispatch(getOneUser(userId))
+      .then (() => setUser(userProfile.currentUserProfile))
+      .then (() => setUserWines(userProfile.currentUserProfile.wines))
+      .then (() => dispatch(getAllReviews()))
+      .then(() => setUserReviews(Object.entries(reviews).filter(([key, value]) => {
+        return value.user.id === parseInt(userId)
+      }).reverse()))
+      .then(()=> setLoaded(true))
   }, [dispatch, userId])
 
 
@@ -65,9 +73,13 @@ const UserProfile = () => {
     setInPicEdit(!inPicEdit)
   }
 
-  if (!userId) {
-    return <h1>Loading</h1>;
-  }
+  if (!loaded) {
+    return (
+    <div className='loaderr'>
+        <h1>Loading...</h1>
+    </div>
+    )
+}
 
   return (
   <>
