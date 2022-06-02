@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
-from app.models import Wine, db
+from app.models import Wine, Variety, db
 from app.forms.wine_form import WineForm
 
 wine_routes = Blueprint('wines', __name__)
@@ -11,6 +11,10 @@ def get_all_wines():
     wines = Wine.query.all()
     return {"wines": [wine.to_dict() for wine in wines]}
 
+@wine_routes.route('/varieties', methods=["GET"])
+def get_all_varieties():
+    varieties = Variety.query.all()
+    return {"varieties": [variety.to_dict() for variety in varieties]}
 
 @wine_routes.route('/<int:id>', methods=["GET"])
 def get_one_wine(id):
