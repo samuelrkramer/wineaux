@@ -69,7 +69,7 @@ const FeedReview = (props) => {
 
                 <div className='p2-2'>
                     "{review.text}"
-                    {review.image_url !== null && (
+                    {review.image_url !== null && review.image_url !== '' && (
                         <img className='rPic' src={review.image_url} alt='review'></img>
                     )}
                 </div>
