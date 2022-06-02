@@ -29,9 +29,6 @@ const UserProfile = () => {
   const [inPicEdit, setInPicEdit] = useState(false);
 
 
-
-
-
   useEffect(() => {
     dispatch(getOneUser(userId));
     dispatch(getAllReviews());

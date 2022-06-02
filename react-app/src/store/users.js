@@ -83,7 +83,6 @@ const userReducer = (state = initialState, action) => {
       return newState;
     case EDIT_PIC:
       newState = Object.assign({}, state);
-      console.log(action)
       newState.currentUserProfile.profile_image_url = action.pic;
       return newState;
     default:

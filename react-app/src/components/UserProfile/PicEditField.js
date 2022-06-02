@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPic } from '../../store/users';
+import { editPicSession } from '../../store/session'
 
 import './UserProfile.css';
 
@@ -12,6 +13,7 @@ const PicEditField = ({ user, setInEdit}) => {
   const saveEdit = () => {
     const userId = user.id
     dispatch(editPic(userId, newUrl));
+    dispatch(editPicSession(userId, newUrl))
     setInEdit(false);
   }
 

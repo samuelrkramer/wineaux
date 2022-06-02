@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
@@ -8,7 +8,12 @@ import Logo from './Logo';
 
 const NavBar = () => {
 
-  const sessionUser = useSelector(state => state.session.user);
+  // const sessionUser = useSelector(state => state.session.user);
+  // const [user, setUser] = useState(sessionUser)
+
+  // useEffect(() => {
+  //     setUser(sessionUser)
+  // },[])
 
   return (
     <nav id='nav_bar'>
