@@ -4,30 +4,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOneWine } from '../../store/wines';
 import { getAllReviews } from '../../store/reviews';
-import FeedReview from '../FeedReview'
 import fullImg from '../FeedReview/wine-rating-icon-full.png'
 import emptyImg from '../FeedReview/wine-rating-icon-empty.png'
+import ReviewFeedContainer from '../ReviewFeedContainer';
 
 const WinePage = () => {
     const [loaded, setLoaded] = useState(false);
+    // const [avg, setAvg] = useState(getAvg())
 
     const { wineId } = useParams();
     const dispatch = useDispatch();
 
     const wine = useSelector(state => state.wines.singleWine);
-    const user = useSelector(state => state.session.user)
     const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
-
-
-
-
+    
+    const getAvg = () => {
+        let total = 0
+        for(let i = 0; i < reviews.length; i++){
+            total += reviews[i][1].rating
+        }
+        return Math.floor(total / reviews.length)
+    }
 
     useEffect(() => {
         dispatch(getOneWine(wineId))
         .then(()=> dispatch(getAllReviews()))
-        .then(()=> setReviews(Object.values(reviews).filter((r)=> {
-            return String(r.wine.id) === wineId
-        })))
+        .then(()=> setReviews(Object.entries(reviews).filter(([key,value])=> {
+            return value.wine.id === parseInt(wineId)
+        }).reverse()))
         .then(()=> setLoaded(true))
     }, [dispatch])
 
@@ -49,15 +53,6 @@ const WinePage = () => {
     }
     const time = getTime()
 
-    const getAvg = () => {
-        let total = 0
-        console.log(reviews)
-        for(let i = 0; i < reviews.length; i++){
-            total += reviews[i].rating
-        }
-        return Math.floor(total / reviews.length)
-    }
-
     const avg = getAvg()
 
     const getRating = (n) => {
@@ -72,7 +67,6 @@ const WinePage = () => {
         return (
         <div className='loaderr'>
             <h1>Loading...</h1>
-                {/* <img src='https://images.squarespace-cdn.com/content/v1/574faff6f8baf35e5da43485/1569348135149-BM2QSAVPKK1PJR2MPCKC/blend_2019.gif?format=1500w' alt=''></img> */}
         </div>
         )
     }
@@ -88,12 +82,16 @@ const WinePage = () => {
                         <div className='s1'>
                             <div className='rHolder'>
                                 <p>Average Rating: </p>
-                                <img src={getRating(1)} alt=''></img>
-                                <img src={getRating(2)} alt=''></img>
-                                <img src={getRating(3)} alt=''></img>
-                                <img src={getRating(4)} alt=''></img>
-                                <img src={getRating(5)} alt=''></img>
-                                <p>({reviews.length} total reviews)</p>
+                                {loaded && (
+                                    <>
+                                        <img src={getRating(1)} alt=''></img>
+                                        <img src={getRating(2)} alt=''></img>
+                                        <img src={getRating(3)} alt=''></img>
+                                        <img src={getRating(4)} alt=''></img>
+                                        <img src={getRating(5)} alt=''></img>
+                                        <p>({reviews.length} total reviews)</p>
+                                    </>
+                                )}
                             </div>
                             <hr/>
                             <div className='stat'>
@@ -118,10 +116,7 @@ const WinePage = () => {
                 </div>
                 <div className='specificRev'>
                     <h1>Recent Reviews:</h1>
-                    {loaded && reviews.map(r => {
-                        // console.log(r)
-                        return <FeedReview review={r} />
-                    })}
+                    {loaded && <ReviewFeedContainer reviews={reviews} />}
                 </div>
 
             </div>
