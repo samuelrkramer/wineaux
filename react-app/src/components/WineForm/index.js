@@ -4,6 +4,16 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { uploadNewWine } from '../../store/wines';
 
+const colors = [
+  'Gray',
+  'Orange',
+  'Red',
+  'Rosé',
+  'Tawny',
+  'White',
+  'Yellow',
+];
+
 const WineForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -14,7 +24,7 @@ const WineForm = () => {
   const [year, setYear] = useState("");
   const [variety_id, setVariety_id] = useState("0");
   const [description, setDescription] = useState("");
-  const [color, setColor] = useState(null);
+  const [color, setColor] = useState("0");
   const [sweetness, setSweetness] = useState("");
   const [image_url, setImage_url] = useState("");
 
@@ -38,7 +48,7 @@ const WineForm = () => {
   return (
     <form onSubmit={submitHandler}>
       <div>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Wine Name</label>
         <input
           className="fInput"
           name="name"
@@ -85,13 +95,18 @@ const WineForm = () => {
       </div>
       <div>
         <label htmlFor="color">Color</label>
-        <input
+        <select
           className="fInput"
           name="color"
           type="text"
           value = {color}
           onChange={e => setColor(e.target.value)}
-          />
+        >
+          <option value="0" disabled="true">Please select a color</option>
+          { colors.map((color, i) => (
+            <option key={i} value={color}>{color}</option>
+          )) }
+        </select>
       </div>
       <div>
         <label htmlFor="sweetness">Sweetness</label>
