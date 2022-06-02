@@ -10,7 +10,7 @@ function EditReviewImg({ review, setInImgEdit }) {
     const [url, setUrl] = useState("");
 
     const saveEdit = () => {
-        const newReview = review;
+        const newReview = Object.assign({}, review);
         newReview.image_url = url;
         dispatch(editReview(newReview));
         setInImgEdit(false);

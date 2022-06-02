@@ -11,7 +11,7 @@ function EditReviewText({ review, setInEdit }) {
     const [newText, setNewText] = useState(review.text);
 
     const saveEdit = () => {
-        const newReview = review;
+        const newReview = Object.assign({}, review);
         newReview.text = newText;
         dispatch(editReview(newReview));
         setInEdit(false);
