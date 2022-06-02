@@ -7,6 +7,8 @@ import line_break from '../../images/line_break.png';
 import MiniWineFeed from "../MiniWineFeed";
 import ReviewFeedContainer from '../ReviewFeedContainer'
 import BioEditField from "./BioEditField";
+import editIcon from "../../images/edit-icon.png"
+import PicEditField from "./PicEditField";
 
 
 
@@ -24,7 +26,8 @@ const UserProfile = () => {
     return value.user.id === parseInt(userId)
   }))
   const [inTextEdit, setInTextEdit] = useState(false);
-  const [emptyUser, setEmptyUser] = useState(false);
+  const [inPicEdit, setInPicEdit] = useState(false);
+
 
 
 
@@ -60,8 +63,9 @@ const UserProfile = () => {
     setInTextEdit(true);
   }
 
-  const addProfilePic = () => {
+  const updateProfilePic = () => {
     if (!canEdit) return
+    setInPicEdit(!inPicEdit)
   }
 
   if (!userId) {
@@ -73,17 +77,18 @@ const UserProfile = () => {
     <div id='profile_name_text'>Profile For {user.first_name} {user.last_name}</div>
       <div id='main_profile_div'>
         <div id='pic_detail_div'>
-          {!canEdit ? <div id='profile_page_pic' style={{
+          <div id='profile_page_pic' style={{
                 backgroundImage: `url(${profilePic})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'
               }}>
-          </div> :
-          <div id='no_profile_pic'>
-            <button onClick={addProfilePic}>Update Profile Pic</button>
-          </div>
+          {canEdit ?
+          <div id='edit_profile_pic'>
+            <button onClick={updateProfilePic}><img src={editIcon} className='edit_icon'/></button>
+          </div> : null
           }
+          </div>
           <div id='user_details'>
             {user.reviews ?
             <>
@@ -107,6 +112,7 @@ const UserProfile = () => {
             : null}
           </div>
         </div>
+        {inPicEdit ? <div><PicEditField user={user} setInEdit={setInPicEdit}/></div>: null}
         <div id='user_bio'>
           <div id='bio_title'>About Me:</div>
           {!user.bio && canEdit ? <button onClick={textEdit}>Add Bio</button> : null }

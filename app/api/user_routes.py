@@ -26,11 +26,20 @@ def userProfile(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/profile/<int:id>', methods=['PUT'])
+@user_routes.route('/profile/bio/<int:id>', methods=['PUT'])
 def edit_bio(id):
     user = User.query.get(id)
     new_bio = request.json['bio']
     user.bio = new_bio
+    db.session.commit()
+
+    return user.to_dict()
+
+@user_routes.route('/profile/pic/<int:id>', methods=['PUT'])
+def edit_pic(id):
+    user = User.query.get(id)
+    new_pic = request.json['profile_image_url']
+    user.profile_image_url = new_pic
     db.session.commit()
 
     return user.to_dict()
