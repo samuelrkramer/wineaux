@@ -113,16 +113,16 @@ function NewReview() {
                         Submit Review
                     </button>
                 </div>
-                <div id="nr-img-container">
-                    {url && (
-                        <img id="nr-img" src={url} alt="" />
-                    )}
-                </div>
             </div>
             <div id="nr-errors-container">
                 {textError && <div className="nr-error" >{textError}</div>}
                 {urlError && <div className="nr-error" >{urlError}</div>}
                 {ratingError && <div className="nr-error" >{ratingError}</div>}
+            </div>
+            <div id="nr-img-container">
+                {url && !urlError && (
+                    <img id="nr-img" src={url} alt="" />
+                )}
             </div>
         </div>
     )
