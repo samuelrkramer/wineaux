@@ -17,7 +17,7 @@ const WinePage = () => {
 
     const wine = useSelector(state => state.wines.singleWine);
     const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
-    
+
     const getAvg = () => {
         let total = 0
         for(let i = 0; i < reviews.length; i++){
@@ -52,6 +52,7 @@ const WinePage = () => {
         } else { return `${mDate} minutes ago` }
     }
     const time = getTime()
+
 
     const avg = getAvg()
 
@@ -106,7 +107,7 @@ const WinePage = () => {
                                 <p>Variety: {wine.variety_id.name}</p>
                                 <p>Color: {wine.color}</p>
                             </div>
-                            
+
                         </div>
                         <div className='s2'>
                             <img  src={wine.image_url} alt=''></img>

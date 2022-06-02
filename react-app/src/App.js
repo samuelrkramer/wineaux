@@ -16,6 +16,7 @@ import UserProfile from './components/UserProfile';
 import PageNotFound from './components/PageNotFound';
 import WineForm from './components/WineForm';
 import WinePage from './components/WinePage';
+import HomeFeed from './components/HomeFeed';
 
 
 
@@ -52,7 +53,7 @@ function App() {
             <UserProfile />
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
-            <h1>My Home Page</h1>
+            <HomeFeed />
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
