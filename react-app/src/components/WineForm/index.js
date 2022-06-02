@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,9 +8,11 @@ const WineForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [varieties, setVarieities] = useState([]);
+
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
-  const [variety_id, setVariety_id] = useState(null);
+  const [variety_id, setVariety_id] = useState("0");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState(null);
   const [sweetness, setSweetness] = useState("");
@@ -26,6 +28,12 @@ const WineForm = () => {
     const result = await dispatch(uploadNewWine(newWine));
     history.push(`/wines/${result.id}`);
   }
+
+  useEffect(async () => {
+    const res = await fetch('/api/wines/varieties');
+    const varObj = await res.json();
+    setVarieities(varObj.varieties);
+  }, []);
 
   return (
     <form onSubmit={submitHandler}>
@@ -51,13 +59,20 @@ const WineForm = () => {
       </div>
       <div>
         <label htmlFor="variety_id">Variety</label>
-        <input
+        <select
           className="fInput"
           name="variety_id"
           type="text"
           value = {variety_id}
           onChange={e => setVariety_id(e.target.value)}
-          />
+        >
+          <option value="0" disabled="true">Please select a variety</option>
+          { varieties.map(variety => (
+            <option key={variety.id} value={variety.id}>
+              {variety.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <label htmlFor="description">Description</label>
