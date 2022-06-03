@@ -66,15 +66,18 @@ const newWineAction = (wine) => ({
 
 // EDIT A WINE
 export const editWine = (wine) => async (dispatch) => {
+    console.log('in store', wine.id)
     const response = await fetch(`/api/wines/${wine.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS
         body: JSON.stringify(wine)
     })
+    console.log(response.ok)
 
     if (response.ok) {
         const editWine = await response.json();
         dispatch(editWineAction(editWine));
+        console.log('editWine', editWine)
         return editWine;
     }
 

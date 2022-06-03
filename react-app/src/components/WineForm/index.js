@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { uploadNewWine } from '../../store/wines';
+import { editWine } from '../../store/wines';
 import './WineForm.css'
 
 const colors = [
@@ -41,11 +42,18 @@ const WineForm = ({mode}) => {
     e.preventDefault()
 
     const newWine = {
-      name, year, variety_id, description,
+      id: wineId, name, year, variety_id, description,
       color, sweetness, image_url
     }
-    const result = await dispatch(uploadNewWine(newWine));
-    history.push(`/wines/${result.id}`);
+    let result;
+    if (mode === "Edit") {
+      console.log('in edit', newWine)
+      result = await dispatch(editWine(newWine));
+    } else {
+      result = await dispatch(uploadNewWine(newWine));
+    }
+    console.log(result)
+    history.push(`/wines/${wineId}`);
   }
 
   useEffect(async () => {
