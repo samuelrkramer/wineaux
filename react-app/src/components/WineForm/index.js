@@ -115,7 +115,7 @@ const WineForm = ({mode}) => {
               value = {variety_id}
               onChange={e => setVariety_id(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a variety</option>
+              <option value="0" disabled={true}>Please select a variety</option>
               { varieties.map(variety => (
                 <option key={variety.id} value={variety.id}>
                   {variety.name}
@@ -141,7 +141,7 @@ const WineForm = ({mode}) => {
               value = {color}
               onChange={e => setColor(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a color</option>
+              <option value="0" disabled={true}>Please select a color</option>
               { colors.map((color, i) => (
                 <option key={i} value={color}>{color}</option>
               )) }

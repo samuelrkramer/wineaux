@@ -46,7 +46,11 @@ def new_wine():
 
 @wine_routes.route('/<int:id>', methods=["PUT"])
 def edit_wine(id):
+    print("###############################")
+    print("wine put route fired")
     wine = Wine.query.get(id)
+    print("got old wine:", wine.to_dict())
+    print("json request:", request.json)
     wine.name = request.json["name"]
     wine.year = request.json["year"]
     wine.variety_id = request.json["variety_id"]
@@ -54,8 +58,9 @@ def edit_wine(id):
     wine.color = request.json["color"]
     wine.sweetness = request.json["sweetness"]
     wine.image_url = request.json["image_url"]
+    print("so now wine is this:", wine.to_dict())
     db.session.commit()
-
+    print("just commited to db")
     return wine.to_dict() or {'errors': 'invalid wine'}
 
 @wine_routes.route('/<int:id>', methods=["DELETE"])
