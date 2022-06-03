@@ -7,13 +7,14 @@ import background from '../../images/grapes-background.png';
 import './AboutPage.css'
 
 const AboutPage = () => {
+
   return (
     <>
          <div id='about_background'style={{
                 backgroundImage: `url(${background})`,
               }}></div>
       <div id='built_by_container'>
-        <div>Wineax was built by:</div>
+        <div>Wineaux was built by:</div>
         <div id='dev_list_container'>
           <div className='creator_container'>
             <div className='creator_name'>David Forster</div>
