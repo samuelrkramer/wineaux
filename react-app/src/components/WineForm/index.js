@@ -19,6 +19,7 @@ const WineForm = () => {
   const history = useHistory();
 
   const [varieties, setVarieities] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
@@ -36,7 +37,8 @@ const WineForm = () => {
       color, sweetness, image_url
     }
     const result = await dispatch(uploadNewWine(newWine));
-    history.push(`/wines/${result.id}`);
+    console.log("###", result)
+    // history.push(`/wines/${result.id}`);
   }
 
   useEffect(async () => {

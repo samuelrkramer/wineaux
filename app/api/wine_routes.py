@@ -1,6 +1,7 @@
 from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
+from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Wine, Variety, db
 from app.forms.wine_form import WineForm
 
@@ -40,9 +41,10 @@ def new_wine():
         )
         db.session.add(wine)
         db.session.commit()
-        print("###################")
-        print("wine to dict", wine.to_dict())
+        # print("###################")
+        # print("wine to dict", wine.to_dict())
         return wine.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @wine_routes.route('/<int:id>', methods=["PUT"])
 def edit_wine(id):
