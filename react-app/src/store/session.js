@@ -128,7 +128,6 @@ export const signUp = (username, email, password, repeatPassword, firstname, las
 
 
 export const editPicSession = (pic) => async (dispatch) => {
-  // console.log(pic)
   dispatch(updatePic(pic));
 }
 
