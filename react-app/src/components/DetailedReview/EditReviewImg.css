@@ -8,10 +8,9 @@
 }
 
 #dr-edit-img-error {
-    position: absolute;
-    top: -40px;
     color: rgb(79,24,46);
     font-weight: bolder;
+    margin-top: 10px;
 }
 
 #editImg-opacity {

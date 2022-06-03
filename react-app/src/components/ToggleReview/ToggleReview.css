@@ -34,10 +34,11 @@
 
 #update-rating-alert {
     position: absolute;
-    top: -55px;
+    top: -35px;
     right: 0;
-    padding: 1rem;
+    padding: .5rem;
     background-color: white;
     display: none;
     transition: .5s;
+    font-size: 12px;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import './ToggleReview.css';
@@ -64,7 +64,7 @@ function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
                 }
             })
         }
-    }, [rating, canEdit])
+    }, [rating, canEdit, containerId])
 
     const toggleVisibility = (position, glasses) => {
         for (let i = 0; i < 5; i++) {

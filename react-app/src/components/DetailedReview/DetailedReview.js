@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import './DetailedReview.css';
 import { getOneReview } from '../../store/reviews';
@@ -21,16 +21,22 @@ function DetailedReview() {
     const [inTextEdit, setInTextEdit] = useState(false);
     const [inImgEdit, setInImgEdit] = useState(false);
     const [addPhoto, setAddPhoto] = useState(false);
+    const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
     }, [dispatch, reviewId])
 
+    useEffect(() => {
+        if (review.user) {
+            setCanEdit(review?.user?.id === user.id ? true : false)
+        }
+    }, [review.user, user.id])
+
+
     if (!review.id) {
         return <h1>Loading</h1>
     }
-
-    const canEdit = review.user.id === user.id ? true : false;
 
     const textEdit = () => {
         if (!canEdit) return
@@ -49,24 +55,24 @@ function DetailedReview() {
     return (
         <div id="dr-hero">
             <div id="dr-content">
-                <div id="dr-content-left">
+                <div id="dr-content-top">
                     <div id="dr-userinfo">
-                        <div id="dr-userinfo-img-container">
+                        <Link id="dr-userinfo-img-container" to={`/users/${review.user.id}`}>
                             <img id="dr-userinfo-img" src={review.user.profile_image_url} alt="" />
-                        </div>
-                        <div id="dr-userinfo-name">
+                        </Link>
+                        <Link id="dr-userinfo-name" to={`/users/${review.user.id}`}>
                             {review.user.first_name} {review.user.last_name}
-                        </div>
+                        </Link>
                     </div>
                     <div id="dr-body">
-                        <div id="dr-wineinfo-container">
-                            <div id="dr-wineinfo-left">
+                        <div id="dr-wineinfo-container" >
+                            <Link id="dr-wineinfo-left" to={`/wines/${review.wine.id}`} >
                                 <img id="dr-wine-img" src={review.wine.image_url} alt="" />
                                 <div id="dr-wineinfo">
                                     <div id="dr-wine-name">{review.wine.name}</div>
                                     <div id="dr-wine-year">{review.wine.year}</div>
                                 </div>
-                            </div>
+                            </Link>
                             <div id="dr-rating-container">
                                 <ToggleReview rating={review.rating} canEdit={canEdit} containerId="dr-rating-container" action="edit" />
                             </div >
@@ -78,12 +84,9 @@ function DetailedReview() {
                             <div id={`dr-review-text-${canEdit}`} onClick={textEdit}>{review.text}</div>
                         }
                     </div>
-                    {canEdit && (
-                        <div id="editPage-cue">Mouseover review, rating and photo to edit!</div>
-                    )}
                 </div>
 
-                <div id="dr-content-right">
+                <div id="dr-content-bottom">
                     {review.image_url ? (
                         <div id="dr-img-banner" >
                             <img id="dr-img" src={review.image_url} alt="" />
@@ -122,7 +125,10 @@ function DetailedReview() {
                         </div>
                     }
                     {(canEdit && !addPhoto) && (
-                        <div id="dr-delete-button-container">
+                        <div id="dr-edit-delete-container">
+                            {canEdit && (
+                                <div id="editPage-cue">Mouseover review, rating and photo to edit!</div>
+                            )}
                             <button
                                 id="dr-delete-review-button"
                                 onClick={handleDelete}

@@ -27,7 +27,6 @@ function EditReviewImg({ review, toggle }) {
 
     return (
         <div id="dr-edit-img-modal">
-            {error && <div id="dr-edit-img-error">{error}</div>}
             <div id="editImg-opacity" />
             <div id="editImg-form">
                 <input
@@ -51,6 +50,7 @@ function EditReviewImg({ review, toggle }) {
                         Cancel
                     </button>
                 </div>
+                {error && <div id="dr-edit-img-error">{error}</div>}
             </div>
         </div>
     )

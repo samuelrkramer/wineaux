@@ -8,7 +8,7 @@ import { editReview } from '../../store/reviews';
 function EditReviewText({ review, setInEdit }) {
     const dispatch = useDispatch();
 
-    const [newText, setNewText] = useState(review.text);
+    const [newText, setNewText] = useState(review.text ? review.text : "");
     const [error, setError] = useState("");
 
     const saveEdit = () => {
