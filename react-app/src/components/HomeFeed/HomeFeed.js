@@ -14,13 +14,13 @@ const HomeFeed = () => {
 
   const wines = useSelector(state => state.wines.allWines)
   const reviews = useSelector(state => state.reviews.allReviews)
-  const [allWines, setAllWines] = useState(Object.values(wines))
+  const [allWines, setAllWines] = useState(Object.values(wines).reverse())
   const [newReviews, setNewReviews] = useState(Object.entries(reviews).reverse())
 
 
   useEffect(async () => {
     await dispatch(getAllWines())
-      .then(() => setAllWines(Object.values(wines)))
+      .then(() => setAllWines(Object.values(wines).reverse()))
       .then(() => dispatch(getAllReviews()))
       .then(() => setNewReviews(Object.entries(reviews).reverse()))
       .then(() => setLoaded(true))

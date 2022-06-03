@@ -17,6 +17,7 @@ import PageNotFound from './components/PageNotFound';
 import WineForm from './components/WineForm';
 import WinePage from './components/WinePage';
 import HomeFeed from './components/HomeFeed';
+import AboutPage from './components/AboutPage'
 
 
 
@@ -70,6 +71,9 @@ function App() {
           <ProtectedRoute path='/wines/:wineId(\d+)' exact={true} >
             <WinePage />
           </ProtectedRoute>
+          <Route path='/about' exact={true}>
+            <AboutPage />
+          </Route>
           <ProtectedRoute path="*" exact={true} >
             <PageNotFound />
           </ProtectedRoute>

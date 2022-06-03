@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login_demo } from '../../store/session';
 import Logo from '../NavBar/Logo';
 import './auth.css'
 
@@ -19,11 +19,18 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, repeatPassword, firstname, lastname, birthdate));
-      if (data) {
-        setErrors(data)
+    const data = await dispatch(signUp(username, email, password, repeatPassword, firstname, lastname, birthdate));
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        data[i] = data[i].replace('username', 'Username');
+        data[i] = data[i].replace('email', 'Email');
+        data[i] = data[i].replace('password', 'Password');
+        data[i] = data[i].replace('first_name', 'First Name');
+        data[i] = data[i].replace('last_name', 'Last Name');
+        data[i] = data[i].replace('birthdate', 'Birthdate');
+        data[i] = data[i].replace('confirm_pass', 'Repeat Password');
       }
+      setErrors(data)
     }
   };
 
@@ -55,6 +62,15 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const demoHandler = async (e) => {
+    e.preventDefault();
+    // alert("demo handler fired")
+    const data = await dispatch(login_demo());
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -64,7 +80,7 @@ const SignUpForm = () => {
       <div>
         <Logo />
         <h1>Welcome to Wineaux!</h1>
-        <div>
+        <div id="signup-form-errors-container">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
@@ -134,7 +150,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='bHold'>
-          <button type='submit'>Sign Up</button>
+          <button onClick={demoHandler} className='form_button'>Demo</button>
+          <button type='submit' className='form_button'>Sign Up</button>
         </div>
       </div>
     </form>
