@@ -43,15 +43,10 @@ function ProfileButton({ user }) {
           <ul className="profile-dropdown">
             <li>Welcome {user.first_name}!</li>
             <li>
-              <NavLink to={`/users/${user.id}`} className='navLinkk'>
-                <button id='profileButton'>Profile</button>
-              </NavLink>
-            </li>
-            <li>
               <NavLink to={`/users/${sessionUser.id}`} className='profileButton'>Profile</NavLink>
             </li>
             <li>
-              <button onClick={logout} id='logoutButton'>Log Out</button>
+              <button onClick={logout} className='profileButton'>Log Out</button>
             </li>
           </ul>
         </>
