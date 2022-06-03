@@ -31,7 +31,7 @@ const WineForm = ({ mode }) => {
 
   const [name, setName] = useState(wine.name || "");
   const [year, setYear] = useState(wine.year || "");
-  const [variety_id, setVariety_id] = useState(wine.variety_id || "0");
+  const [variety_id, setVariety_id] = useState(wine.variety_id.id || "0");
   const [description, setDescription] = useState(wine.description || "");
   const [color, setColor] = useState(wine.color || "0");
   const [sweetness, setSweetness] = useState(wine.sweetness || "");
@@ -46,7 +46,6 @@ const WineForm = ({ mode }) => {
     }
     let result;
     if (mode === "Edit") {
-      // console.log('in edit', newWine)
       result = await dispatch(editWine(newWine));
       history.push(`/wines/${wineId}`);
     } else {
