@@ -19,7 +19,7 @@ def valid_email(form, field):
     if not re.fullmatch(regex, field.data):
         raise ValidationError('Must be a valid email.')
     else:
-        print("(@*#$*(#@*$(@#$*(@#$")
+        pass
 
 
 def username_exists(form, field):
