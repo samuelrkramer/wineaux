@@ -64,7 +64,7 @@ const newWineAction = (wine) => ({
 
 // EDIT A WINE
 export const editWine = (wine) => async (dispatch) => {
-    console.log('in store', wine.id)
+    console.log("******** wine", wine)
     const response = await fetch(`/api/wines/${wine.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS

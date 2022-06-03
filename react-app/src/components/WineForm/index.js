@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-<<<<<<< HEAD
-import { uploadNewWine } from '../../store/wines';
-import { editWine } from '../../store/wines';
-=======
 import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
->>>>>>> 457c05eac461ed48e248baddbe64f25737116ef0
 import './WineForm.css'
 
 const colors = [
@@ -20,7 +15,7 @@ const colors = [
   'Yellow',
 ];
 
-const WineForm = ({mode}) => {
+const WineForm = ({ mode }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -51,13 +46,13 @@ const WineForm = ({mode}) => {
     }
     let result;
     if (mode === "Edit") {
-      console.log('in edit', newWine)
+      // console.log('in edit', newWine)
       result = await dispatch(editWine(newWine));
+      history.push(`/wines/${wineId}`);
     } else {
       result = await dispatch(uploadNewWine(newWine));
+      history.push(`/wines/${result.id}`);
     }
-    console.log(result)
-    history.push(`/wines/${wineId}`);
   }
 
   useEffect(async () => {
@@ -65,6 +60,18 @@ const WineForm = ({mode}) => {
     const varObj = await res.json();
     setVarieities(varObj.varieties);
   }, []);
+
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    history.goBack();
+  }
+
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+    const result = await dispatch(deleteWine(wineId));
+    if (result) history.push("/");
+    else alert("failed to delete");
+  }
 
   return (
     <>
@@ -77,9 +84,9 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="name"
               type="text"
-              value = {name}
+              value={name}
               onChange={e => setName(e.target.value)}
-              />
+            />
           </div>
           <div className='form_input_div'>
             <label htmlFor="year">Year</label>
@@ -87,9 +94,9 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="year"
               type="number"
-              value = {year}
+              value={year}
               onChange={e => setYear(e.target.value)}
-              />
+            />
           </div>
           <div className='form_input_div'>
             <label htmlFor="variety_id">Variety</label>
@@ -97,11 +104,11 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="variety_id"
               type="text"
-              value = {variety_id}
+              value={variety_id}
               onChange={e => setVariety_id(e.target.value)}
             >
               <option value="0" disabled={true}>Please select a variety</option>
-              { varieties.map(variety => (
+              {varieties.map(variety => (
                 <option key={variety.id} value={variety.id}>
                   {variety.name}
                 </option>
@@ -113,9 +120,9 @@ const WineForm = ({mode}) => {
             <textarea
               className="fInput"
               name="description"
-              value = {description}
+              value={description}
               onChange={e => setDescription(e.target.value)}
-              />
+            />
           </div>
           <div className='form_input_div'>
             <label htmlFor="color">Color</label>
@@ -123,13 +130,13 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="color"
               type="text"
-              value = {color}
+              value={color}
               onChange={e => setColor(e.target.value)}
             >
               <option value="0" disabled={true}>Please select a color</option>
-              { colors.map((color, i) => (
+              {colors.map((color, i) => (
                 <option key={i} value={color}>{color}</option>
-              )) }
+              ))}
             </select>
           </div>
           <div className='form_input_div'>
@@ -138,9 +145,9 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="sweetness"
               type="text"
-              value = {sweetness}
+              value={sweetness}
               onChange={e => setSweetness(e.target.value)}
-              />
+            />
           </div>
           <div className='form_input_div'>
             <label htmlFor="image_url">Image URL</label>
@@ -148,12 +155,13 @@ const WineForm = ({mode}) => {
               className="fInput"
               name="image_url"
               type="text"
-              value = {image_url}
+              value={image_url}
               onChange={e => setImage_url(e.target.value)}
-              />
+            />
           </div>
           <div className='bHold'>
-            <button id="dr-review-text-save" type="submit">{mode}</button> { mode === "Edit" && (
+            <button id="dr-review-text-save" type="submit">{mode}</button>
+            {mode === "Edit" && (
               <>
                 <button onClick={deleteHandler}>Delete</button>
                 <button onClick={cancelHandler}>Cancel</button>
