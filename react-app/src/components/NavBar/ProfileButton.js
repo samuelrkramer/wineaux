@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {NavLink} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import ProfileIcon from "./ProfileIcon";
 import * as sessionActions from '../../store/session';
+import { useSelector } from 'react-redux';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -40,6 +43,9 @@ function ProfileButton({ user }) {
           <ul className="profile-dropdown">
             {/* <li>{user.username}</li> */}
             {/* <li>{user.email}</li> */}
+            <li>
+              <NavLink to={`/users/${sessionUser.id}`} className='profileButton'>Profile</NavLink>
+            </li>
             <li>
               <button onClick={logout} id='logoutButton'>Log Out</button>
             </li>

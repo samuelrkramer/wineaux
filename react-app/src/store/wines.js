@@ -51,8 +51,6 @@ export const uploadNewWine = (wine) => async (dispatch) => {
     if (response.ok) {
         const newWine = await response.json();
         dispatch(newWineAction(newWine));
-        console.log("###############")
-        console.log(newWine)
         return newWine;
     }
 

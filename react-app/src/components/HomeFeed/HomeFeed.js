@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllReviews } from "../../store/reviews";
 import { getAllWines } from "../../store/wines";
-import MainWineFeed from "../MainWineFeed";
+import MiniWineFeed from "../MiniWineFeed";
 import ReviewFeedContainer from '../ReviewFeedContainer'
 
 import './HomeFeed.css'
@@ -40,7 +40,7 @@ const HomeFeed = () => {
       <div id='home_wines_container'>
         <div id='wines_title_text'>Explore Wines</div>
         {allWines ?
-          <MainWineFeed wines={allWines} /> :
+          <MiniWineFeed wines={allWines} /> :
           null
         }
       </div>

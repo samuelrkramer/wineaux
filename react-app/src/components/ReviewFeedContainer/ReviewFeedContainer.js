@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import FeedReview from "../FeedReview";
 
 const ReviewFeedContainer = (reviews) => {
-  console.log(reviews)
   const [newReviews, setNewReviews] = useState(reviews.reviews)
 
   const update = async (id) => {
