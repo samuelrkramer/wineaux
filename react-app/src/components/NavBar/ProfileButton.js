@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {NavLink} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ProfileIcon from "./ProfileIcon";
