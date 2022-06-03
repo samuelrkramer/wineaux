@@ -17,7 +17,6 @@ def user_exists(form, field):
 def valid_email(form, field):
     regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
     if not re.fullmatch(regex, field.data):
-        print("*****&&&&& IN IF OF EMAIL REGEX")
         raise ValidationError('Must be a valid email.')
     else:
         print("(@*#$*(#@*$(@#$*(@#$")
