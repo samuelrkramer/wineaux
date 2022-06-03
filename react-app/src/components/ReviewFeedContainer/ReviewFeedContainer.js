@@ -7,7 +7,7 @@ const ReviewFeedContainer = (reviews) => {
   const update = async (id) => {
     setNewReviews(newReviews.filter((r) => {
       return parseInt(r[0]) !== id
-    }))
+    }).reverse())
   }
 
   return (
