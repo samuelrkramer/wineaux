@@ -28,7 +28,7 @@ const HomeFeed = () => {
 
   const reviewSort = (reviews) => {
     reviews.sort((a,b) => {
-      console.log(b[1].created_at, a[1].created_at)
+      (b[1].created_at, a[1].created_at)
       return b[1].created_at - a[1].created_at
     })
     console.log(reviews)
