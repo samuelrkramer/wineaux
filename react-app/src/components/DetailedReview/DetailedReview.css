@@ -128,7 +128,7 @@
 }
 
 #dr-img-edit-button-container {
-    /* position: absolute; */
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;

@@ -12,11 +12,11 @@ function EditReviewImg({ review, toggle }) {
 
     const saveEdit = () => {
         let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
-
-        if (url.length > 1000) {
+        if (!url.match(regex)) {
+            setError("Url must be an img")
+        } else if (url.length > 1000) {
             setError("Url must be 1000 characters or less")
-        } else if (url.match(regex)) {
-            setError("Url must be for an image")
+
         } else {
             const newReview = Object.assign({}, review);
             newReview.image_url = url;
