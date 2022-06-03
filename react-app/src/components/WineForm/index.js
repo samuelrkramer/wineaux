@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import { uploadNewWine } from '../../store/wines';
 import { editWine } from '../../store/wines';
+=======
+import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
+>>>>>>> 457c05eac461ed48e248baddbe64f25737116ef0
 import './WineForm.css'
 
 const colors = [
@@ -39,7 +43,7 @@ const WineForm = ({mode}) => {
   const [image_url, setImage_url] = useState(wine.image_url || "");
 
   const submitHandler = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
     const newWine = {
       id: wineId, name, year, variety_id, description,
@@ -64,7 +68,7 @@ const WineForm = ({mode}) => {
 
   return (
     <>
-      <div id='profile_name_text'>Create A Wine</div>
+      <div id='profile_name_text'>{mode} A Wine</div>
       <div className='form_div'>
         <form onSubmit={submitHandler}>
           <div className='form_input_div'>
@@ -96,7 +100,7 @@ const WineForm = ({mode}) => {
               value = {variety_id}
               onChange={e => setVariety_id(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a variety</option>
+              <option value="0" disabled={true}>Please select a variety</option>
               { varieties.map(variety => (
                 <option key={variety.id} value={variety.id}>
                   {variety.name}
@@ -122,7 +126,7 @@ const WineForm = ({mode}) => {
               value = {color}
               onChange={e => setColor(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a color</option>
+              <option value="0" disabled={true}>Please select a color</option>
               { colors.map((color, i) => (
                 <option key={i} value={color}>{color}</option>
               )) }
@@ -149,7 +153,12 @@ const WineForm = ({mode}) => {
               />
           </div>
           <div className='bHold'>
-            <button id="dr-review-text-save" type="submit">Create</button>
+            <button id="dr-review-text-save" type="submit">{mode}</button> { mode === "Edit" && (
+              <>
+                <button onClick={deleteHandler}>Delete</button>
+                <button onClick={cancelHandler}>Cancel</button>
+              </>
+            )}
           </div>
         </form>
       </div>

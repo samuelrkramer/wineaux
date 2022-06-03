@@ -95,6 +95,7 @@ export const deleteWine = (wineId) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(deleteWineAction(wineId))
+        return true;
     }
 }
 
