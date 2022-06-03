@@ -54,8 +54,8 @@ const NavBar = () => {
           {
             user && (
               <div className='nav_link_div'>
-                <NavLink to='/users' exact={true} activeClassName='active' className='nav_link'>
-                  Users
+                <NavLink to='/wines/new' exact={true} activeClassName='active' className='nav_link'>
+                  Add Wine
                 </NavLink>
               </div>
             )
