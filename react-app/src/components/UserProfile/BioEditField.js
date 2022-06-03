@@ -25,6 +25,8 @@ const BioEditField = ({ user, setInEdit}) => {
                 onChange={e => setNewText(e.target.value)}
                 value={newText || ''}
                 autoFocus={true}
+                maxlength="400"
+                id='bio_text_area'
             ></textarea>
             <div id="dr-review-text-button-container">
                 <button id="dr-review-text-save" onClick={saveEdit}>Save</button>

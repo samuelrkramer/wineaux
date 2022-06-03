@@ -12,8 +12,14 @@ const PicEditField = ({ user, setInEdit}) => {
 
   const saveEdit = () => {
     const userId = user.id
-    dispatch(editPic(userId, newUrl));
-    dispatch(editPicSession(newUrl))
+    let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
+    if (!newUrl.match(regex)) {
+      dispatch(editPic(userId, ''));
+      dispatch(editPicSession(''));
+    } else {
+      dispatch(editPic(userId, newUrl));
+      dispatch(editPicSession(newUrl))
+    }
     setInEdit(false);
   }
 

@@ -54,6 +54,16 @@
   font-size: 1.2em;
 }
 
+#bio_text_true {
+  word-break: break-all;
+  overflow-wrap:break-word;
+}
+
+#bio_text_false {
+  word-break: break-all;
+  overflow-wrap:break-word;
+}
+
 #bio_text_true:hover {
   color: rgba(0, 0, 0, .5);
   cursor: pointer;
