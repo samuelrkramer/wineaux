@@ -64,7 +64,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const login_demo = () => async (dispatch) => {
-  const response = await fetch('/api/auth/login-demo', {method: 'POST'});
+  const response = await fetch('/api/auth/login-demo', { method: 'POST' });
 
   if (response.ok) {
     const data = await response.json();
@@ -93,7 +93,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password, firstname, lastname, birthdate) => async (dispatch) => {
+export const signUp = (username, email, password, repeatPassword, firstname, lastname, birthdate) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -104,6 +104,7 @@ export const signUp = (username, email, password, firstname, lastname, birthdate
       email,
       password,
       birthdate,
+      confirm_pass: repeatPassword,
       first_name: firstname,
       last_name: lastname
     }),

@@ -1,7 +1,10 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Mulish:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Plus:ital@1&display=swap');
 
 * {
   box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
 }
 
 body {
