@@ -95,6 +95,8 @@ const WineForm = ({ mode }) => {
     }
     else if (val < 1800) {
       errors.push("Your wine belongs in a museum, not our website!")
+    } else if (val > new Date().getFullYear()) {
+      errors.push("Your wine isn't time travelling...")
     }
     return errors;
   }
