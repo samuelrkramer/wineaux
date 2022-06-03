@@ -21,7 +21,7 @@ const AboutPage = () => {
               <a href='https://github.com/da5idf' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://github.com/halquist' target="_blank">
+              <a href='https://www.linkedin.com/in/david-forster-70b44673/' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
@@ -32,7 +32,7 @@ const AboutPage = () => {
               <a href='https://github.com/samuelrkramer' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://github.com/halquist' target="_blank">
+              <a href='https://github.com/samuelrkramer' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
