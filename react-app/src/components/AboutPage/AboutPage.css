@@ -51,6 +51,7 @@
 }
 
 #git_link {
+  font-size: 2em;
   text-decoration: none;
   color: rgb(0, 0, 0);
   transition: .3s;
