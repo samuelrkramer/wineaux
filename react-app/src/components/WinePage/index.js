@@ -81,12 +81,9 @@ const WinePage = () => {
             <div className='winePageWrap'>
                 <div className='wineDescrip'>
                     <h1>{wine.name}</h1>
-                    { wine.user.id === sessionUser.id && (
-                        <div>
-                            <Link to={`/wines/${wine.id}/edit`}>(Edit)</Link>
-                        </div>
-                    )}
-                    <h4>Discovered by <NavLink to={`/users/${wine.user.id}`} className='nav'>{wine.user.username}</NavLink>, {time}</h4>
+                    <h4>Discovered by <NavLink to={`/users/${wine.user.id}`} className='nav'>{wine.user.username}</NavLink>, {time} { wine.user.id === sessionUser.id && (
+                        <Link to={`/wines/${wine.id}/edit`}>(Edit)</Link>
+                    )}</h4>
                     <div className='statHolder'>
                         <div className='s1'>
                             <div className='rHolder'>
