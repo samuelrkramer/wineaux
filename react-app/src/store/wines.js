@@ -6,6 +6,7 @@ const DELETE_WINE = 'wine/DELETE'
 
 // GET ALL WINES
 export const getAllWines = () => async (dispatch) => {
+
     const response = await fetch('/api/wines/')
     if (response.ok) {
         const wines = await response.json();
