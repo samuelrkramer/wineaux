@@ -31,11 +31,18 @@ const WineForm = ({ mode }) => {
 
   const [name, setName] = useState(wine.name || "");
   const [year, setYear] = useState(wine.year || "");
-  const [variety_id, setVariety_id] = useState(wine.variety_id.id || "0");
+  const [variety_id, setVariety_id] = useState(wine.variety_id?.id || "0");
   const [description, setDescription] = useState(wine.description || "");
   const [color, setColor] = useState(wine.color || "0");
   const [sweetness, setSweetness] = useState(wine.sweetness || "");
   const [image_url, setImage_url] = useState(wine.image_url || "");
+
+  const [nameErr, setNameErr] = useState("");
+  const [yearErr, setYearErr] = useState("");
+  const [varietyErr, setVarietyErr] = useState("");
+  const [sweetnessErr, setSweetnessErr] = useState("");
+  const [imgErr, setImgErr] = useState("");
+  const [errorsArr, setErrorsArr] = useState([])
 
   const submitHandler = async e => {
     e.preventDefault();
@@ -45,14 +52,26 @@ const WineForm = ({ mode }) => {
       color, sweetness, image_url
     }
     let result;
-    if (mode === "Edit") {
-      result = await dispatch(editWine(newWine));
-      history.push(`/wines/${wineId}`);
+    let validations = validateErrors();
+    console.log("** validations", validations);
+
+    if (!validations.length) {
+      if (mode === "Edit") {
+        result = await dispatch(editWine(newWine));
+        history.push(`/wines/${wineId}`);
+      } else {
+        result = await dispatch(uploadNewWine(newWine));
+        history.push(`/wines/${result.id}`);
+      }
     } else {
-      result = await dispatch(uploadNewWine(newWine));
-      history.push(`/wines/${result.id}`);
+      setErrorsArr(validations);
+      console.log("## errors", errorsArr);
     }
   }
+
+  useEffect(() => {
+    console.log("errors useEffect")
+  }, [errorsArr])
 
   useEffect(async () => {
     const res = await fetch('/api/wines/varieties');
@@ -72,9 +91,74 @@ const WineForm = ({ mode }) => {
     else alert("failed to delete");
   }
 
+  const nameValidate = (val, errors) => {
+    if (!val) {
+      errors.push("Please add a name")
+    }
+    return errors
+  }
+
+  const yearValidate = (val, errors) => {
+    if (!val) {
+      errors.push("Please add a year")
+    }
+    else if (val < 1800) {
+      errors.push("Your wine belongs in a museum, not our website!")
+    }
+    return errors;
+  }
+
+  const varietyValidate = (val, errors) => {
+    if (!parseInt(val)) {
+      errors.push("Please select a variety")
+    }
+    return errors;
+  }
+
+  const sweetnessValidate = (val, errors) => {
+    if (!val) {
+      errors.push("Let us know how sweet this grape juice is!")
+    }
+    return errors;
+  }
+
+  const imgValidate = (val, errors) => {
+    console.log("img val", val);
+    if (!val) {
+      errors.push("Please include an image")
+    }
+    let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
+    if (!val.match(regex)) {
+      errors.push("Url must be for an image")
+    }
+    if (val.length > 1000) {
+      errors.push("Image url must be less than 1000 characters")
+    }
+    return errors
+  }
+
+  const validateErrors = () => {
+    let errors = []
+
+    errors = nameValidate(name, errors)
+    errors = varietyValidate(variety_id, errors)
+    errors = yearValidate(year, errors)
+    errors = sweetnessValidate(sweetness, errors)
+    errors = imgValidate(image_url, errors)
+
+    return errors;
+  }
+
   return (
     <>
       <div id='profile_name_text'>{mode} A Wine</div>
+      <div id="wine-errors">
+        {
+          errorsArr.map((error, i) => {
+            return <div id={i} key={i} >{error}</div>
+          })
+        }
+      </div>
       <div className='form_div'>
         <form onSubmit={submitHandler}>
           <div className='form_input_div'>
