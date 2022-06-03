@@ -19,7 +19,7 @@ const AboutPage = () => {
           <div className='creator_container'>
             <div className='creator_name'>David Forster</div>
             <div className='git_link_container'>
-              <a href='https://github.com/halquist' target="_blank">
+              <a href='https://github.com/da5idf' target="_blank">
                 <img src={github_icon} height="32px"></img>
               </a>
               <a href='https://github.com/halquist' target="_blank">

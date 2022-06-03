@@ -1,12 +1,44 @@
-# Flask React Project
+# Wineaux
 
-This is the starter for the Flask React project.
+Wineaux is an app that takes inspiration from [untappd](https://untappd.com/) for users to share their impressions of various wines and browse the reviews of other users.
+
+<h5 align= "center" dir="auto">
+   <a href="https://wineauxapp.herokuapp.com/">Visit the live site</a>
+   </br>
+   <a href="https://github.com/samuelrkramer/wineaux/wiki">Check out the wiki</a>
+   </br>
+  Created By:
+      <a href="https://github.com/da5idf">David Forster</a>
+      ,
+      <a href="https://github.com/samuelrkramer">Sam Kramer</a>
+      ,
+      <a href="https://github.com/jonathontufts">Jonathon Tufts</a>
+      ,
+      <a href="https://github.com/halquist">Jon Halquist</a>
+   </br>
+   </br>
+</h5>
+
+# Technologies Used
+
+ <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' height='40'/>
+<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg' height='60'/>
+
 
 ## Getting started
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/samuelrkramer/wineaux.git
    ```
 
 2. Install dependencies
@@ -40,8 +72,6 @@ This is the starter for the Flask React project.
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ***
-
-
 *IMPORTANT!*
    psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
@@ -50,14 +80,14 @@ This is the starter for the Flask React project.
 ### Dev Containers (OPTIONAL for M1 Users)
 The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
+1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed.
+2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer.
 3. Clone the repository (only this branch)
    ```bash
    git clone https://github.com/appacademy-starters/python-project-starter.git
    ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
+4. Open the repo in VS Code.
+5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner.
 6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
 
    **Note:** This will take much less time on future starts because everything will be cached.
@@ -87,7 +117,7 @@ The following instructions detail an *optional* development setup for M1 Mac use
 <br>
 
 ## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations.
 
 1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
 
@@ -115,15 +145,3 @@ each of the following variables:
 7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
 
 8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
-
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
