@@ -20,7 +20,7 @@ const WineForm = ({mode}) => {
   const history = useHistory();
 
   let { wineId } = useParams();
-  const oldWine = useSelector(state => state.wines[wineId || 1]);
+  const oldWine = useSelector(state => state.wines.singleWine);
   let wine = {};
   if (mode === "Edit") {
     wineId = parseInt(wineId);

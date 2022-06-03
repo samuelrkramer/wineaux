@@ -1,5 +1,5 @@
 import './WinePage.css'
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOneWine } from '../../store/wines';
@@ -12,6 +12,8 @@ import reviewIcon from './review-icon.png'
 const WinePage = () => {
     const [loaded, setLoaded] = useState(false);
     // const [avg, setAvg] = useState(getAvg())
+
+    const sessionUser = useSelector(state => state.session.user);
 
     const { wineId } = useParams();
     const dispatch = useDispatch();
@@ -79,6 +81,11 @@ const WinePage = () => {
             <div className='winePageWrap'>
                 <div className='wineDescrip'>
                     <h1>{wine.name}</h1>
+                    { wine.user.id === sessionUser.id && (
+                        <div>
+                            <Link to={`/wines/${wine.id}/edit`}>(Edit)</Link>
+                        </div>
+                    )}
                     <h4>Discovered by <NavLink to={`/users/${wine.user.id}`} className='nav'>{wine.user.username}</NavLink>, {time}</h4>
                     <div className='statHolder'>
                         <div className='s1'>
