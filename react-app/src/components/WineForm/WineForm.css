@@ -1,0 +1,31 @@
+.form_div {
+  width: 100%;
+  min-width: min-content;
+  max-width: 700px !important;
+  border: 1px solid #4F182E;
+  outline: 6px double #4F182E;
+  border-radius: 2px;
+  margin-top: 40px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.fInput {
+  border: 1px solid #4F182E;
+  padding: 0 10px;
+  margin: 0;
+  width: 80%;
+  background: none;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.form_input_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
