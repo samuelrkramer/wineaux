@@ -77,3 +77,8 @@ select {
 input:focus{
     border: solid whitesmoke 1px;
 }
+
+.form_button {
+    background-color: #4F182E !important;
+    color: white !important;
+}

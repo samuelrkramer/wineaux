@@ -19,7 +19,6 @@ const NavBar = () => {
     setUser(sessionUser)
   }, [user, sessionUser])
 
-  console.log(sessionUser)
 
   return (
     <nav id='nav_bar'>
@@ -71,7 +70,7 @@ const NavBar = () => {
           user && (
             <>
             <div id='profile_button'>
-              <ProfileButton />
+              <ProfileButton user={sessionUser}/>
             </div>
             </>
           )
