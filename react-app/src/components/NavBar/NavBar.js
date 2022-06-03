@@ -22,16 +22,16 @@ const NavBar = () => {
     <nav id='nav_bar'>
       <div id='nav_bar_content'>
         <div id='logo'>
-          <NavLink to='/' exact={true} activeClassName='active' className='nav_link' className='iconLink'>
+          <NavLink to='/' exact={true} activeClassName='active' className='nav_link'>
             <Logo />
           </NavLink>
-          <NavLink to='/' exact={true} activeClassName='active' className='nav_link' className='iconLink'>
+          <NavLink to='/' exact={true} activeClassName='active' className='nav_link'>
             <div id='title_text'>Wineaux</div>
           </NavLink>
         </div>
         <div id='links'>
           <div className='nav_link_div'>
-            <NavLink to='/' exact={true} activeClassName='active' className='nav_link' className='nav_link'>
+            <NavLink to='/' exact={true} activeClassName='active' className='nav_link'>
               Home
             </NavLink>
           </div>
