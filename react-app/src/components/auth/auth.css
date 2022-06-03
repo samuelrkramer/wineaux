@@ -52,8 +52,8 @@ form > div > div > *{
 
 .bHold >button:hover{
     background-color: transparent;
-    border: solid white 1px;
-    color: white;
+    border: solid black 1px;
+    color: black;
     cursor: pointer;
 }
 
