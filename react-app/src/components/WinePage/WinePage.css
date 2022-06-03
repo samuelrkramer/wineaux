@@ -116,10 +116,9 @@
     justify-content: center;
 }
 
-.recentR > * > img {
+.recentR > * > div > img {
     width: 50px;
     height: 50px;
-    margin-left: 20px;
     padding: 10px;
     border-radius: 7px;
     box-sizing: border-box;
@@ -128,9 +127,23 @@
     cursor: pointer;
 }
 
-.recentR > * > img:hover{
-    background-color: white;
+.recentR > * > div{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    cursor: pointer;
+    border: solid transparent 1px;
+}
+
+.recentR > * > div:hover{
     border: solid black 1px;
+}
+
+.recentR > * > div > p {
+    margin-right: 10px;
 }
 
 .specificRev > h1 {

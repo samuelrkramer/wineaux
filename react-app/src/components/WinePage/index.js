@@ -123,7 +123,12 @@ const WinePage = () => {
                 <div className='specificRev'>
                     <div className='recentR'>
                         <h1>Recent Reviews:</h1>
-                        <NavLink to={`/reviews/new/${wine.id}`}><img src={reviewIcon} alt=''></img></NavLink>
+                        <NavLink to={`/reviews/new/${wine.id}`}>
+                            <div>
+                                <img src={reviewIcon} alt=''></img>
+                                <p>Add Review</p>
+                            </div>
+                        </NavLink>
                     </div>
                     {loaded && <ReviewFeedContainer reviews={reviews} />}
                 </div>
