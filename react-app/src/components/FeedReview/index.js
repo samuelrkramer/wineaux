@@ -13,19 +13,16 @@ const FeedReview = (props) => {
     const [isUser, setIsUser] = useState(false)
 
     const getTime = () => {
-        let date = new Date(review.updated_at)
+        let date = new Date(review.created_at)
         date = Math.floor((Date.now() - date) / 1000)
         let mDate = Math.floor(date / 60)
-        if (mDate === 1) return `${mDate} minute ago`
         if (mDate > 60) {
             let hDate = Math.floor(mDate / 60)
-            if (hDate === 1) return `${hDate} hour ago`
             if (hDate > 24) {
                 let dDate = Math.floor(hDate / 24)
-                if (dDate === 1) return `${dDate} day ago`
-                return `${dDate} days ago`
-            } else { return `${hDate} hours ago` }
-        } else { return `${mDate} minutes ago` }
+                return `${dDate} day(s) ago`
+            } else { return `Posted Today` }
+        } else { return `Posted Minutes ago` }
     }
     const time = getTime()
 

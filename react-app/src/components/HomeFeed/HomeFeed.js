@@ -22,9 +22,18 @@ const HomeFeed = () => {
     await dispatch(getAllWines())
       .then(() => setAllWines(Object.values(wines).reverse()))
       .then(() => dispatch(getAllReviews()))
-      .then(() => setNewReviews(Object.entries(reviews).reverse()))
+      .then(() => setNewReviews(reviewSort(Object.entries(reviews).reverse())))
       .then(() => setLoaded(true))
   }, [dispatch])
+
+  const reviewSort = (reviews) => {
+    reviews.sort((a,b) => {
+      console.log(b[1].created_at, a[1].created_at)
+      return b[1].created_at - a[1].created_at
+    })
+    console.log(reviews)
+    return reviews
+  }
 
 
   if (!loaded) {
