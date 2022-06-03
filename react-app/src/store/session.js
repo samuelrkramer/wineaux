@@ -94,6 +94,7 @@ export const logout = () => async (dispatch) => {
 
 
 export const signUp = (username, email, password, repeatPassword, firstname, lastname, birthdate) => async (dispatch) => {
+  console.log("do we get here?")
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -127,7 +128,6 @@ export const signUp = (username, email, password, repeatPassword, firstname, las
 
 
 export const editPicSession = (pic) => async (dispatch) => {
-  // console.log(pic)
   dispatch(updatePic(pic));
 }
 

@@ -52,8 +52,8 @@ form > div > div > *{
 
 .bHold >button:hover{
     background-color: transparent;
-    border: solid white 1px;
-    color: white;
+    border: solid black 1px;
+    color: black;
     cursor: pointer;
 }
 
@@ -82,3 +82,12 @@ input:focus{
     background-color: #4F182E !important;
     color: white !important;
 }
+
+#signup-form-errors-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    margin-left: 2.5rem;
+}
+
