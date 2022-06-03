@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import github_icon from '../../images/githubIcon.svg';
 import linkedin_icon from '../../images/linkedInIcon.png';
 import background from '../../images/grapes-background.png';
@@ -7,11 +7,28 @@ import background from '../../images/grapes-background.png';
 import './AboutPage.css'
 
 const AboutPage = () => {
+  const [loaded, setLoaded] = useState(false);
+  const [thisBackground, setThisBackground] = useState(background)
+
+  useEffect(() => {
+    setThisBackground(background)
+    if(thisBackground) {
+      setLoaded(true)
+    }
+  },[background])
+
+  if (!loaded) {
+    return (
+    <div className='loaderr'>
+        <h1>Loading...</h1>
+    </div>
+    )
+}
 
   return (
     <>
          <div id='about_background'style={{
-                backgroundImage: `url(${background})`,
+                backgroundImage: `url(${thisBackground})`,
               }}></div>
       <div id='built_by_container'>
         <div>Wineaux was built by:</div>
