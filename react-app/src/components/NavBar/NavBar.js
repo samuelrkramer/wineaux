@@ -53,7 +53,7 @@ const NavBar = () => {
             user && (
               <div className='nav_link_div'>
                 <NavLink to='/wines/new' exact={true} activeClassName='active' className='nav_link'>
-                  Upload Wine
+                  Add Wine
                 </NavLink>
               </div>
             )
@@ -68,7 +68,7 @@ const NavBar = () => {
           user && (
             <>
             <div id='profile_button'>
-              <ProfileButton />
+              <ProfileButton user={sessionUser}/>
             </div>
             </>
           )

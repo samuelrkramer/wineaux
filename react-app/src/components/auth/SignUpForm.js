@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login_demo } from '../../store/session';
 import Logo from '../NavBar/Logo';
 import './auth.css'
 
@@ -60,6 +60,15 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const demoHandler = async (e) => {
+    e.preventDefault();
+    // alert("demo handler fired")
+    const data = await dispatch(login_demo());
+    if (data) {
+      setErrors(data);
+    }
   };
 
   if (user) {
@@ -141,7 +150,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='bHold'>
-          <button type='submit'>Sign Up</button>
+          <button onClick={demoHandler} className='form_button'>Demo</button>
+          <button type='submit' className='form_button'>Sign Up</button>
         </div>
       </div>
     </form>

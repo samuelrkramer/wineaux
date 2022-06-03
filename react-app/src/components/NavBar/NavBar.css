@@ -53,16 +53,16 @@
   top: 90px;
   padding: 10px 20px;
   text-align: center;
-  transform: translate(-21%, 0);
+  transform: translate(-32%, 0);
   background-color: white;
   border-radius: 3px;
   cursor: default;
 }
 
 .profile-dropdown > li {
-  list-style-type:none;
-  /* padding: 0;
-  margin: 0; */
+  list-style-type: none;
+  padding: 2px;
+  margin: 0;
 }
 
 #top_tab {
@@ -74,11 +74,20 @@
   position: absolute;
   top: 90px;
   text-align: center;
-  transform: translate(40px, 0px);
+  transform: translate(38px, 0px);
 }
 
-#user_profile_pic_nav {
+#logoutButton {
+  background-color: #4F182E;
+  color: white;
+  width: 100%;
+}
 
+#profileButton {
+  background-color: white;
+  border: 2px solid #4F182E;
+  color: #4F182E;
+  width: 100%;
 }
 
 #logoutButton, .profileButton {
