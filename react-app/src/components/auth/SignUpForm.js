@@ -150,8 +150,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='bHold'>
-          <button onClick={demoHandler} className='form_button'>Demo</button>
           <button type='submit' className='form_button'>Sign Up</button>
+          <button onClick={demoHandler} className='form_button'>Demo</button>
         </div>
       </div>
     </form>
