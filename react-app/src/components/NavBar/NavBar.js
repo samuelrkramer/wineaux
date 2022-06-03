@@ -2,7 +2,6 @@
 import React, { useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import Logo from './Logo';
 
@@ -18,8 +17,6 @@ const NavBar = () => {
   useEffect(() => {
     setUser(sessionUser)
   }, [user, sessionUser])
-
-  console.log(sessionUser)
 
   return (
     <nav id='nav_bar'>
@@ -55,8 +52,8 @@ const NavBar = () => {
           {
             user && (
               <div className='nav_link_div'>
-                <NavLink to='/users' exact={true} activeClassName='active' className='nav_link'>
-                  Users
+                <NavLink to='/wines/new' exact={true} activeClassName='active' className='nav_link'>
+                  Upload Wine
                 </NavLink>
               </div>
             )
