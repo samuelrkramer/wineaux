@@ -23,6 +23,27 @@ Wineaux is an app that takes inspiration from [untappd](https://untappd.com/) fo
 
 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' height='40'/><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg' height='60'/>
 
+# Welcome to Wineaux
+## Share, Discover, & Review New Wines !
+<img width="1263" alt="Screen Shot 2022-06-03 at 4 36 16 PM" src="https://user-images.githubusercontent.com/86862338/171949468-9952c1b7-ea59-4472-96ee-016b5a75377c.png">
+
+## View Wine Profiles
+### Get detailed information & a list of reviews on any wine you find here on Wineaux !
+<img width="1264" alt="Screen Shot 2022-06-03 at 4 37 06 PM" src="https://user-images.githubusercontent.com/86862338/171949601-e04d6741-a1bf-4900-992d-e7f2defad075.png">
+
+## Leave Reviews on Wines
+### Leave a custom detailed review on any wine. You can also include an image !
+<img width="1263" alt="Screen Shot 2022-06-03 at 4 37 38 PM" src="https://user-images.githubusercontent.com/86862338/171949943-49738f0e-f91b-4d93-a137-e88aed6f59c4.png">
+
+
+## Custom Profile Pages
+### Customize your profile & share your reviews / discoveries !
+<img width="1264" alt="Screen Shot 2022-06-03 at 4 38 01 PM" src="https://user-images.githubusercontent.com/86862338/171949818-45494342-96cf-4b51-97ec-2f73065c876f.png">
+
+## About us
+### Get to know the developers who helped make Wineaux come to life !
+<img width="1263" alt="Screen Shot 2022-06-03 at 4 38 29 PM" src="https://user-images.githubusercontent.com/86862338/171950057-23b67b51-1b77-465f-990b-cb43608de318.png">
+
 
 ## Getting started
 1. Clone this repository (only this branch)
