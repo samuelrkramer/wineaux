@@ -93,11 +93,14 @@ const WineForm = ({ mode }) => {
   }
 
   const yearValidate = (val, errors) => {
+    console.log("*************", val, new Date().getFullYear())
     if (!val) {
       errors.push("Please add a year")
     }
     else if (val < 1800) {
       errors.push("Your wine belongs in a museum, not our website!")
+    } else if (val > new Date().getFullYear()) {
+      errors.push("Your wine isn't time travelling...")
     }
     return errors;
   }
