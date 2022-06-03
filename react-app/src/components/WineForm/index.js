@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { uploadNewWine } from '../../store/wines';
 import './WineForm.css'
 
@@ -15,19 +15,27 @@ const colors = [
   'Yellow',
 ];
 
-const WineForm = () => {
+const WineForm = ({mode}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  let { wineId } = useParams();
+  const oldWine = useSelector(state => state.wines[wineId || 1]);
+  let wine = {};
+  if (mode === "Edit") {
+    wineId = parseInt(wineId);
+    wine = { ...oldWine };
+  }
+
   const [varieties, setVarieities] = useState([]);
 
-  const [name, setName] = useState("");
-  const [year, setYear] = useState("");
-  const [variety_id, setVariety_id] = useState("0");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState("0");
-  const [sweetness, setSweetness] = useState("");
-  const [image_url, setImage_url] = useState("");
+  const [name, setName] = useState(wine.name || "");
+  const [year, setYear] = useState(wine.year || "");
+  const [variety_id, setVariety_id] = useState(wine.variety_id || "0");
+  const [description, setDescription] = useState(wine.description || "");
+  const [color, setColor] = useState(wine.color || "0");
+  const [sweetness, setSweetness] = useState(wine.sweetness || "");
+  const [image_url, setImage_url] = useState(wine.image_url || "");
 
   const submitHandler = async e => {
     e.preventDefault()

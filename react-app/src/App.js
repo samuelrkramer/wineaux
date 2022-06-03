@@ -58,8 +58,11 @@ function App() {
           <ProtectedRoute path='/reviews/:reviewId(\d+)' exact={true} >
             <DetailedReview />
           </ProtectedRoute>
-          <ProtectedRoute path="/wines/new">
-            <WineForm />
+          <ProtectedRoute path='/wines/new'>
+            <WineForm mode='Create' />
+          </ProtectedRoute>
+          <ProtectedRoute path='/wines/:wineId(\d+)/edit'>
+            <WineForm mode='Edit' />
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/new/:wineId' exact={true} >
             <NewReview />
