@@ -38,6 +38,8 @@
   color: white;
   text-decoration: none;
   font-size: 1.2em;
+  border-bottom: solid transparent 1px;
+  transition: all 0.2s;
 }
 
 #profile_button {
@@ -105,4 +107,9 @@
   color: #4F182E;
   border-bottom: solid #4F182E 1px;
   list-style-type: circle;
+}
+
+.nav_link:hover{
+  color:whitesmoke;
+  border-bottom: solid whitesmoke 1px;
 }
