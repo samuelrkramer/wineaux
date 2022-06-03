@@ -93,7 +93,6 @@ const WineForm = ({ mode }) => {
   }
 
   const yearValidate = (val, errors) => {
-    console.log("*************", val, new Date().getFullYear())
     if (!val) {
       errors.push("Please add a year")
     }
