@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { uploadNewWine } from '../../store/wines';
+import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
 import './WineForm.css'
 
 const colors = [
@@ -38,14 +38,41 @@ const WineForm = ({mode}) => {
   const [image_url, setImage_url] = useState(wine.image_url || "");
 
   const submitHandler = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
     const newWine = {
       name, year, variety_id, description,
-      color, sweetness, image_url
+      color, sweetness, image_url, id:wine.id
+    };
+    try {
+      let result;
+      if (mode === "Create") {
+        result = await dispatch(uploadNewWine(newWine));
+      }
+      else if (mode === "Edit") {
+        result = await dispatch(editWine(newWine));
+      }
+      history.push(`/wines/${result.id}`);
+    } catch(err) {
+      // const data = await err.json();
+      // if (data && data.errors) setErrors(data.errors);
     }
-    const result = await dispatch(uploadNewWine(newWine));
-    history.push(`/wines/${result.id}`);
+  }
+
+  const deleteHandler = async e => {
+    e.preventDefault();
+    const result = await dispatch(deleteWine(wine.id));
+    if (result) {
+      history.push('/');
+    }
+    else {
+      alert("Failed to delete");
+    }
+  }
+
+  const cancelHandler = e => {
+    e.preventDefault();
+    history.goBack();
   }
 
   useEffect(async () => {
@@ -56,7 +83,7 @@ const WineForm = ({mode}) => {
 
   return (
     <>
-      <div id='profile_name_text'>Create A Wine</div>
+      <div id='profile_name_text'>{mode} A Wine</div>
       <div className='form_div'>
         <form onSubmit={submitHandler}>
           <div className='form_input_div'>
@@ -141,7 +168,12 @@ const WineForm = ({mode}) => {
               />
           </div>
           <div className='bHold'>
-            <button id="dr-review-text-save" type="submit">Create</button>
+            <button id="dr-review-text-save" type="submit">{mode}</button> { mode === "Edit" && (
+              <>
+                <button onClick={deleteHandler}>Delete</button>
+                <button onClick={cancelHandler}>Cancel</button>
+              </>
+            )}
           </div>
         </form>
       </div>

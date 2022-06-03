@@ -71,7 +71,7 @@ export const editWine = (wine) => async (dispatch) => {
         headers: { "Content-Type": "application/json" }, // ****** MIGHT NEED TO COME BACK TO THIS
         body: JSON.stringify(wine)
     })
-
+console.log("sent edit request --thunk")
     if (response.ok) {
         const editWine = await response.json();
         dispatch(editWineAction(editWine));
@@ -94,6 +94,7 @@ export const deleteWine = (wineId) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(deleteWineAction(wineId))
+        return true;
     }
 }
 
