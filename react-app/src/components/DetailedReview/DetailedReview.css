@@ -4,26 +4,27 @@
 }
 
 #dr-content {
-    margin-top: 8rem;
+    margin-top: 3rem;
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
     position: relative;
-    gap: 2rem;
+    gap: .75rem;
+    margin-bottom: 5rem;
 }
 
-#dr-content-left {
+#dr-content-top {
     position: relative;
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: flex-start;
 }
 
-#dr-content-right {
-    max-width: 50%;
+#dr-content-bottom {
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +37,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: .75rem;
     background-color: white;
 }
 
@@ -115,6 +116,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    min-height: 150px;
 }
 
 #dr-img {
@@ -152,25 +155,19 @@
     display: block;
 }
 
-#editPage-cue {
-    position: absolute;
-    font-size: 15px;
-    left: 0;
-    bottom: -30px;
-}
-
 #dr-add-image-button-container {
     width: 100%;
     height: 100%;
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
 #dr-add-image-button {
     border: 1.5px solid rgb(79,24,46);
     color: rgb(79, 24,46);
+    margin-top: 10px;
 }
 
 #dr-add-image-button:hover {
@@ -182,11 +179,18 @@
     background-color: transparent;
 }
 
-#dr-delete-button-container {
+#dr-edit-delete-container {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
     margin-top: 1rem
+}
+
+#editPage-cue {
+    font-size: 15px;
+    left: 0;
+    bottom: -30px;
 }
 
 #dr-delete-review-button {

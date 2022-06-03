@@ -44,3 +44,12 @@ textarea {
   border: none;
   resize: none;
 }
+
+a {
+  text-decoration: none;
+  color: #4F182E;
+}
+
+a:hover {
+  color: #4f182e9c;
+}
