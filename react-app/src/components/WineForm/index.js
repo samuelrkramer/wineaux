@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import { uploadNewWine } from '../../store/wines';
+import { editWine } from '../../store/wines';
+=======
+import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
+>>>>>>> 457c05eac461ed48e248baddbe64f25737116ef0
 import './WineForm.css'
 
 const colors = [
@@ -15,29 +20,44 @@ const colors = [
   'Yellow',
 ];
 
-const WineForm = () => {
+const WineForm = ({mode}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  let { wineId } = useParams();
+  const oldWine = useSelector(state => state.wines.singleWine);
+  let wine = {};
+  if (mode === "Edit") {
+    wineId = parseInt(wineId);
+    wine = { ...oldWine };
+  }
+
   const [varieties, setVarieities] = useState([]);
 
-  const [name, setName] = useState("");
-  const [year, setYear] = useState("");
-  const [variety_id, setVariety_id] = useState("0");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState("0");
-  const [sweetness, setSweetness] = useState("");
-  const [image_url, setImage_url] = useState("");
+  const [name, setName] = useState(wine.name || "");
+  const [year, setYear] = useState(wine.year || "");
+  const [variety_id, setVariety_id] = useState(wine.variety_id || "0");
+  const [description, setDescription] = useState(wine.description || "");
+  const [color, setColor] = useState(wine.color || "0");
+  const [sweetness, setSweetness] = useState(wine.sweetness || "");
+  const [image_url, setImage_url] = useState(wine.image_url || "");
 
   const submitHandler = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
     const newWine = {
-      name, year, variety_id, description,
+      id: wineId, name, year, variety_id, description,
       color, sweetness, image_url
     }
-    const result = await dispatch(uploadNewWine(newWine));
-    history.push(`/wines/${result.id}`);
+    let result;
+    if (mode === "Edit") {
+      console.log('in edit', newWine)
+      result = await dispatch(editWine(newWine));
+    } else {
+      result = await dispatch(uploadNewWine(newWine));
+    }
+    console.log(result)
+    history.push(`/wines/${wineId}`);
   }
 
   useEffect(async () => {
@@ -48,7 +68,7 @@ const WineForm = () => {
 
   return (
     <>
-      <div id='profile_name_text'>Create A Wine</div>
+      <div id='profile_name_text'>{mode} A Wine</div>
       <div className='form_div'>
         <form onSubmit={submitHandler}>
           <div className='form_input_div'>
@@ -80,7 +100,7 @@ const WineForm = () => {
               value = {variety_id}
               onChange={e => setVariety_id(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a variety</option>
+              <option value="0" disabled={true}>Please select a variety</option>
               { varieties.map(variety => (
                 <option key={variety.id} value={variety.id}>
                   {variety.name}
@@ -106,7 +126,7 @@ const WineForm = () => {
               value = {color}
               onChange={e => setColor(e.target.value)}
             >
-              <option value="0" disabled="true">Please select a color</option>
+              <option value="0" disabled={true}>Please select a color</option>
               { colors.map((color, i) => (
                 <option key={i} value={color}>{color}</option>
               )) }
@@ -133,7 +153,12 @@ const WineForm = () => {
               />
           </div>
           <div className='bHold'>
-            <button id="dr-review-text-save" type="submit">Create</button>
+            <button id="dr-review-text-save" type="submit">{mode}</button> { mode === "Edit" && (
+              <>
+                <button onClick={deleteHandler}>Delete</button>
+                <button onClick={cancelHandler}>Cancel</button>
+              </>
+            )}
           </div>
         </form>
       </div>
