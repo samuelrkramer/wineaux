@@ -50,7 +50,7 @@ const AboutPage = () => {
               <a href='https://github.com/samuelrkramer' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://github.com/samuelrkramer' target="_blank">
+              <a href='https://www.linkedin.com/in/sam-kramer-3b20b1235/' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
