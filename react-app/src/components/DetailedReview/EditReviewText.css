@@ -3,17 +3,42 @@
     cursor: pointer;
 }
 
-#dr-review-text-edit > textarea{
+#dr-textarea-container {
+    position: relative;
+}
+
+#dr-edit-textarea {
     width: 100%;
     height: 5rem;
 }
 
-#dr-review-text-button-container {
+#remaining-chars {
+    position: absolute;
+    width: 26px;
+    bottom: 9px;
+    right: 5px;
+    padding: .25rem;
+    background-color: #ccc;
+    font-size: 12px;
+    text-align: center;
+}
+
+#dr-edit-textarea:invalid ~ #remaining-chars {
+    color: rgb(79,24,46);
+}
+
+#dr-text-edit-button-container {
     display: flex;
     gap: 1rem;
     padding: .5rem;
     justify-content: flex-end;
+    align-items: center;
     background-color: white;
+}
+
+#dr-text-edit-error {
+    font-size: 15px;
+    color: rgb(79,24,46);
 }
 
 #dr-review-text-save {

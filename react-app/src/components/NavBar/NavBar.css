@@ -1,7 +1,7 @@
 #nav_bar {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #4F182E;
   height: 60px;
   position: sticky;

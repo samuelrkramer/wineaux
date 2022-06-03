@@ -7,6 +7,7 @@ import { getAllReviews } from '../../store/reviews';
 import fullImg from '../FeedReview/wine-rating-icon-full.png'
 import emptyImg from '../FeedReview/wine-rating-icon-empty.png'
 import ReviewFeedContainer from '../ReviewFeedContainer';
+import reviewIcon from './review-icon.png'
 
 const WinePage = () => {
     const [loaded, setLoaded] = useState(false);
@@ -17,7 +18,7 @@ const WinePage = () => {
 
     const wine = useSelector(state => state.wines.singleWine);
     const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
-    
+
     const getAvg = () => {
         let total = 0
         for(let i = 0; i < reviews.length; i++){
@@ -52,6 +53,7 @@ const WinePage = () => {
         } else { return `${mDate} minutes ago` }
     }
     const time = getTime()
+
 
     const avg = getAvg()
 
@@ -106,7 +108,7 @@ const WinePage = () => {
                                 <p>Variety: {wine.variety_id.name}</p>
                                 <p>Color: {wine.color}</p>
                             </div>
-                            
+
                         </div>
                         <div className='s2'>
                             <img  src={wine.image_url} alt=''></img>
@@ -115,7 +117,10 @@ const WinePage = () => {
 
                 </div>
                 <div className='specificRev'>
-                    <h1>Recent Reviews:</h1>
+                    <div className='recentR'>
+                        <h1>Recent Reviews:</h1>
+                        <NavLink to={`/reviews/new/${wine.id}`}><img src={reviewIcon} alt=''></img></NavLink>
+                    </div>
                     {loaded && <ReviewFeedContainer reviews={reviews} />}
                 </div>
 

@@ -75,9 +75,7 @@ export const editReview = (review) => async (dispatch) => {
 
 
     if (response.ok) {
-        console.log("********* response", response)
         const editReview = await response.json();
-        console.log("********* response", editReview)
         await dispatch(editReviewAction(editReview));
         return editReview;
     }
@@ -131,10 +129,8 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case EDIT_REVIEW:
             newState = Object.assign({}, state);
-            console.log("############## before ", state)
             newState.allReviews[action.review.id] = action.review;
             newState.singleReview = action.review;
-            console.log("$$$$$$$$$$$$$$$ after ", newState)
             return newState;
         case DELETE_REVIEW:
             newState = Object.assign({}, state);
