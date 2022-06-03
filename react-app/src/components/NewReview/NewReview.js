@@ -51,7 +51,7 @@ function NewReview() {
 
     const textChange = (e) => {
         setText(e.target.value);
-        if (text.length > 180) {
+        if (e.target.value.length > 180) {
             setTextError("Review text must be 180 characters or less");
         } else {
             setTextError("");
@@ -60,7 +60,10 @@ function NewReview() {
 
     const urlChange = (e) => {
         setUrl(e.target.value);
-        if (url.length > 1000) {
+        let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
+        if (!e.target.value.match(regex)) {
+            setUrlError("Url must be an img")
+        } else if (e.target.value.length > 1000) {
             setUrlError("Photo URL must be 1000 characters or less");
         } else {
             setUrlError("");

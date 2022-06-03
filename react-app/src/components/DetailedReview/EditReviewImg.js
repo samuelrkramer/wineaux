@@ -11,8 +11,12 @@ function EditReviewImg({ review, toggle }) {
     const [error, setError] = useState("");
 
     const saveEdit = () => {
-        if (url.length > 1000) {
+        let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
+        if (!url.match(regex)) {
+            setError("Url must be an img")
+        } else if (url.length > 1000) {
             setError("Url must be 1000 characters or less")
+
         } else {
             const newReview = Object.assign({}, review);
             newReview.image_url = url;

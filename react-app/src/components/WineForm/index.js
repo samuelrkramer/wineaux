@@ -36,12 +36,6 @@ const WineForm = ({ mode }) => {
   const [color, setColor] = useState(wine.color || "0");
   const [sweetness, setSweetness] = useState(wine.sweetness || "");
   const [image_url, setImage_url] = useState(wine.image_url || "");
-
-  const [nameErr, setNameErr] = useState("");
-  const [yearErr, setYearErr] = useState("");
-  const [varietyErr, setVarietyErr] = useState("");
-  const [sweetnessErr, setSweetnessErr] = useState("");
-  const [imgErr, setImgErr] = useState("");
   const [errorsArr, setErrorsArr] = useState([])
 
   const submitHandler = async e => {

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -11,8 +11,8 @@ const NavBar = () => {
   const [user, setUser] = useState(false)
 
   useEffect(() => {
-      setUser(sessionUser)
-  },[])
+    setUser(sessionUser)
+  }, [])
 
   useEffect(() => {
     setUser(sessionUser)
@@ -31,23 +31,25 @@ const NavBar = () => {
         </div>
         <div id='links'>
           <div className='nav_link_div'>
-            <NavLink to='/' exact={true} activeClassName='active' className='nav_link'>
-              Home
-            </NavLink>
+            {sessionUser && (
+              <NavLink to='/' exact={true} activeClassName='active' className='nav_link'>
+                Home
+              </NavLink>
+            )}
           </div>
           {
             !user && (
               <>
-              <div className='nav_link_div'>
-                <NavLink to='/login' exact={true} activeClassName='active' className='nav_link'>
-                  Login
-                </NavLink>
-              </div>
-              <div className='nav_link_div'>
-                <NavLink to='/sign-up' exact={true} activeClassName='active' className='nav_link'>
-                  Sign Up
-                </NavLink>
-              </div>
+                <div className='nav_link_div'>
+                  <NavLink to='/login' exact={true} activeClassName='active' className='nav_link'>
+                    Login
+                  </NavLink>
+                </div>
+                <div className='nav_link_div'>
+                  <NavLink to='/sign-up' exact={true} activeClassName='active' className='nav_link'>
+                    Sign Up
+                  </NavLink>
+                </div>
               </>
             )
           }
@@ -65,13 +67,13 @@ const NavBar = () => {
               About
             </NavLink>
           </div>
-          </div>
+        </div>
         {
           user && (
             <>
-            <div id='profile_button'>
-              <ProfileButton user={sessionUser}/>
-            </div>
+              <div id='profile_button'>
+                <ProfileButton user={sessionUser} />
+              </div>
             </>
           )
         }
