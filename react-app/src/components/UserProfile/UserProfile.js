@@ -59,7 +59,7 @@ const UserProfile = () => {
   },[])
 
 
-  const profilePic = user.profile_image_url
+  // const profilePic = user.profile_image_url
 
   const canEdit = sessionUser.id === user.id ? true : false;
 
@@ -87,7 +87,7 @@ const UserProfile = () => {
       <div id='main_profile_div'>
         <div id='pic_detail_div'>
           <div id='profile_page_pic' style={{
-                backgroundImage: `url(${profilePic})`,
+                backgroundImage: `url(${user.profile_image_url})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'

@@ -4,13 +4,19 @@ import './NavBar.css'
 
 const ProfileIcon = () => {
   const sessionUser = useSelector(state => state.session.user);
+  const sessionUserImage = useSelector(state => state.session.user.profile_image_url)
   const [profileImage, setProfileImage] = useState('')
 
   useEffect(() => {
     if (sessionUser) {
-      setProfileImage(sessionUser.profile_image_url)
+      if (sessionUserImage) {
+        setProfileImage(sessionUserImage)
+      } else {
+        setProfileImage('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/209290118-348545419959856-6760331049776615301-n-1635532292.jpeg?crop=1xw:1xh;center,top&resize=480:*')
+      }
     }
-  }, [sessionUser, profileImage])
+
+  }, [sessionUser, profileImage, sessionUserImage])
 
   return (
     <div>
