@@ -4,7 +4,7 @@ import './NavBar.css'
 
 const ProfileIcon = () => {
   const sessionUser = useSelector(state => state.session.user);
-  const sessionUserImage = useSelector(state => state.session.user.profile_image_url)
+  const sessionUserImage = useSelector(state => state.session.user?.profile_image_url)
   const [profileImage, setProfileImage] = useState('')
 
   useEffect(() => {
