@@ -153,3 +153,10 @@
 #profile_pic_edit_input {
   width: 550px;
 }
+
+.bio_edit_container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+}
