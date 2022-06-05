@@ -46,6 +46,7 @@ const LoginForm = () => {
       <div>
       <Logo />
         <h1>Welcome Back!</h1>
+        <h4>Please sign in to continue </h4>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
