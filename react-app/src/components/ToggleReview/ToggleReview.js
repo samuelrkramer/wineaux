@@ -40,7 +40,6 @@ function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
     }
 
     useEffect(() => {
-        console.log("******* canEdit", canEdit)
         const reviewContainer = document.getElementById(containerId);
         if (reviewContainer && canEdit) {
             const glasses = document.getElementsByClassName("review-glass");
