@@ -82,7 +82,7 @@ const WinePage = () => {
                 <div className='wineDescrip'>
                     <h1>{wine.name}</h1>
                     <h4>Discovered by <NavLink to={`/users/${wine.user.id}`} className='nav'>{wine.user.username}</NavLink>, {time} { wine.user.id === sessionUser.id && (
-                        <Link to={`/wines/${wine.id}/edit`}>(Edit)</Link>
+                        <Link to={`/wines/${wine.id}/edit`} id='edit_delete_text'>Edit or Delete</Link>
                     )}</h4>
                     <div className='statHolder'>
                         <div className='s1'>

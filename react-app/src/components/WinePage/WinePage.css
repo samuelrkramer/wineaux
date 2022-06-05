@@ -159,3 +159,11 @@
     align-items: center;
     justify-content: center;
 }
+
+#edit_delete_text {
+    background-color: #4F182E;
+    border-radius: 3px;
+    color: white;
+    padding: 1px 5px;
+    transition: .3s;
+}
