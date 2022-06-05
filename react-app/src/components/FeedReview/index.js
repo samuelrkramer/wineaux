@@ -63,13 +63,14 @@ const FeedReview = (props) => {
                         <img src={getRating(4)} alt=''></img>
                         <img src={getRating(5)} alt=''></img>
                     </div>
-
+                    {review.text &&
                     <div className='p2-2'>
-                        "{review.text}"
-                        {review.image_url !== null && review.image_url !== '' && (
-                            <img className='rPic' src={review.image_url} alt='review'></img>
-                        )}
+                        {review.text}
                     </div>
+                    }
+                    {review.image_url !== null && review.image_url !== '' && (
+                        <img className='rPic' src={review.image_url} alt='review'></img>
+                    )}
 
                     {/* google crop image css (without losing quality) - peep component example img */}
                     <div className='p2-4'>

@@ -81,7 +81,7 @@ function DetailedReview() {
                         <div id="dr-review-date">{review.updatedAt}</div>
                         {inTextEdit ?
                             <EditReviewText review={review} setInEdit={setInTextEdit} /> :
-                            <div id={`dr-review-text-${canEdit}`} onClick={textEdit}>{review.text}</div>
+                            <div id={`dr-review-text-${canEdit}`} onClick={textEdit}>{review.text}{canEdit && ' (edit)'}</div>
                         }
                     </div>
                 </div>
