@@ -47,7 +47,6 @@ const WineForm = ({ mode }) => {
     }
     let result;
     let validations = validateErrors();
-    console.log("** validations", validations);
 
     if (!validations.length) {
       if (mode === "Edit") {
@@ -59,12 +58,10 @@ const WineForm = ({ mode }) => {
       }
     } else {
       setErrorsArr(validations);
-      console.log("## errors", errorsArr);
     }
   }
 
   useEffect(() => {
-    console.log("errors useEffect")
   }, [errorsArr])
 
   useEffect(async () => {
@@ -119,7 +116,6 @@ const WineForm = ({ mode }) => {
   }
 
   const imgValidate = (val, errors) => {
-    console.log("img val", val);
     if (!val) {
       errors.push("Please include an image")
     }
