@@ -119,3 +119,34 @@
   color:whitesmoke;
   border-bottom: solid whitesmoke 1px;
 }
+
+
+#logo_paths > path {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 100 100;
+  transition: .5s ease-in-out;
+  stroke: white;
+  pointer-events: none;
+}
+
+#line1,
+#line2,
+#line3,
+#line4,
+#line5 {
+  animation: strokeanim 2s ease-in-out forwards;
+}
+
+@keyframes strokeanim {
+  0% {
+    stroke-dashoffset: -100;
+  stroke-dasharray: 100 100;
+
+    stroke-width: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 100 100;
+    stroke-width: 2.9;
+  }
+}

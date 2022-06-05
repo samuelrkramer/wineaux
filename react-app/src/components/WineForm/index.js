@@ -121,7 +121,7 @@ const WineForm = ({ mode }) => {
     }
     let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
     if (!val.match(regex)) {
-      errors.push("Url must be for an image")
+      errors.push("Url must be for an image (jpg, png, gif, or webp)")
     }
     if (val.length > 1000) {
       errors.push("Image url must be less than 1000 characters")
