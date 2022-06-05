@@ -82,7 +82,7 @@ const SignUpForm = () => {
         <h1>Welcome to Wineaux!</h1>
         <div id="signup-form-errors-container">
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className='error_text'>{error}</div>
           ))}
         </div>
         <div>
@@ -146,7 +146,7 @@ const SignUpForm = () => {
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
-            required={true}
+            // required={true}
           ></input>
         </div>
         <div className='bHold'>

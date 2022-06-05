@@ -82,7 +82,7 @@ const WinePage = () => {
                 <div className='wineDescrip'>
                     <h1>{wine.name}</h1>
                     <h4>Discovered by <NavLink to={`/users/${wine.user.id}`} className='nav'>{wine.user.username}</NavLink>, {time} { wine.user.id === sessionUser.id && (
-                        <Link to={`/wines/${wine.id}/edit`}>(Edit)</Link>
+                        <Link to={`/wines/${wine.id}/edit`} id='edit_delete_text'>Edit or Delete</Link>
                     )}</h4>
                     <div className='statHolder'>
                         <div className='s1'>
@@ -123,7 +123,12 @@ const WinePage = () => {
                 <div className='specificRev'>
                     <div className='recentR'>
                         <h1>Recent Reviews:</h1>
-                        <NavLink to={`/reviews/new/${wine.id}`}><img src={reviewIcon} alt=''></img></NavLink>
+                        <NavLink to={`/reviews/new/${wine.id}`}>
+                            <div>
+                                <img src={reviewIcon} alt=''></img>
+                                <p>Add Review</p>
+                            </div>
+                        </NavLink>
                     </div>
                     {loaded && <ReviewFeedContainer reviews={reviews} />}
                 </div>

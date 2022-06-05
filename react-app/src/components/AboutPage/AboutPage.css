@@ -51,6 +51,7 @@
 }
 
 #git_link {
+  font-size: 2em;
   text-decoration: none;
   color: rgb(0, 0, 0);
   transition: .3s;
@@ -64,7 +65,7 @@
   width: 100%;
   height: 100%;
   background-position: center;
-  background-size:auto;
+  background-size: cover;
   position: fixed;
   background-repeat: no-repeat;
   z-index: 0;

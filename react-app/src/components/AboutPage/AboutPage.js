@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import github_icon from '../../images/githubIcon.svg';
 import linkedin_icon from '../../images/linkedInIcon.png';
 import background from '../../images/grapes-background.png';
@@ -7,13 +7,31 @@ import background from '../../images/grapes-background.png';
 import './AboutPage.css'
 
 const AboutPage = () => {
+  const [loaded, setLoaded] = useState(false);
+  const [thisBackground, setThisBackground] = useState(background)
+
+  useEffect(() => {
+    setThisBackground(background)
+    if(thisBackground) {
+      setLoaded(true)
+    }
+  },[background])
+
+  if (!loaded) {
+    return (
+    <div className='loaderr'>
+        <h1>Loading...</h1>
+    </div>
+    )
+}
+
   return (
     <>
          <div id='about_background'style={{
-                backgroundImage: `url(${background})`,
+                backgroundImage: `url(${thisBackground})`,
               }}></div>
       <div id='built_by_container'>
-        <div>Wineax was built by:</div>
+        <div>Wineaux was built by:</div>
         <div id='dev_list_container'>
           <div className='creator_container'>
             <div className='creator_name'>David Forster</div>
@@ -21,7 +39,7 @@ const AboutPage = () => {
               <a href='https://github.com/da5idf' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://github.com/halquist' target="_blank">
+              <a href='https://www.linkedin.com/in/david-forster-70b44673/' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
@@ -32,7 +50,7 @@ const AboutPage = () => {
               <a href='https://github.com/samuelrkramer' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://github.com/halquist' target="_blank">
+              <a href='https://www.linkedin.com/in/sam-kramer-3b20b1235/' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
