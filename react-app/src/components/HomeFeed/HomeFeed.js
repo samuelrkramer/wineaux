@@ -24,7 +24,15 @@ const HomeFeed = () => {
       .then(() => dispatch(getAllReviews()))
       .then(() => setNewReviews(reviewSort(Object.entries(reviews).reverse())))
       .then(() => setLoaded(true))
-  }, [dispatch])
+  }, [dispatch, wines, reviews])
+
+  useEffect(() => {
+    dispatch(getAllWines())
+      .then(() => setAllWines(Object.values(wines).reverse()))
+      .then(() => dispatch(getAllReviews()))
+      .then(() => setNewReviews(reviewSort(Object.entries(reviews).reverse())))
+      .then(() => setLoaded(true))
+  }, [])
 
   const reviewSort = (reviews) => {
     reviews.sort((a,b) => {

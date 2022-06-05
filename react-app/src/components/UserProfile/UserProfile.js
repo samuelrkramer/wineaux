@@ -40,7 +40,7 @@ const UserProfile = () => {
         return value.user.id === parseInt(userId)
       }).reverse()))
       .then(()=> setLoaded(true))
-  }, [dispatch, userId])
+  }, [dispatch, userId, reviews])
 
 
   useEffect(() => {

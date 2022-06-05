@@ -19,7 +19,8 @@ class Wine(db.Model):
 
   variety = db.relationship('Variety', back_populates='wines')
   user = db.relationship('User', back_populates='wines')
-  reviews = db.relationship('Review', back_populates='wine', cascade='all, delete')
+  reviews = db.relationship('Review', back_populates='wine')
+  # reviews = db.relationship('Review', back_populates='wine', cascade='all, delete, delete-orphan')
 
   def to_dict(self):
     return {
