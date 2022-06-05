@@ -40,33 +40,68 @@ function ToggleReview({ rating, canEdit, containerId, action, setRating }) {
     }
 
     useEffect(() => {
+        console.log("******* canEdit", canEdit)
         const reviewContainer = document.getElementById(containerId);
         if (reviewContainer && canEdit) {
             const glasses = document.getElementsByClassName("review-glass");
             for (let glass of glasses) {
-                glass.addEventListener("mousemove", (e) => {
-                    const mousePosition = e.pageX
-                    toggleVisibility(mousePosition, glasses)
-                })
+                // glass.addEventListener("mousemove", (e) => {
+                //     const mousePosition = e.pageX
+                //     toggleVisibility(mousePosition, glasses)
+                // })
+                glass.addEventListener("mousemove", glassEvent);
             }
-            reviewContainer.addEventListener("mouseleave", () => {
-                let i = 1
-                for (let glass of glasses) {
-                    glass.classList.remove("glass-opacity")
-                    if (i <= rating) {
-                        glass.classList.add("rating-full")
-                        glass.classList.remove("rating-empty")
-                    } else {
-                        glass.classList.remove("rating-full")
-                        glass.classList.add("rating-empty")
-                    }
-                    i++;
-                }
-            })
-        }
-    }, [rating, canEdit, containerId])
+            // reviewContainer.addEventListener("mouseleave", () => {
+            //     let i = 1
+            //     for (let glass of glasses) {
+            //         glass.classList.remove("glass-opacity")
+            //         if (i <= rating) {
+            //             glass.classList.add("rating-full")
+            //             glass.classList.remove("rating-empty")
+            //         } else {
+            //             glass.classList.remove("rating-full")
+            //             glass.classList.add("rating-empty")
+            //         }
+            //         i++;
+            //     }
+            // })
+            reviewContainer.addEventListener("mouseleave", containerEvent);
 
-    const toggleVisibility = (position, glasses) => {
+            return (() => {
+                for (let glass of glasses) {
+                    glass.removeEventListener("mousemove", glassEvent)
+                }
+                reviewContainer.removeEventListener("mouseleave", containerEvent)
+            })
+
+        }
+    }, [rating, canEdit, containerId, review])
+
+    const glassEvent = (e) => {
+        const mousePosition = e.pageX
+        toggleVisibility(mousePosition)
+    }
+
+    const containerEvent = () => {
+        const glasses = document.getElementsByClassName("review-glass");
+        let i = 1
+        for (let glass of glasses) {
+            glass.classList.remove("glass-opacity")
+            if (i <= rating) {
+                glass.classList.add("rating-full")
+                glass.classList.remove("rating-empty")
+            } else {
+                glass.classList.remove("rating-full")
+                glass.classList.add("rating-empty")
+            }
+            i++;
+        }
+    }
+
+    // const toggleVisibility = (position, glasses) => {
+    const toggleVisibility = (position) => {
+        const glasses = document.getElementsByClassName("review-glass");
+
         for (let i = 0; i < 5; i++) {
             const middle = (glasses[i].getBoundingClientRect().left + glasses[i].getBoundingClientRect().right) / 2 - 10;
             if (position < middle) {
