@@ -36,7 +36,7 @@ const PicEditField = ({ user, setInEdit}) => {
                 autoFocus={true}
                 id='profile_pic_edit_input'
             ></input>
-            <div id="dr-review-text-button-container">
+            <div id="dr-review-text-button-container" className='bio_edit_container'>
                 <button id="dr-review-text-save" onClick={saveEdit}>Save</button>
                 <button id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</button>
             </div>
