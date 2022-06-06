@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { deleteReview } from '../../store/reviews';
 import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
 import './WineForm.css'
 
@@ -19,6 +20,14 @@ const WineForm = ({ mode }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [reviews, setReviews] = useState(useSelector(state => state.reviews.allReviews))
+
+  useEffect(() => {
+    setReviews(Object.entries(reviews).filter(([key,value])=> {
+      return value.wine.id === parseInt(wineId)
+       }))
+  },[])
+
   let { wineId } = useParams();
   const oldWine = useSelector(state => state.wines.singleWine);
   let wine = {};
@@ -27,7 +36,7 @@ const WineForm = ({ mode }) => {
     wine = { ...oldWine };
   }
 
-  const [varieties, setVarieities] = useState([]);
+  const [varieties, setVarieties] = useState([]);
 
   const [name, setName] = useState(wine.name || "");
   const [year, setYear] = useState(wine.year || "");
@@ -67,7 +76,7 @@ const WineForm = ({ mode }) => {
   useEffect(async () => {
     const res = await fetch('/api/wines/varieties');
     const varObj = await res.json();
-    setVarieities(varObj.varieties);
+    setVarieties(varObj.varieties);
   }, []);
 
   const cancelHandler = (e) => {
@@ -77,7 +86,12 @@ const WineForm = ({ mode }) => {
 
   const deleteHandler = async (e) => {
     e.preventDefault();
-    const result = await dispatch(deleteWine(wineId));
+    for (let i = 0; i < reviews.length; i++) {
+      // console.log('review delete', reviews[i][0])
+      dispatch(deleteReview(parseInt(reviews[i][0])))
+    }
+    const result = await dispatch(deleteWine(wineId))
+    // console.log('reviews full', reviews[0][0])
     if (result) history.push("/");
     else alert("failed to delete");
   }
