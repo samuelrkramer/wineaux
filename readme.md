@@ -12,7 +12,7 @@ Wineaux is an app that takes inspiration from [untappd](https://untappd.com/) fo
       ,
       <a href="https://github.com/samuelrkramer">Sam Kramer</a>
       ,
-      <a href="https://github.com/jonathontufts">Jonathon Tufts</a>
+      <a href="https://github.com/aarontuftss">Aaron Tufts</a>
       ,
       <a href="https://github.com/halquist">Jon Halquist</a>
    </br>
