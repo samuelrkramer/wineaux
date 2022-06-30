@@ -56,12 +56,12 @@ const AboutPage = () => {
             </div>
           </div>
           <div className='creator_container'>
-            <div className='creator_name'>Jonathon Tufts</div>
+            <div className='creator_name'>Aaron Tufts</div>
             <div className='git_link_container'>
-              <a href='https://github.com/jonathontufts' target="_blank">
+              <a href='https://github.com/aarontuftss' target="_blank">
                 <img src={github_icon} height="32px" alt='github_icon'></img>
               </a>
-              <a href='https://www.linkedin.com/in/aaron-tufts-010759219/' target="_blank">
+              <a href='https://www.linkedin.com/in/aarontufts/' target="_blank">
                 <img src={linkedin_icon} height="32px" alt='linkedin_icon'></img>
               </a>
             </div>
