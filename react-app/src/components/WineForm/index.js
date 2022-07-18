@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { Modal } from '../../context/Modal';
+import DeleteModal from '../DeleteModal';
 import { deleteReview } from '../../store/reviews';
 import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
 import './WineForm.css'
@@ -45,7 +47,8 @@ const WineForm = ({ mode }) => {
   const [color, setColor] = useState(wine.color || "0");
   const [sweetness, setSweetness] = useState(wine.sweetness || "");
   const [image_url, setImage_url] = useState(wine.image_url || "");
-  const [errorsArr, setErrorsArr] = useState([])
+  const [errorsArr, setErrorsArr] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const submitHandler = async e => {
     e.preventDefault();
@@ -82,6 +85,11 @@ const WineForm = ({ mode }) => {
   const cancelHandler = (e) => {
     e.preventDefault();
     history.goBack();
+  }
+
+  const deleteConfirm = e => {
+    e.preventDefault();
+    setShowModal(true);
   }
 
   const deleteHandler = async (e) => {
@@ -252,13 +260,18 @@ const WineForm = ({ mode }) => {
             <button id="dr-review-text-save" type="submit">{mode}</button>
             {mode === "Edit" && (
               <>
-                <button onClick={deleteHandler}>Delete</button>
+                <button onClick={deleteConfirm}>Delete</button>
                 <button onClick={cancelHandler}>Cancel</button>
               </>
             )}
           </div>
         </form>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)} >
+          <DeleteModal onCancel={() => setShowModal(false)} onDelete={deleteHandler} />
+        </Modal>
+      )}
     </>
   );
 };
