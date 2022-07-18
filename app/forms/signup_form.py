@@ -31,8 +31,11 @@ def username_exists(form, field):
 
 def validate_password(form, field):
     confirm_pass = form.data["confirm_pass"]
+    regex = re.compile("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")
     if not field.data == confirm_pass:
         raise ValidationError('Passwords do not match.')
+    if not re.fullmatch(regex, confirm_pass):
+        raise ValidationError('Must be at least 8 characters & include at least 1 letter and 1 number')
 
 
 def validate_birthday(form, field):

@@ -61,8 +61,8 @@ function NewReview() {
     const urlChange = (e) => {
         setUrl(e.target.value);
         let regex = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(png|gif|webp|jpeg|jpg)/i
-        if (!e.target.value.match(regex)) {
-            setUrlError("Url must be an img")
+        if (!e.target.value.match(regex) && e.target.value !== '') {
+            setUrlError("Url must be an image (jpg, png, gif, or webp)")
         } else if (e.target.value.length > 1000) {
             setUrlError("Photo URL must be 1000 characters or less");
         } else {

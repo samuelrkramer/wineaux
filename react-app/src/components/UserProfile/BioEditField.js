@@ -25,8 +25,10 @@ const BioEditField = ({ user, setInEdit}) => {
                 onChange={e => setNewText(e.target.value)}
                 value={newText || ''}
                 autoFocus={true}
+                maxlength="400"
+                id='bio_text_area'
             ></textarea>
-            <div id="dr-review-text-button-container">
+            <div id="dr-review-text-button-container" className='bio_edit_container'>
                 <button id="dr-review-text-save" onClick={saveEdit}>Save</button>
                 <button id="dr-review-text-cancel" onClick={cancelEdit}>Cancel</button>
             </div>

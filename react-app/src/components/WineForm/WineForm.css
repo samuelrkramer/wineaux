@@ -6,6 +6,7 @@
   outline: 6px double #4F182E;
   border-radius: 2px;
   margin-top: 40px;
+  margin-bottom: 40px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -28,4 +29,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#wine-errors {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center;
+  text-align: center;
 }

@@ -127,7 +127,9 @@ const UserProfile = () => {
           {!user.bio && canEdit ? <button onClick={textEdit}>Add Bio</button> : null }
           {inTextEdit ?
             <BioEditField user={user} setInEdit={setInTextEdit} /> :
-            <div id={`bio_text_${canEdit}`} onClick={textEdit}>{user.bio}</div>
+            <div id={`bio_text_${canEdit}`} onClick={textEdit}>{user.bio}
+            {canEdit && user.bio && ' (edit)'}
+            </div>
           }
 
         </div>
