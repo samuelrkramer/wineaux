@@ -5,5 +5,7 @@ const DeleteModal = ({ onCancel, onDelete }) => {
       <button onClick={onCancel}>Cancel</button>
       <button onClick={onDelete}>Delete</button>
     </div>
-  )
+  );
 }
+
+export default DeleteModal;
