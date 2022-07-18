@@ -21,17 +21,7 @@ const SignUpForm = () => {
     e.preventDefault();
     const data = await dispatch(signUp(username, email, password, repeatPassword, firstname, lastname, birthdate));
     if (data) {
-      // for (let i = 0; i < data.length; i++) {
-      //   data[i] = data[i].replace('username', 'Username');
-      //   data[i] = data[i].replace('email', 'Email');
-      //   data[i] = data[i].replace('password', 'Password');
-      //   data[i] = data[i].replace('first_name', 'First Name');
-      //   data[i] = data[i].replace('last_name', 'Last Name');
-      //   data[i] = data[i].replace('birthdate', 'Birthdate');
-      //   data[i] = data[i].replace('confirm_pass', 'Repeat Password');
-      // }
       setErrors(data)
-      console.log(data);
     }
   };
 
