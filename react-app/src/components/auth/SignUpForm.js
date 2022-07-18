@@ -21,16 +21,17 @@ const SignUpForm = () => {
     e.preventDefault();
     const data = await dispatch(signUp(username, email, password, repeatPassword, firstname, lastname, birthdate));
     if (data) {
-      for (let i = 0; i < data.length; i++) {
-        data[i] = data[i].replace('username', 'Username');
-        data[i] = data[i].replace('email', 'Email');
-        data[i] = data[i].replace('password', 'Password');
-        data[i] = data[i].replace('first_name', 'First Name');
-        data[i] = data[i].replace('last_name', 'Last Name');
-        data[i] = data[i].replace('birthdate', 'Birthdate');
-        data[i] = data[i].replace('confirm_pass', 'Repeat Password');
-      }
+      // for (let i = 0; i < data.length; i++) {
+      //   data[i] = data[i].replace('username', 'Username');
+      //   data[i] = data[i].replace('email', 'Email');
+      //   data[i] = data[i].replace('password', 'Password');
+      //   data[i] = data[i].replace('first_name', 'First Name');
+      //   data[i] = data[i].replace('last_name', 'Last Name');
+      //   data[i] = data[i].replace('birthdate', 'Birthdate');
+      //   data[i] = data[i].replace('confirm_pass', 'Repeat Password');
+      // }
       setErrors(data)
+      console.log(data);
     }
   };
 
@@ -80,79 +81,96 @@ const SignUpForm = () => {
       <div>
         <Logo />
         <h1>Welcome to Wineaux!</h1>
-        <div id="signup-form-errors-container">
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+        <div className='auth-fields'>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>First Name</label>
+              {errors.first_name && <div className='auth-err'>{errors.first_name}</div>}
+            </div>
+            <input
+              type='text'
+              name='first_name'
+              onChange={updateFirstName}
+              value={firstname}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>Last Name</label>
+              {errors.last_name && <div className='auth-err'>{errors.last_name}</div>}
+            </div>
+            <input
+              type='text'
+              name='last_name'
+              onChange={updateLastName}
+              value={lastname}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>User Name</label>
+              {errors.username && <div className='auth-err'>{errors.username}</div>}
+            </div>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>Email</label>
+              {errors.email && <div className='auth-err'>{errors.email}</div>}
+            </div>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>Birthdate</label>
+              {errors.birthdate && <div className='auth-err'>{errors.birthdate}</div>}
+            </div>
+            <input
+              type='date'
+              name='birthdate'
+              onChange={updateBirthdate}
+              value={birthdate}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>Password</label>
+              {errors.password && <div className='auth-err'>{errors.password}</div>}
+            </div>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label>Repeat Password</label>
+            </div>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
         </div>
-        <div>
-          <label>First Name</label>
-          <input
-            type='text'
-            name='first_name'
-            onChange={updateFirstName}
-            value={firstname}
-          ></input>
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type='text'
-            name='last_name'
-            onChange={updateLastName}
-            value={lastname}
-          ></input>
-        </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-          ></input>
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <label>Birthdate</label>
-          <input
-            type='date'
-            name='birthdate'
-            onChange={updateBirthdate}
-            value={birthdate}
-          ></input>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <div className='bHold'>
-          <button type='submit' className='form_button'>Sign Up</button>
-          <button onClick={demoHandler} className='form_button'>Demo</button>
-        </div>
+      </div>
+      <div className='bHold'>
+        <button type='submit' className='form_button'>Sign Up</button>
+        <button onClick={demoHandler} className='form_button'>Demo</button>
       </div>
     </form>
   );

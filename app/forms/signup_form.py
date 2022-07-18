@@ -42,9 +42,9 @@ def validate_birthday(form, field):
     ofAge = today - delta
     year = field.data.year
     if year < 1910:
-        raise ValidationError('Were you really born in that year?')
+        raise ValidationError(f"Were you really born in {year}?")
     if field.data > ofAge:
-        raise ValidationError('Must be 21 years of age to enter')
+        raise ValidationError('Must be 21 years of age.')
 
 class SignUpForm(FlaskForm):
     username = StringField(
