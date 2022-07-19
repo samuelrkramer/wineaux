@@ -5,12 +5,15 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { deleteReview, getAllReviews } from '../../store/reviews';
+import { Modal } from '../../context/Modal';
+import DeleteModal from '../DeleteModal';
 
 const FeedReview = (props) => {
     const review = props.review
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const [isUser, setIsUser] = useState(false)
+    const [showModal, setShowModal] = useState(false);
 
     const getTime = () => {
         let date = new Date(review.created_at)
@@ -36,6 +39,11 @@ const FeedReview = (props) => {
             setIsUser(true)
         }
     }, [])
+
+    const deleteConfirm = e => {
+        e.preventDefault();
+        setShowModal(true);
+    }
 
     const deleteRevieww = async () => {
         await dispatch(deleteReview(review.id))
@@ -82,7 +90,7 @@ const FeedReview = (props) => {
                             <>
                                 <div>
                                     <NavLink to={`/reviews/${review.id}`} className='navLinkk'>Edit</NavLink>
-                                    <button onClick={deleteRevieww} className='dButton'>Delete</button>
+                                    <button onClick={deleteConfirm} className='dButton'>Delete</button>
                                 </div>
                             </>
                         )}
@@ -95,6 +103,11 @@ const FeedReview = (props) => {
 
 
             </div>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <DeleteModal onCancel={() => setShowModal(false)} onDelete={deleteRevieww} />
+                </Modal>
+            )}
         </>
     );
 };
