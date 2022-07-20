@@ -8,6 +8,8 @@ import EditReviewText from './EditReviewText';
 import EditReviewImg from './EditReviewImg';
 import ToggleReview from '../ToggleReview';
 import { deleteReview } from '../../store/reviews';
+import { Modal } from '../../context/Modal';
+import DeleteModal from '../DeleteModal';
 
 function DetailedReview() {
     const history = useHistory();
@@ -22,6 +24,7 @@ function DetailedReview() {
     const [inImgEdit, setInImgEdit] = useState(false);
     const [addPhoto, setAddPhoto] = useState(false);
     const [canEdit, setCanEdit] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         dispatch(getOneReview(reviewId));
@@ -45,6 +48,11 @@ function DetailedReview() {
 
     const addPhotoPrompt = () => {
         setAddPhoto(true);
+    }
+
+    const confirmDelete = e => {
+        e.preventDefault();
+        setShowModal(true);
     }
 
     const handleDelete = () => {
@@ -131,7 +139,7 @@ function DetailedReview() {
                             )}
                             <button
                                 id="dr-delete-review-button"
-                                onClick={handleDelete}
+                                onClick={confirmDelete}
                             >
                                 Delete Review
                             </button>
@@ -139,7 +147,11 @@ function DetailedReview() {
                     )}
                 </div>
             </div>
-
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <DeleteModal onCancel={() => setShowModal(false)} onDelete={handleDelete} />
+                </Modal>
+            )}
         </div>
     )
 }

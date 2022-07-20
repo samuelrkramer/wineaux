@@ -44,39 +44,44 @@ const LoginForm = () => {
   return (
     <form onSubmit={onLogin}>
       <div>
-      <Logo />
+        <Logo />
         <h1>Welcome Back!</h1>
-        <h4>Please sign in to continue </h4>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            className='fInput'
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            className='fInput'
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-          <div className='bHold'>
-            <button type='submit' className='form_button'>Login</button>
-            <button onClick={demoHandler} className='form_button'>Demo</button>
+        <div className='auth-fields'>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label htmlFor='email'>Email</label>
+            </div>
+            <input
+              className='auth-input'
+              name='email'
+              type='text'
+              placeholder='Please enter your email'
+              value={email}
+              onChange={updateEmail}
+            />
           </div>
+          <div className='auth-field'>
+            <div className='auth-label-err'>
+              <label htmlFor='password'>Password</label>
+            </div>
+            <input
+              className='auth-input'
+              name='password'
+              type='password'
+              placeholder='Please enter your password'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
+        </div>
+        <div id="login-err">
+          {errors.length !== 0 &&
+            <div>The username and password provided do not match.</div>
+          }
+        </div>
+        <div className='bHold'>
+          <button type='submit' className='form_button'>Login</button>
+          <button onClick={demoHandler} className='form_button'>Demo</button>
         </div>
       </div>
     </form>

@@ -9,6 +9,7 @@ import * as sessionActions from './store/session';
 import * as reviewActions from './store/reviews';
 import * as wineActions from './store/wines';
 import * as userActions from './store/users';
+import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
@@ -23,7 +24,9 @@ if (process.env.NODE_ENV !== 'production') {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
