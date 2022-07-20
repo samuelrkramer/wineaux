@@ -9,7 +9,7 @@ const MiniWineFeed = ({ wines }) => {
     <div id='mini_wine_container'>
       {wines.map((wine) => {
         return (
-          <NavLink to={`/wines/${wine.id}`} className='navLinkk' key={Math.random()}>
+          <NavLink to={`/wines/${wine.id}`} className='navLinkk' key={wine.id}>
           <div className='mini_one_wine'  style={{
             backgroundImage: `url(${wine.image_url})`,
             backgroundPosition: 'center',
