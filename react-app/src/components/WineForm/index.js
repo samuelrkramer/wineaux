@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { deleteReview } from '../../store/reviews';
 import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
+import { getAllReviews } from '../../store/reviews';
 import './WineForm.css'
 
 const colors = [
@@ -92,7 +93,10 @@ const WineForm = ({ mode }) => {
     // }
     const result = await dispatch(deleteWine(wineId))
     // console.log('reviews full', reviews[0][0])
-    if (result) history.push("/");
+    await dispatch(getAllReviews())
+    if (result) {
+      history.push("/")
+    }
     else alert("failed to delete");
   }
 
