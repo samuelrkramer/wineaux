@@ -6,6 +6,7 @@ import { Modal } from '../../context/Modal';
 import DeleteModal from '../DeleteModal';
 import { deleteReview } from '../../store/reviews';
 import { uploadNewWine, editWine, deleteWine } from '../../store/wines';
+import { getAllReviews } from '../../store/reviews';
 import './WineForm.css'
 
 const colors = [
@@ -94,13 +95,16 @@ const WineForm = ({ mode }) => {
 
   const deleteHandler = async (e) => {
     e.preventDefault();
-    for (let i = 0; i < reviews.length; i++) {
-      // console.log('review delete', reviews[i][0])
-      dispatch(deleteReview(parseInt(reviews[i][0])))
-    }
+    // for (let i = 0; i < reviews.length; i++) {
+    //   // console.log('review delete', reviews[i][0])
+    //   dispatch(deleteReview(parseInt(reviews[i][0])))
+    // }
     const result = await dispatch(deleteWine(wineId))
     // console.log('reviews full', reviews[0][0])
-    if (result) history.push("/");
+    await dispatch(getAllReviews())
+    if (result) {
+      history.push("/")
+    }
     else alert("failed to delete");
   }
 

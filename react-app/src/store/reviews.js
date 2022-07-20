@@ -114,7 +114,11 @@ const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_REVIEWS:
+            // console.log('review store', action.reviews)
+            // console.log('state', state)
             newState = Object.assign({}, state);
+            // newState.allReviews = {};
+            // console.log('all reviews', newState.allReviews)
             action.reviews.forEach(review => {
                 newState.allReviews[review.id] = review
             });

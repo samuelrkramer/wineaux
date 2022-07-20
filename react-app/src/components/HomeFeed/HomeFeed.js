@@ -22,7 +22,7 @@ const HomeFeed = () => {
     await dispatch(getAllWines())
       .then(() => setAllWines(Object.values(wines).reverse()))
       .then(() => dispatch(getAllReviews()))
-      .then(() => setNewReviews(reviewSort(Object.entries(reviews).reverse())))
+      .then((ret) => setNewReviews(reviewSort(Object.entries(ret).reverse())))
       .then(() => setLoaded(true))
   }, [dispatch, wines, reviews])
 
@@ -30,7 +30,7 @@ const HomeFeed = () => {
     dispatch(getAllWines())
       .then(() => setAllWines(Object.values(wines).reverse()))
       .then(() => dispatch(getAllReviews()))
-      .then(() => setNewReviews(reviewSort(Object.entries(reviews).reverse())))
+      .then((ret) => setNewReviews(reviewSort(Object.entries(ret).reverse())))
       .then(() => setLoaded(true))
   }, [])
 
