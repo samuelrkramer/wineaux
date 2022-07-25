@@ -19,7 +19,7 @@ import WinePage from './components/WinePage';
 import HomeFeed from './components/HomeFeed';
 import AboutPage from './components/AboutPage'
 
-
+//for deployment
 
 function App() {
   const [loaded, setLoaded] = useState(false);
